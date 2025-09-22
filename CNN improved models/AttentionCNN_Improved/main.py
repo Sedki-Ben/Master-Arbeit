@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AttentionCNN_- Main 
+AttentionCNN- Main 
 
 Main script to run AttentionCNN_model training and evaluation.
 AttentionCNN with 
