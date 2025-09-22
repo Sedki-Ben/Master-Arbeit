@@ -2,7 +2,7 @@
 
 This directory contains the original implementations of five different CNN architectures for indoor localization using WiFi CSI data and in certain cases auxiliary RSSI vales. These models serve as baseline implementations for comparison with their improved counterparts.
 
-## 🏗️ Model Architectures
+## Model Architectures
 
 ### 1. BasicCNN_Original
 **Simple 1D CNN baseline model**
@@ -39,7 +39,7 @@ This directory contains the original implementations of five different CNN archi
 - **Use case**: Deep network training with gradient flow
 - **Strengths**: Stable training, better gradient flow, deeper networks
 
-## 📁 Directory Structure
+## Directory Structure
 
 Each model follows the same modular structure:
 
@@ -54,7 +54,7 @@ ModelName_Original/
 └── evaluation.py     # Performance metrics and visualization
 ```
 
-## 🚀 Usage
+## Usage
 
 ### Run Individual Models
 ```bash
@@ -83,7 +83,7 @@ Each model generates:
 - Performance metrics (JSON/CSV)
 - Predicted vs. true position scatter plots
 
-## 📊 Expected Performance
+## Expected Performance
 
 Our Models returned these results (median localization error) before improvement:
 
@@ -144,7 +144,7 @@ GlobalAvgPool → Dense layers
 ResidualBlock: Conv1D → BN → Conv1D → BN → Add → ReLU
 ```
 
-## 📋 Requirements
+## Requirements
 
 ```
 tensorflow>=2.8.0
@@ -153,16 +153,3 @@ pandas>=1.3.0
 matplotlib>=3.5.0
 scikit-learn>=1.1.0
 ```
-
-## 🎯 Next Steps
-
-After running original models:
-1. Compare with improved models in `../CNN improved models/`
-2. Analyze performance differences
-3. Use visualization tools in `../Tools/` for CDF plots
-4. Compare with classical methods in `../classical models/`
-
----
-
-**Original CNN Models for Indoor Localization**  
-*Baseline implementations for WiFi CSI-based positioning*
