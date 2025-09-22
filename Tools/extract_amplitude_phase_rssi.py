@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Extract Amplitude, Phase, and RSSI Tool
+Extract Amplitude, Phase, and RSSI Tool.
 
 Script to extract and format CSI data into the final form:
 - 1 RSSI value
