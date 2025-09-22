@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Main script for BasicCNN model training and evaluation."""
+"""Main script for BasicCNN model training and evaluation"""
 
 import argparse
 import sys
