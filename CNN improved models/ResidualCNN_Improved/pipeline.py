@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ResidualCNN_- Pipeline Orchestrator
+ResidualCNN- Pipeline Orchestrator
 
 Orchestrates the complete ResidualCNN_training and evaluation pipeline.
 ResidualCNN with 
