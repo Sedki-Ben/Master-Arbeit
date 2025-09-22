@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Plot Classical Models CDF
+Plot Classical Models CDF.
 
 Script to plot Cumulative Distribution Function (CDF) of localization errors
 for classical models (k-NN, IDW, Probabilistic).
