@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HybridCNN_- Data Loader Module
+HybridCNN- Data Loader Module
 
 Data loading functionality for HybridCNN_model.
 HybridCNN with 
