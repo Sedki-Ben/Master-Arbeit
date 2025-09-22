@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-BasicCNN_- Pipeline Orchestrator
+BasicCNN- Pipeline Orchestrator
 
 Orchestrates the complete BasicCNN_training and evaluation pipeline.
 BasicCNN with 
