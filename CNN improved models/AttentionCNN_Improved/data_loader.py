@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AttentionCNN_- Data Loader Module
+AttentionCNN- Data Loader Module
 
 Data loading functionality for AttentionCNN_model.
 AttentionCNN with 
