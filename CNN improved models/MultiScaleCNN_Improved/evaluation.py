@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MultiScaleCNN_- Evaluation Module
+MultiScaleCNN- Evaluation Module
 
 Evaluation functionality for MultiScaleCNN_model.
 MultiScaleCNN with 
