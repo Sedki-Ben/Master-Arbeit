@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-CSI Data Preprocessing Tool
+CSI Data Preprocessing Tool.
 
 Script to preprocess CSI data by:
 1. Removing unnecessary columns from raw CSI datasets
