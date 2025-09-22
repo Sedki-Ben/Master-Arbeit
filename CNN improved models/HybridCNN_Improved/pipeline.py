@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HybridCNN_- Pipeline Orchestrator
+HybridCNN- Pipeline Orchestrator
 
 Orchestrates the complete HybridCNN_training and evaluation pipeline.
 HybridCNN with 
