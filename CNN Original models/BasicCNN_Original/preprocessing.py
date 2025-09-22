@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-BasicCNN Original - Preprocessing Module
+BasicCNN Original- Preprocessing Module
 
 Data preprocessing functionality for BasicCNN Original model.
 Uses original preprocessing approach with data leakage.
