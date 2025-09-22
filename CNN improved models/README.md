@@ -91,7 +91,7 @@ python main.py --dataset-sizes 250 500 750 --output-dir results
 python main.py --single-size 750  # Best performance with largest dataset
 ```
 
-## 📊 Performance Improvements
+## Performance Improvements
 
 Comparison with original models (median localization error):
 
@@ -138,7 +138,7 @@ layers.Dropout(0.5)  # After first dense layer
 - **Early Stopping**: Improved patience and monitoring
 - **Validation Strategy**: Enhanced cross-validation approach
 
-## 📈 Architecture Specifications
+## Architecture Specifications
 
 ### BasicCNN_Improved
 ```
@@ -229,7 +229,3 @@ python plot_cnn_improved_cdf.py
 - **Memory Usage**: Minimal increase
 - **Accuracy**: Significant improvement (15-25%)
 
----
-
-**Enhanced CNN Models for Superior Indoor Localization**  
-*Advanced regularization and optimization for WiFi CSI-based positioning*
