@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-k-Nearest Neighbors (k-NN) Model
+k-Nearest Neighbors (k-NN) Model.
 
 k-NN implementation for indoor localization.
 Uses Euclidean distance in feature space to find nearest neighbors
