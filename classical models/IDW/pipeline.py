@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-IDW Pipeline
+IDW Pipeline.
 
 pipeline for IDW localization including data loading,
 preprocessing, training, evaluation, and visualization.
