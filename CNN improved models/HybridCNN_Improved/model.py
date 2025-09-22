@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Model architecture."""
+"""Model architecture"""
 
 import tensorflow as tf
 from tensorflow.keras import layers, Model, regularizers
