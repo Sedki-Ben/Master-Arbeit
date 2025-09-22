@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AttentionCNN_- Training Module
+AttentionCNN- Training Module
 
 Training functionality for AttentionCNN_model.
 AttentionCNN with 
