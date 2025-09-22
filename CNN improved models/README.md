@@ -101,7 +101,7 @@ reminder of the rsults from the original models (median localization error):
 | MultiScaleCNN | ~2.6m | ~2.6m | ~2.5m |
 | ResidualCNN | ~2.34m | ~2.29m | ~2.21m |
 
-### Accuracy at Different Thresholds (750 samples)
+### Acresults of improved setting
 
 | Model | 250 Samples | 500 Samples | 750 Samples |
 |-------|-------------|-------------|-------------|
