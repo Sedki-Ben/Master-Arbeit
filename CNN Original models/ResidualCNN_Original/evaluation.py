@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ResidualCNN_Original - Evaluation Module
+ResidualCNN_Original- Evaluation Module
 
 Evaluation functionality for ResidualCNN_Original model.
 ResidualCNN with skip connections.
