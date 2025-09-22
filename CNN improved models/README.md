@@ -52,7 +52,7 @@ This directory contains enhanced versions of the original CNN architectures with
 - **Performance**: Best overall performance with enhanced stability
 - **Best for**: Maximum accuracy with stable deep training
 
-## 📁 Directory Structure
+## Directory Structure
 
 Each improved model maintains the same modular structure as originals:
 
@@ -67,7 +67,7 @@ ModelName_Improved/
 └── evaluation.py     # Comprehensive performance metrics
 ```
 
-## 🚀 Usage
+## Usage
 
 ### Run Individual Improved Models
 ```bash
@@ -113,7 +113,7 @@ Comparison with original models (median localization error):
 | MultiScaleCNN_Improved | ~72% | ~90% | ~97% |
 | ResidualCNN_Improved | **~78%** | **~94%** | **~99%** |
 
-## 🔧 Technical Enhancements
+## Technical Enhancements
 
 ### Regularization Strategy
 ```python
@@ -161,7 +161,7 @@ Fusion: Improved concatenation + regularized dense layers
 - **Generalization**: Reduced overfitting through enhanced regularization
 - **Performance**: Consistent 15-25% improvement over originals
 
-## 🎯 Use Case Recommendations
+## Use Case Recommendations
 
 ### For Quick Experiments
 - **BasicCNN_Improved**: Enhanced baseline with good speed/accuracy balance
@@ -178,7 +178,7 @@ Fusion: Improved concatenation + regularized dense layers
 ### For Complex Patterns
 - **MultiScaleCNN_Improved**: Enhanced multi-scale feature extraction
 
-## 🔄 Comparison Strategy
+## Comparison Strategy
 
 ### Model Selection Process
 1. **Start with BasicCNN_Improved** for baseline performance
@@ -201,7 +201,7 @@ cd ../Tools
 python plot_cnn_improved_cdf.py
 ```
 
-## 📋 Advanced Features
+## Advanced Features
 
 ### Enhanced Evaluation
 - **Comprehensive Metrics**: Beyond basic localization error
@@ -215,7 +215,7 @@ python plot_cnn_improved_cdf.py
 - **Noise Tolerance**: Better performance with noisy data
 - **Generalization**: Improved performance on unseen environments
 
-## 📚 Best Practices
+## Best Practices
 
 ### Training Recommendations
 1. **Start with 750 samples** for optimal performance
