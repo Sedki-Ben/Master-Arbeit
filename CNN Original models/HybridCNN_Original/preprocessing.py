@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HybridCNN_Original - Preprocessing Module
+HybridCNN_Original -Preprocessing Module
 
 Data preprocessing functionality for HybridCNN_Original model.
 HybridCNN combining CSI and RSSI.
