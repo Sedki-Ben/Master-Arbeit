@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Classical Models Main 
+Classical Models Main.
 
 Main script to run all classical localization models (k-NN, IDW, Probabilistic)
 and compare their performance.
