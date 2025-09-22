@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 k-Nearest Neighbors (k-NN) Model
-================================
 
 k-NN implementation for indoor localization.
 Uses Euclidean distance in feature space to find nearest neighbors
@@ -12,8 +11,8 @@ import numpy as np
 from sklearn.neighbors import NearestNeighbors
 
 class KNNLocalizer:
-    """k-Nearest Neighbors localization regressor"""
-    
+    """KNNLocalizer."""
+
     def __init__(self, k=5, distance_metric='euclidean', weights='uniform'):
         """
         Initialize k-NN localizer
@@ -30,7 +29,7 @@ class KNNLocalizer:
         self.y_train = None
         self.nn_model = None
         
-        print(f"🎯 Initializing k-NN Localizer (k={k}, metric={distance_metric}, weights={weights})")
+        print(f" Initializing k-NN Localizer (k={k}, metric={distance_metric}, weights={weights})")
         
     def fit(self, X, y):
         """
@@ -40,7 +39,7 @@ class KNNLocalizer:
             X (np.array): Training features (N x D)
             y (np.array): Training coordinates (N x 2)
         """
-        print(f"🔧 Training k-NN model with {len(X)} samples...")
+        print(f" Training k-NN model with {len(X)} samples...")
         
         self.X_train = X.copy()
         self.y_train = y.copy()
@@ -52,7 +51,7 @@ class KNNLocalizer:
         )
         self.nn_model.fit(X)
         
-        print(f"✅ k-NN model trained successfully")
+        print(f" k-NN model trained successfully")
         
     def predict(self, X):
         """
@@ -67,7 +66,7 @@ class KNNLocalizer:
         if self.nn_model is None:
             raise ValueError("Model must be fitted before prediction")
             
-        print(f"🔮 Predicting locations for {len(X)} test samples...")
+        print(f" Predicting locations for {len(X)} test samples...")
         
         predictions = []
         
@@ -93,7 +92,7 @@ class KNNLocalizer:
             predictions.append(pred_coord)
             
         predictions = np.array(predictions)
-        print(f"✅ Prediction complete")
+        print(f" Prediction complete")
         
         return predictions
     
@@ -167,8 +166,8 @@ class KNNLocalizer:
         return analysis
 
 class MultiKNNEnsemble:
-    """Ensemble of k-NN models with different k values"""
-    
+    """MultiKNNEnsemble."""
+
     def __init__(self, k_values=[1, 3, 5, 7, 9], distance_metric='euclidean', ensemble_method='average'):
         """
         Initialize ensemble of k-NN models
@@ -187,17 +186,17 @@ class MultiKNNEnsemble:
         for k in k_values:
             self.models[k] = KNNLocalizer(k=k, distance_metric=distance_metric)
             
-        print(f"🎯 Initialized k-NN Ensemble with k values: {k_values}")
+        print(f" Initialized k-NN Ensemble with k values: {k_values}")
         
     def fit(self, X, y):
         """Fit all models in the ensemble"""
-        print(f"🔧 Training k-NN Ensemble...")
+        print(f" Training k-NN Ensemble...")
         
         for k, model in self.models.items():
             print(f"   Training k-NN with k={k}...")
             model.fit(X, y)
             
-        print(f"✅ k-NN Ensemble training complete")
+        print(f" k-NN Ensemble training complete")
         
     def predict(self, X):
         """
@@ -209,7 +208,7 @@ class MultiKNNEnsemble:
         Returns:
             np.array: Ensemble predictions
         """
-        print(f"🔮 Ensemble prediction using {len(self.models)} models...")
+        print(f" Ensemble prediction using {len(self.models)} models...")
         
         # Get predictions from all models
         all_predictions = []
@@ -236,7 +235,7 @@ class MultiKNNEnsemble:
         else:
             raise ValueError("ensemble_method must be 'average', 'weighted_average', or 'median'")
             
-        print(f"✅ Ensemble prediction complete using {self.ensemble_method}")
+        print(f" Ensemble prediction complete using {self.ensemble_method}")
         
         return ensemble_pred
     

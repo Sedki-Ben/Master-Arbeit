@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-Classical Models Main Entry Point
-=================================
+Classical Models Main 
 
 Main script to run all classical localization models (k-NN, IDW, Probabilistic)
 and compare their performance.
@@ -37,17 +36,17 @@ def run_single_model_evaluation(model_type, output_dir_suffix=""):
     """
     
     if model_type == 'knn':
-        print("🎯 Running k-NN Evaluation")
+        print(" Running k-NN Evaluation")
         pipeline = KNNPipeline(output_dir=f"knn_results{output_dir_suffix}")
         summary = pipeline.run_complete_evaluation()
         
     elif model_type == 'idw':
-        print("🎯 Running IDW Evaluation")
+        print(" Running IDW Evaluation")
         pipeline = IDWPipeline(output_dir=f"idw_results{output_dir_suffix}")
         summary = pipeline.run_complete_evaluation()
         
     elif model_type == 'probabilistic':
-        print("🎯 Running Probabilistic Evaluation")
+        print(" Running Probabilistic Evaluation")
         pipeline = ProbabilisticPipeline(output_dir=f"probabilistic_results{output_dir_suffix}")
         summary = pipeline.run_complete_evaluation()
         
@@ -59,7 +58,7 @@ def run_single_model_evaluation(model_type, output_dir_suffix=""):
 def run_comprehensive_comparison():
     """Run comprehensive comparison of all classical models"""
     
-    print("🎯 Classical Models Comprehensive Comparison")
+    print(" Classical Models Comparison")
     print("=" * 50)
     print("Evaluating k-NN, IDW, and Probabilistic models")
     
@@ -70,37 +69,37 @@ def run_comprehensive_comparison():
     all_summaries = {}
     
     # 1. k-NN Models
-    print(f"\n1️⃣ k-NN Models Evaluation")
+    print(f"\n1⃣ k-NN Models Evaluation")
     print("-" * 30)
     start_time = time.time()
     knn_summary = run_single_model_evaluation('knn', '_comparison')
     knn_time = time.time() - start_time
     all_summaries['knn'] = knn_summary
     all_model_results.extend(knn_summary['all_results'])
-    print(f"   ✅ k-NN evaluation complete ({knn_time:.1f}s)")
+    print(f"    k-NN evaluation complete ({knn_time:.1f}s)")
     
     # 2. IDW Models
-    print(f"\n2️⃣ IDW Models Evaluation")
+    print(f"\n2⃣ IDW Models Evaluation")
     print("-" * 30)
     start_time = time.time()
     idw_summary = run_single_model_evaluation('idw', '_comparison')
     idw_time = time.time() - start_time
     all_summaries['idw'] = idw_summary
     all_model_results.extend(idw_summary['all_results'])
-    print(f"   ✅ IDW evaluation complete ({idw_time:.1f}s)")
+    print(f"    IDW evaluation complete ({idw_time:.1f}s)")
     
     # 3. Probabilistic Models
-    print(f"\n3️⃣ Probabilistic Models Evaluation")
+    print(f"\n3⃣ Probabilistic Models Evaluation")
     print("-" * 40)
     start_time = time.time()
     prob_summary = run_single_model_evaluation('probabilistic', '_comparison')
     prob_time = time.time() - start_time
     all_summaries['probabilistic'] = prob_summary
     all_model_results.extend(prob_summary['all_results'])
-    print(f"   ✅ Probabilistic evaluation complete ({prob_time:.1f}s)")
+    print(f"    Probabilistic evaluation complete ({prob_time:.1f}s)")
     
     # 4. Overall Comparison
-    print(f"\n4️⃣ Overall Comparison and Analysis")
+    print(f"\n4⃣ Overall Comparison and Analysis")
     print("-" * 40)
     
     # Create unified comparison
@@ -137,12 +136,12 @@ def run_comprehensive_comparison():
     }
     
     # Print summary
-    print(f"\n📊 COMPREHENSIVE CLASSICAL MODELS COMPARISON")
+    print(f"\n COMPREHENSIVE CLASSICAL MODELS COMPARISON")
     print("=" * 55)
     print(f"Total models evaluated: {comprehensive_summary['total_models_evaluated']}")
     print(f"Total evaluation time: {comprehensive_summary['evaluation_times']['total']:.1f}s")
     
-    print(f"\n🏆 BEST MODELS BY TYPE:")
+    print(f"\n BEST MODELS BY TYPE:")
     print(f"k-NN Best: {best_knn['model']}")
     print(f"  Median Error: {best_knn['median_error']:.3f}m")
     print(f"  1m Accuracy: {best_knn['accuracy_1m']:.1f}%")
@@ -158,7 +157,7 @@ def run_comprehensive_comparison():
     print(f"  1m Accuracy: {best_prob['accuracy_1m']:.1f}%")
     print(f"  2m Accuracy: {best_prob['accuracy_2m']:.1f}%")
     
-    print(f"\n🥇 OVERALL BEST MODEL:")
+    print(f"\n OVERALL BEST MODEL:")
     print(f"Model: {best_overall['model']}")
     print(f"Median Error: {best_overall['median_error']:.3f}m")
     print(f"1m Accuracy: {best_overall['accuracy_1m']:.1f}%")
@@ -167,7 +166,7 @@ def run_comprehensive_comparison():
     
     # Algorithm type comparison
     type_analysis = analyze_algorithm_types(all_model_results)
-    print(f"\n📈 ALGORITHM TYPE ANALYSIS:")
+    print(f"\n ALGORITHM TYPE ANALYSIS:")
     for algo_type, stats in type_analysis.items():
         print(f"{algo_type}:")
         print(f"  Models tested: {stats['count']}")
@@ -181,8 +180,8 @@ def run_comprehensive_comparison():
     with open(summary_path, 'w') as f:
         json.dump(comprehensive_summary, f, indent=4)
     
-    print(f"\n📁 All results saved to: {results_dir}")
-    print(f"✅ Comprehensive comparison complete!")
+    print(f"\n All results saved to: {results_dir}")
+    print(f" comparison complete!")
     
     return comprehensive_summary
 
@@ -221,7 +220,7 @@ def analyze_algorithm_types(all_results):
 def run_quick_comparison():
     """Run quick comparison with basic models only"""
     
-    print("🎯 Quick Classical Models Comparison")
+    print(" Quick Classical Models Comparison")
     print("=" * 40)
     
     results_dir = Path("classical_models_quick_comparison")
@@ -231,7 +230,7 @@ def run_quick_comparison():
     from shared.data_loader import load_amplitude_phase_data, load_test_data
     from shared.preprocessing import prepare_classical_features
     
-    print("📂 Loading data...")
+    print(" Loading data...")
     X, y, coordinates = load_amplitude_phase_data(data_source="csi_dataset")
     X_train, y_train = X, y
     X_test, y_test = load_test_data()
@@ -240,7 +239,7 @@ def run_quick_comparison():
     X_train_scaled = prep_result['X_train']
     X_test_scaled = prep_result['X_test']
     
-    print(f"✅ Data loaded: {len(X_train_scaled)} train, {len(X_test_scaled)} test samples")
+    print(f" Data loaded: {len(X_train_scaled)} train, {len(X_test_scaled)} test samples")
     
     # Quick models
     from KNN.model import KNNLocalizer
@@ -258,7 +257,7 @@ def run_quick_comparison():
     
     all_results = []
     
-    print(f"\n🔬 Testing {len(models)} models...")
+    print(f"\n Testing {len(models)} models...")
     for model, name in models:
         print(f"   {name}...")
         
@@ -274,7 +273,7 @@ def run_quick_comparison():
     # Compare results
     best_result = min(all_results, key=lambda x: x['median_error'])
     
-    print(f"\n📊 QUICK COMPARISON RESULTS:")
+    print(f"\n QUICK COMPARISON RESULTS:")
     print(f"{'Model':<20} {'Median (m)':<10} {'1m Acc':<8} {'2m Acc':<8} {'Time (s)':<8}")
     print("-" * 65)
     
@@ -283,7 +282,7 @@ def run_quick_comparison():
               f"{result['accuracy_1m']:<8.1f} {result['accuracy_2m']:<8.1f} "
               f"{result['evaluation_time']:<8.1f}")
     
-    print(f"\n🏆 Quick Comparison Winner: {best_result['model']}")
+    print(f"\n Quick Comparison Winner: {best_result['model']}")
     print(f"   Median Error: {best_result['median_error']:.3f}m")
     print(f"   1m Accuracy: {best_result['accuracy_1m']:.1f}%")
     
@@ -300,7 +299,7 @@ def main():
     
     args = parser.parse_args()
     
-    print("🎯 Classical Models Indoor Localization Evaluation")
+    print(" Classical Models Indoor Localization Evaluation")
     print("k-NN, IDW, and Probabilistic Fingerprinting")
     print("=" * 60)
     
@@ -320,15 +319,15 @@ def main():
         elif args.mode == 'quick':
             summary = run_quick_comparison()
             
-        print(f"\n🎉 Classical Models Evaluation Complete!")
-        print(f"📁 Check results in the respective output directories")
+        print(f"\n Classical Models Evaluation Complete!")
+        print(f" Check results in the respective output directories")
         
     except KeyboardInterrupt:
-        print(f"\n⚠️ Evaluation interrupted by user")
+        print(f"\n Evaluation interrupted")
         return 1
         
     except Exception as e:
-        print(f"❌ Error during evaluation: {e}")
+        print(f" Error during evaluation: {e}")
         import traceback
         traceback.print_exc()
         return 1

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 Classical Models - Shared Evaluation
-====================================
 
 Shared evaluation utilities for classical localization models.
 Handles performance metrics, visualization, and results analysis.
@@ -26,7 +25,7 @@ def calculate_localization_metrics(y_true, y_pred, model_name="Model"):
         dict: Dictionary containing all metrics
     """
     
-    print(f"🔬 Calculating metrics for {model_name}...")
+    print(f" Calculating metrics for {model_name}...")
     
     # Calculate Euclidean distances (localization errors)
     errors = np.sqrt(np.sum((y_true - y_pred)**2, axis=1))
@@ -96,7 +95,7 @@ def calculate_localization_metrics(y_true, y_pred, model_name="Model"):
         'y_errors': y_errors.tolist()
     }
     
-    print(f"   📊 {model_name} Results:")
+    print(f"    {model_name} Results:")
     print(f"     Median Error: {median_error:.3f}m")
     print(f"     Mean Error: {mean_error:.3f}m")
     print(f"     Accuracy <1m: {acc_1m:.1f}%")
@@ -118,7 +117,7 @@ def plot_error_distribution(results, output_dir=None, show_plot=True):
     model_name = results['model']
     errors = np.array(results['errors'])
     
-    print(f"📈 Plotting error distribution for {model_name}...")
+    print(f" Plotting error distribution for {model_name}...")
     
     plt.style.use('seaborn-v0_8-darkgrid')
     fig, ax = plt.subplots(1, 1, figsize=(10, 7))
@@ -150,7 +149,7 @@ def plot_error_distribution(results, output_dir=None, show_plot=True):
     if output_dir:
         output_path = Path(output_dir) / f"{model_name.replace(' ', '_')}_error_distribution.png"
         plt.savefig(output_path, dpi=300, bbox_inches='tight')
-        print(f"✅ Error distribution plot saved to {output_path}")
+        print(f" Error distribution plot saved to {output_path}")
     
     if show_plot:
         plt.show()
@@ -169,7 +168,7 @@ def plot_predictions_scatter(y_true, y_pred, model_name, output_dir=None, show_p
         show_plot (bool): Whether to display the plot
     """
     
-    print(f"📊 Creating predictions scatter plot for {model_name}...")
+    print(f" Creating predictions scatter plot for {model_name}...")
     
     # Calculate errors for color coding
     errors = np.sqrt(np.sum((y_true - y_pred)**2, axis=1))
@@ -213,7 +212,7 @@ def plot_predictions_scatter(y_true, y_pred, model_name, output_dir=None, show_p
     if output_dir:
         output_path = Path(output_dir) / f"{model_name.replace(' ', '_')}_predictions_scatter.png"
         plt.savefig(output_path, dpi=300, bbox_inches='tight')
-        print(f"✅ Predictions scatter plot saved to {output_path}")
+        print(f" Predictions scatter plot saved to {output_path}")
     
     if show_plot:
         plt.show()
@@ -230,7 +229,7 @@ def compare_models_cdf(all_results, output_dir=None, show_plot=True):
         show_plot (bool): Whether to display the plot
     """
     
-    print(f"📈 Creating CDF comparison for {len(all_results)} models...")
+    print(f" Creating CDF comparison for {len(all_results)} models...")
     
     plt.style.use('seaborn-v0_8-darkgrid')
     fig, ax = plt.subplots(1, 1, figsize=(14, 8))
@@ -288,7 +287,7 @@ def compare_models_cdf(all_results, output_dir=None, show_plot=True):
     if output_dir:
         output_path = Path(output_dir) / "classical_models_cdf_comparison.png"
         plt.savefig(output_path, dpi=300, bbox_inches='tight')
-        print(f"✅ CDF comparison plot saved to {output_path}")
+        print(f" CDF comparison plot saved to {output_path}")
     
     if show_plot:
         plt.show()
@@ -304,7 +303,7 @@ def create_performance_summary_table(all_results, output_dir=None):
         output_dir (str, optional): Directory to save results
     """
     
-    print(f"\n📊 CLASSICAL MODELS PERFORMANCE SUMMARY")
+    print(f"\n CLASSICAL MODELS PERFORMANCE SUMMARY")
     print("="*65)
     
     # Sort by median error
@@ -323,13 +322,13 @@ def create_performance_summary_table(all_results, output_dir=None):
     best_model = sorted_results[0]
     worst_model = sorted_results[-1]
     
-    print(f"\n🏆 BEST PERFORMER:")
+    print(f"\n BEST PERFORMER:")
     print(f"   Model: {best_model['model']}")
     print(f"   Median Error: {best_model['median_error']:.3f}m")
     print(f"   1m Accuracy: {best_model['accuracy_1m']:.1f}%")
     print(f"   2m Accuracy: {best_model['accuracy_2m']:.1f}%")
     
-    print(f"\n📉 IMPROVEMENT POTENTIAL:")
+    print(f"\n IMPROVEMENT POTENTIAL:")
     improvement = worst_model['median_error'] - best_model['median_error']
     print(f"   Difference between best and worst: {improvement:.3f}m")
     print(f"   Relative improvement: {improvement/worst_model['median_error']*100:.1f}%")
@@ -358,13 +357,13 @@ def create_performance_summary_table(all_results, output_dir=None):
         df = pd.DataFrame(df_data)
         csv_path = output_dir / "classical_models_performance_summary.csv"
         df.to_csv(csv_path, index=False)
-        print(f"✅ Performance summary saved to {csv_path}")
+        print(f" Performance summary saved to {csv_path}")
         
         # Save detailed results to JSON
         json_path = output_dir / "classical_models_detailed_results.json"
         with open(json_path, 'w') as f:
             json.dump(sorted_results, f, indent=4)
-        print(f"✅ Detailed results saved to {json_path}")
+        print(f" Detailed results saved to {json_path}")
 
 def save_results(results, output_dir, model_name):
     """
@@ -384,4 +383,4 @@ def save_results(results, output_dir, model_name):
     with open(json_path, 'w') as f:
         json.dump(results, f, indent=4)
     
-    print(f"✅ Results saved to {json_path}")
+    print(f" Results saved to {json_path}")

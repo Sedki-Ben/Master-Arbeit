@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 Probabilistic Fingerprinting Model
-==================================
 
 Probabilistic localization using Gaussian distributions.
 Models CSI signatures at each reference point with multivariate Gaussians
@@ -14,8 +13,8 @@ from sklearn.covariance import EmpiricalCovariance, LedoitWolf, OAS, ShrunkCovar
 from sklearn.mixture import GaussianMixture
 
 class ProbabilisticLocalizer:
-    """Probabilistic fingerprinting with Gaussian distributions"""
-    
+    """ProbabilisticLocalizer."""
+
     def __init__(self, smoothing=1e-6, covariance_type='empirical', regularization=None):
         """
         Initialize Probabilistic localizer
@@ -30,7 +29,7 @@ class ProbabilisticLocalizer:
         self.regularization = regularization
         self.reference_points = {}
         
-        print(f"🎯 Initializing Probabilistic Localizer (covariance={covariance_type}, smoothing={smoothing})")
+        print(f" Initializing Probabilistic Localizer (covariance={covariance_type}, smoothing={smoothing})")
         
     def _estimate_covariance(self, samples):
         """
@@ -84,7 +83,7 @@ class ProbabilisticLocalizer:
             X (np.array): Training features (N x D)
             y (np.array): Training coordinates (N x 2)
         """
-        print(f"🔧 Training Probabilistic model with {len(X)} samples...")
+        print(f" Training Probabilistic model with {len(X)} samples...")
         
         # Group samples by reference point
         unique_coords = np.unique(y, axis=0)
@@ -107,9 +106,9 @@ class ProbabilisticLocalizer:
                     'n_samples': len(samples)
                 }
             else:
-                print(f"⚠️ No samples found for coordinate {coord}")
+                print(f" No samples found for coordinate {coord}")
         
-        print(f"✅ Learned distributions for {len(self.reference_points)} reference points")
+        print(f" Learned distributions for {len(self.reference_points)} reference points")
         
     def predict(self, X):
         """
@@ -124,7 +123,7 @@ class ProbabilisticLocalizer:
         if not self.reference_points:
             raise ValueError("Model must be fitted before prediction")
             
-        print(f"🔮 Predicting locations for {len(X)} test samples...")
+        print(f" Predicting locations for {len(X)} test samples...")
         
         predictions = []
         
@@ -157,7 +156,7 @@ class ProbabilisticLocalizer:
                 predictions.append([0, 0])
                 
         predictions = np.array(predictions)
-        print(f"✅ Prediction complete")
+        print(f" Prediction complete")
         
         return predictions
     
@@ -174,7 +173,7 @@ class ProbabilisticLocalizer:
         if not self.reference_points:
             raise ValueError("Model must be fitted before prediction")
             
-        print(f"🔮 Computing probability distributions for {len(X)} test samples...")
+        print(f" Computing probability distributions for {len(X)} test samples...")
         
         # Get reference coordinates in consistent order
         coord_keys = list(self.reference_points.keys())
@@ -209,7 +208,7 @@ class ProbabilisticLocalizer:
         
         all_probabilities = np.array(all_probabilities)
         
-        print(f"✅ Probability computation complete")
+        print(f" Probability computation complete")
         
         return coordinates, all_probabilities
     
@@ -258,8 +257,8 @@ class ProbabilisticLocalizer:
         return analysis
 
 class GaussianMixtureLocalizer:
-    """Gaussian Mixture Model for probabilistic localization"""
-    
+    """GaussianMixtureLocalizer."""
+
     def __init__(self, n_components=2, covariance_type='full', regularization=1e-6):
         """
         Initialize GMM localizer
@@ -274,7 +273,7 @@ class GaussianMixtureLocalizer:
         self.regularization = regularization
         self.reference_points = {}
         
-        print(f"🎯 Initializing GMM Localizer (components={n_components}, cov_type={covariance_type})")
+        print(f" Initializing GMM Localizer (components={n_components}, cov_type={covariance_type})")
         
     def fit(self, X, y):
         """
@@ -284,7 +283,7 @@ class GaussianMixtureLocalizer:
             X (np.array): Training features
             y (np.array): Training coordinates
         """
-        print(f"🔧 Training GMM model with {len(X)} samples...")
+        print(f" Training GMM model with {len(X)} samples...")
         
         # Group samples by reference point
         unique_coords = np.unique(y, axis=0)
@@ -325,7 +324,7 @@ class GaussianMixtureLocalizer:
                     'n_samples': len(samples)
                 }
         
-        print(f"✅ Learned GMMs for {len(self.reference_points)} reference points")
+        print(f" Learned GMMs for {len(self.reference_points)} reference points")
         
     def predict(self, X):
         """
@@ -340,7 +339,7 @@ class GaussianMixtureLocalizer:
         if not self.reference_points:
             raise ValueError("Model must be fitted before prediction")
             
-        print(f"🔮 Predicting locations for {len(X)} test samples...")
+        print(f" Predicting locations for {len(X)} test samples...")
         
         predictions = []
         
@@ -367,13 +366,13 @@ class GaussianMixtureLocalizer:
                 predictions.append([0, 0])
                 
         predictions = np.array(predictions)
-        print(f"✅ GMM prediction complete")
+        print(f" GMM prediction complete")
         
         return predictions
 
 class BayesianLocalizer:
-    """Bayesian probabilistic localization with prior information"""
-    
+    """BayesianLocalizer."""
+
     def __init__(self, prior_type='uniform', smoothing=1e-6):
         """
         Initialize Bayesian localizer
@@ -387,7 +386,7 @@ class BayesianLocalizer:
         self.reference_points = {}
         self.priors = {}
         
-        print(f"🎯 Initializing Bayesian Localizer (prior={prior_type})")
+        print(f" Initializing Bayesian Localizer (prior={prior_type})")
         
     def _compute_priors(self, coordinates):
         """Compute prior probabilities for reference points"""
@@ -435,7 +434,7 @@ class BayesianLocalizer:
             X (np.array): Training features
             y (np.array): Training coordinates
         """
-        print(f"🔧 Training Bayesian model with {len(X)} samples...")
+        print(f" Training Bayesian model with {len(X)} samples...")
         
         # First, fit basic probabilistic model
         base_model = ProbabilisticLocalizer(smoothing=self.smoothing)
@@ -446,7 +445,7 @@ class BayesianLocalizer:
         unique_coords = np.unique(y, axis=0)
         self._compute_priors(unique_coords)
         
-        print(f"✅ Bayesian model trained with {self.prior_type} priors")
+        print(f" Bayesian model trained with {self.prior_type} priors")
         
     def predict(self, X):
         """
@@ -461,7 +460,7 @@ class BayesianLocalizer:
         if not self.reference_points:
             raise ValueError("Model must be fitted before prediction")
             
-        print(f"🔮 Bayesian prediction for {len(X)} test samples...")
+        print(f" Bayesian prediction for {len(X)} test samples...")
         
         predictions = []
         
@@ -498,6 +497,6 @@ class BayesianLocalizer:
                 predictions.append([0, 0])
                 
         predictions = np.array(predictions)
-        print(f"✅ Bayesian prediction complete")
+        print(f" Bayesian prediction complete")
         
         return predictions

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 Simple Phase Calibration for CSI Indoor Localization
-====================================================
 
 Simplified implementation of S-Phaser style phase calibration
 adapted for our 52-subcarrier CSI data without heavy dependencies.
@@ -15,11 +14,8 @@ import csv
 from pathlib import Path
 
 class SimplePhaseCalibrator:
-    """
-    Simplified phase calibrator for CSI-based indoor localization.
-    Removes artificial phase slopes and offsets to improve localization accuracy.
-    """
-    
+    """SimplePhaseCalibrator."""
+
     def __init__(self, center_freq_hz=5.20e9, bandwidth_hz=40e6):
         """
         Initialize phase calibrator
@@ -35,7 +31,7 @@ class SimplePhaseCalibrator:
         # Generate frequency mapping for our 52 subcarriers
         self.frequencies_hz = self._generate_subcarrier_frequencies()
         
-        print(f"🔧 Simple Phase Calibrator initialized")
+        print(f" Simple Phase Calibrator initialized")
         print(f"   Center frequency: {self.center_freq_hz/1e9:.2f} GHz")
         print(f"   Bandwidth: {self.bandwidth_hz/1e6:.1f} MHz")
         print(f"   Subcarriers: {self.n_subcarriers}")
@@ -222,14 +218,14 @@ Subcarrier Spacing: {(frequencies_ghz[1]-frequencies_ghz[0])*1000:.1f} MHz"""
 def test_phase_calibration():
     """Test the phase calibration with realistic scenarios"""
     
-    print("🧪 Testing S-Phaser Phase Calibration")
+    print(" Testing S-Phaser Phase Calibration")
     print("=" * 40)
     
     # Initialize calibrator
     calibrator = SimplePhaseCalibrator()
     
     # Test 1: Generate synthetic CSI with known characteristics
-    print("\n📊 Test 1: Synthetic CSI with artificial distortions")
+    print("\n Test 1: Synthetic CSI with artificial distortions")
     
     # Create realistic multipath phase pattern (what we want to preserve)
     frequencies = calibrator.frequencies_hz
@@ -261,7 +257,7 @@ def test_phase_calibration():
     correlation_before = np.corrcoef(measured_phases, true_multipath)[0, 1]
     correlation_after = np.corrcoef(calibrated_phases, true_multipath)[0, 1]
     
-    print(f"\n🎯 Multipath Recovery Results:")
+    print(f"\n Multipath Recovery Results:")
     print(f"   Slope removed: {calib_info['slope_removed']:.4f} rad/subcarrier (target: {1.8/52:.4f})")
     print(f"   Offset removed: {calib_info['intercept_removed']:.4f} rad (target: {phase_offset:.4f})")
     print(f"   Calibration effectiveness: {calib_info['effectiveness']:.1%}")
@@ -276,7 +272,7 @@ def test_phase_calibration():
     )
     
     # Test 2: CSI data format test
-    print("\n📊 Test 2: Our CSI data format (104 values)")
+    print("\n Test 2: Our CSI data format (104 values)")
     
     # Generate CSI data in our format (imag, real, imag, real...)
     amplitudes = 1 + 0.3 * np.random.randn(52)  # Variable amplitudes
@@ -309,7 +305,7 @@ def test_phase_calibration():
 def demonstrate_localization_impact():
     """Demonstrate how phase calibration could impact localization"""
     
-    print("\n🎯 Demonstrating Localization Impact")
+    print("\n Demonstrating Localization Impact")
     print("=" * 40)
     
     calibrator = SimplePhaseCalibrator()
@@ -320,7 +316,7 @@ def demonstrate_localization_impact():
     results = []
     
     for i, (x, y) in enumerate(locations):
-        print(f"\n📍 Location ({x}, {y}):")
+        print(f"\n Location ({x}, {y}):")
         
         # Generate unique multipath pattern for this location
         np.random.seed(42 + i)  # Different seed for each location
@@ -354,7 +350,7 @@ def demonstrate_localization_impact():
         print(f"   Effectiveness: {calib_info['effectiveness']:.1%}")
     
     # Analyze location discriminability
-    print(f"\n📊 Location Discriminability Analysis:")
+    print(f"\n Location Discriminability Analysis:")
     
     # Calculate phase differences between locations
     raw_phase_diffs = []
@@ -376,22 +372,22 @@ def demonstrate_localization_impact():
     avg_raw_distance = np.mean(raw_phase_diffs)
     avg_cal_distance = np.mean(calibrated_phase_diffs)
     
-    print(f"\n🎯 Summary:")
+    print(f"\n Summary:")
     print(f"   Average raw phase distance: {avg_raw_distance:.3f}")
     print(f"   Average calibrated phase distance: {avg_cal_distance:.3f}")
     print(f"   Overall improvement: {avg_cal_distance/avg_raw_distance:.2f}x")
     
     if avg_cal_distance > avg_raw_distance:
-        print("   ✅ Phase calibration IMPROVES location discriminability")
+        print("    Phase calibration IMPROVES location discriminability")
     else:
-        print("   ⚠️ Phase calibration reduces location discriminability")
+        print("    Phase calibration reduces location discriminability")
     
     return results
 
 def main():
     """Main test function"""
     
-    print("🎯 S-Phaser Phase Calibration for Indoor Localization")
+    print(" S-Phaser Phase Calibration for Indoor Localization")
     print("Adapted for our 52-subcarrier CSI data")
     print("=" * 60)
     
@@ -400,19 +396,19 @@ def main():
     location_results = demonstrate_localization_impact()
     
     # Summary
-    print(f"\n🎉 Phase Calibration Testing Complete!")
+    print(f"\n Phase Calibration Testing Complete!")
     print(f"=" * 45)
-    print(f"✅ Successfully adapted S-Phaser for our CSI format")
-    print(f"📈 Demonstrated effective removal of artificial phase slopes")
-    print(f"🎯 Showed improved multipath signal preservation")
-    print(f"📍 Analyzed impact on location discriminability")
+    print(f" Successfully adapted S-Phaser for our CSI format")
+    print(f" Demonstrated effective removal of artificial phase slopes")
+    print(f" Showed improved multipath signal preservation")
+    print(f" Analyzed impact on location discriminability")
     
-    print(f"\n📊 Key Results:")
+    print(f"\n Key Results:")
     print(f"   Multipath correlation improvement: {test_results['correlation_improvement']:+.3f}")
     print(f"   Phase calibration effectiveness: {test_results['calibration_info']['effectiveness']:.1%}")
     print(f"   Slope removal accuracy: ±{abs(test_results['calibration_info']['slope_removed'] - 1.8/52):.4f} rad/subcarrier")
     
-    print(f"\n🔧 Next Steps for Integration:")
+    print(f"\n Next Steps for Integration:")
     print(f"   1. Integrate into CNN data preprocessing pipeline")
     print(f"   2. Compare localization accuracy with/without calibration")
     print(f"   3. Optimize calibration parameters for our specific environment")

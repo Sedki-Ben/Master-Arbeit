@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-Probabilistic Main Entry Point
-==============================
+Probabilistic Main 
 
 Main script to run probabilistic localization evaluation.
 Provides command-line interface for different evaluation modes.
@@ -11,7 +10,6 @@ import argparse
 import sys
 from pathlib import Path
 
-# Add current directory to path for imports
 sys.path.append(str(Path(__file__).resolve().parent))
 
 from pipeline import ProbabilisticPipeline
@@ -19,7 +17,7 @@ from pipeline import ProbabilisticPipeline
 def run_basic_evaluation():
     """Run basic probabilistic evaluation with default parameters"""
     
-    print("🎯 Running Basic Probabilistic Evaluation")
+    print(" Running Basic Probabilistic Evaluation")
     print("=" * 45)
     
     pipeline = ProbabilisticPipeline(output_dir="probabilistic_basic_results")
@@ -34,7 +32,7 @@ def run_basic_evaluation():
 def run_enhanced_evaluation():
     """Run enhanced probabilistic evaluation with statistical features"""
     
-    print("🎯 Running Enhanced Probabilistic Evaluation")
+    print(" Running Probabilistic Evaluation")
     print("=" * 45)
     
     pipeline = ProbabilisticPipeline(output_dir="probabilistic_enhanced_results")
@@ -49,7 +47,7 @@ def run_enhanced_evaluation():
 def run_covariance_analysis():
     """Run focused covariance estimation analysis"""
     
-    print("🎯 Running Probabilistic Covariance Analysis")
+    print(" Running Probabilistic Covariance Analysis")
     print("=" * 45)
     
     pipeline = ProbabilisticPipeline(output_dir="probabilistic_covariance_analysis")
@@ -61,7 +59,7 @@ def run_covariance_analysis():
     results = pipeline.run_basic_probabilistic_evaluation(X_train, X_test, y_train, y_test)
     
     # Analyze covariance estimator performance
-    print(f"\n📊 Covariance Estimator Analysis:")
+    print(f"\n Covariance Estimator Analysis:")
     print(f"{'Estimator':<20} {'Median Error (m)':<15} {'1m Accuracy (%)':<15} {'2m Accuracy (%)':<15}")
     print("-" * 75)
     
@@ -77,7 +75,7 @@ def run_covariance_analysis():
     
     # Find best covariance estimator
     best_result = min(results, key=lambda x: x['median_error'])
-    print(f"\n🏆 Best Covariance Estimator:")
+    print(f"\n Best Covariance Estimator:")
     print(f"   Type: {best_result.get('covariance_type', 'unknown')}")
     print(f"   Smoothing: {best_result.get('smoothing', 0):.0e}")
     print(f"   Median Error: {best_result['median_error']:.3f}m")
@@ -88,7 +86,7 @@ def run_covariance_analysis():
 def run_gmm_analysis():
     """Run Gaussian Mixture Model analysis"""
     
-    print("🎯 Running GMM Analysis")
+    print(" Running GMM Analysis")
     print("=" * 25)
     
     pipeline = ProbabilisticPipeline(output_dir="probabilistic_gmm_analysis")
@@ -101,7 +99,7 @@ def run_gmm_analysis():
     
     if results:
         # Analyze GMM performance
-        print(f"\n📊 GMM Configuration Analysis:")
+        print(f"\n GMM Configuration Analysis:")
         print(f"{'Configuration':<20} {'Median Error (m)':<15} {'1m Accuracy (%)':<15} {'2m Accuracy (%)':<15}")
         print("-" * 75)
         
@@ -117,20 +115,20 @@ def run_gmm_analysis():
         
         # Find best GMM configuration
         best_result = min(results, key=lambda x: x['median_error'])
-        print(f"\n🏆 Best GMM Configuration:")
+        print(f"\n Best GMM Configuration:")
         print(f"   Components: {best_result.get('n_components', '?')}")
         print(f"   Covariance: {best_result.get('covariance_type', 'unknown')}")
         print(f"   Median Error: {best_result['median_error']:.3f}m")
         print(f"   1m Accuracy: {best_result['accuracy_1m']:.1f}%")
     else:
-        print("❌ No successful GMM evaluations")
+        print(" No successful GMM evaluations")
     
     return results
 
 def run_bayesian_comparison():
     """Compare different Bayesian prior types"""
     
-    print("🎯 Running Bayesian Prior Comparison")
+    print(" Running Bayesian Prior Comparison")
     print("=" * 40)
     
     pipeline = ProbabilisticPipeline(output_dir="probabilistic_bayesian_comparison")
@@ -139,20 +137,20 @@ def run_bayesian_comparison():
     X_train, X_test, y_train, y_test = pipeline.load_and_preprocess_data()
     
     # Standard probabilistic model for comparison
-    print("\n📊 Standard Probabilistic Model:")
+    print("\n Standard Probabilistic Model:")
     standard_results = pipeline.run_basic_probabilistic_evaluation(
         X_train, X_test, y_train, y_test
     )
     best_standard = min(standard_results, key=lambda x: x['median_error'])
     
     # Bayesian models
-    print("\n🧠 Bayesian Models:")
+    print("\n Bayesian Models:")
     bayesian_results = pipeline.run_bayesian_evaluation(X_train, X_test, y_train, y_test)
     
     if bayesian_results:
         best_bayesian = min(bayesian_results, key=lambda x: x['median_error'])
         
-        print(f"\n📊 COMPARISON SUMMARY")
+        print(f"\n COMPARISON SUMMARY")
         print("=" * 30)
         
         print(f"Best Standard Model:")
@@ -172,16 +170,16 @@ def run_bayesian_comparison():
         error_improvement = best_standard['median_error'] - best_bayesian['median_error']
         acc_improvement = best_bayesian['accuracy_1m'] - best_standard['accuracy_1m']
         
-        print(f"\n📈 Bayesian Improvement:")
+        print(f"\n Bayesian Improvement:")
         print(f"  Median Error: {error_improvement:+.3f}m")
         print(f"  1m Accuracy: {acc_improvement:+.1f}%")
         
         if error_improvement > 0:
-            print(f"  ✅ Bayesian priors IMPROVE performance")
+            print(f"   Bayesian priors IMPROVE performance")
         else:
-            print(f"  ⚠️ Bayesian priors do not improve performance")
+            print(f"   Bayesian priors do not improve performance")
     else:
-        print("❌ No successful Bayesian evaluations")
+        print(" No successful Bayesian evaluations")
     
     return {
         'standard_results': standard_results,
@@ -191,7 +189,7 @@ def run_bayesian_comparison():
 def run_quick_test():
     """Run quick test with limited models for development/testing"""
     
-    print("🎯 Running Quick Probabilistic Test")
+    print(" Running Quick Probabilistic Test")
     print("=" * 35)
     
     pipeline = ProbabilisticPipeline(output_dir="probabilistic_quick_test")
@@ -226,7 +224,7 @@ def run_quick_test():
     
     # Show quick summary
     best_result = min(results, key=lambda x: x['median_error'])
-    print(f"\n🏆 Quick Test Best: {best_result['model']}")
+    print(f"\n Quick Test Best: {best_result['model']}")
     print(f"   Median Error: {best_result['median_error']:.3f}m")
     print(f"   1m Accuracy: {best_result['accuracy_1m']:.1f}%")
     
@@ -243,7 +241,7 @@ def main():
     
     args = parser.parse_args()
     
-    print("🎯 Probabilistic Indoor Localization Evaluation")
+    print(" Probabilistic Indoor Localization Evaluation")
     print("Using CSI amplitude and RSSI features")
     print("=" * 55)
     
@@ -266,15 +264,15 @@ def main():
         elif args.mode == 'quick':
             summary = run_quick_test()
             
-        print(f"\n🎉 Probabilistic Evaluation Complete!")
-        print(f"📁 Check results in the output directory")
+        print(f"\n Probabilistic Evaluation Complete!")
+        print(f" Check results in the output directory")
         
     except KeyboardInterrupt:
-        print(f"\n⚠️ Evaluation interrupted by user")
+        print(f"\n Evaluation interrupted")
         return 1
         
     except Exception as e:
-        print(f"❌ Error during evaluation: {e}")
+        print(f" Error during evaluation: {e}")
         return 1
     
     return 0

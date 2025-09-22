@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 Classical Models - Shared Data Loader
-=====================================
 
 Shared data loading utilities for classical localization models.
 Handles loading and preprocessing of CSI amplitude, phase, and RSSI data.
@@ -31,7 +30,7 @@ def load_amplitude_phase_data(data_source="amplitude_phase_single"):
         tuple: (X, y, coordinates) where X is features, y is coordinates, coordinates is unique points
     """
     
-    print("📂 Loading Amplitude and Phase Data...")
+    print(" Loading Amplitude and Phase Data...")
     
     if data_source == "amplitude_phase_single":
         # Load from Amplitude Phase Data Single folder (legacy format)
@@ -86,10 +85,10 @@ def _load_from_amplitude_phase_single():
                 })
                 
         except Exception as e:
-            print(f"⚠️ Error processing {filename}: {e}")
+            print(f" Error processing {filename}: {e}")
             continue
     
-    print(f"✅ Loaded {len(all_data)} samples from {len(coordinates)} reference points")
+    print(f" Loaded {len(all_data)} samples from {len(coordinates)} reference points")
     
     # Convert to arrays
     X = np.array([item['features'] for item in all_data])
@@ -140,9 +139,9 @@ def _load_from_csi_dataset():
                     except (json.JSONDecodeError, ValueError, KeyError) as e:
                         continue
         else:
-            print(f"⚠️ Missing file: {file_path}")
+            print(f" Missing file: {file_path}")
     
-    print(f"✅ Loaded {len(all_data)} samples from {len(coordinates)} reference points")
+    print(f" Loaded {len(all_data)} samples from {len(coordinates)} reference points")
     
     # Convert to arrays
     X = np.array([item['features'] for item in all_data])
@@ -158,7 +157,7 @@ def load_test_data():
         tuple: (X_test, y_test) arrays
     """
     
-    print("📂 Loading Test Data...")
+    print(" Loading Test Data...")
     
     base_path = Path(__file__).resolve().parents[3]
     testing_points = get_testing_points()
@@ -195,9 +194,9 @@ def load_test_data():
                     except (json.JSONDecodeError, ValueError, KeyError) as e:
                         continue
         else:
-            print(f"⚠️ Missing test file: {file_path}")
+            print(f" Missing test file: {file_path}")
     
-    print(f"✅ Loaded {len(all_test_data)} test samples")
+    print(f" Loaded {len(all_test_data)} test samples")
     
     # Convert to arrays
     X_test = np.array([item['features'] for item in all_test_data])
@@ -219,7 +218,7 @@ def create_train_test_split(X, y, test_size=0.2, random_state=42):
         tuple: (X_train, X_test, y_train, y_test)
     """
     
-    print(f"📊 Creating Train/Test Split (test_size={test_size})...")
+    print(f" Creating Train/Test Split (test_size={test_size})...")
     
     # Get unique coordinates
     unique_coords = np.unique(y, axis=0)

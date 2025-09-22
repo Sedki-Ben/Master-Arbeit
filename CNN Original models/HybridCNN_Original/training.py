@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 HybridCNN_Original - Training Module
-===========================================
 
 Training functionality for HybridCNN_Original model.
 HybridCNN combining CSI and RSSI.
@@ -14,16 +13,16 @@ from pathlib import Path
 import time
 
 class HybridCNNTrainer:
-    """Model trainer for HybridCNN_Original"""
-    
+    """HybridCNNTrainer."""
+
     def __init__(self, output_dir="hybridcnn_original_results"):
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)
         self.history = None
         self.training_time = 0
         
-        print(f"🏋️ HybridCNN_Original ModelTrainer initialized")
-        print(f"📁 Model checkpoints will be saved to: {self.output_dir}")
+        print(f" HybridCNN_Original ModelTrainer initialized")
+        print(f" Model checkpoints will be saved to: {self.output_dir}")
     
     def euclidean_distance_loss(self, y_true, y_pred):
         """Custom Euclidean distance loss function"""
@@ -32,8 +31,8 @@ class HybridCNNTrainer:
     def compile_and_train_model(self, model, X_train, y_train, X_val, y_val, dataset_size, model_name="HybridCNN_Original"):
         """Compile and train model with original configuration"""
         
-        print(f"🚀 Training {model_name} (original configuration)")
-        print(f"📊 Dataset size: {dataset_size}")
+        print(f" Training {model_name} (original configuration)")
+        print(f" Dataset size: {dataset_size}")
         
         # Original "last samurai" configuration
         learning_rate = 0.001
@@ -47,7 +46,7 @@ class HybridCNNTrainer:
         # Compile model
         model.compile(optimizer=optimizer, loss=loss_function, metrics=['mae'])
         
-        print(f"⚙️ Training configuration:")
+        print(f" Training configuration:")
         print(f"   Learning rate: {learning_rate}")
         print(f"   Loss function: {loss_function}")
         print(f"   Batch size: {batch_size}")
@@ -65,7 +64,7 @@ class HybridCNNTrainer:
         ]
         
         # Train model
-        print(f"\n🎯 Starting training...")
+        print(f"\n Starting training...")
         start_time = time.time()
         
         history = model.fit(
@@ -81,7 +80,7 @@ class HybridCNNTrainer:
         self.training_time = training_time
         self.history = history
         
-        print(f"✅ Training completed in {training_time:.1f} seconds")
+        print(f" Training completed in {training_time:.1f} seconds")
         
         # Training summary
         best_epoch = np.argmin(history.history['val_loss'])

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 Extract Amplitude, Phase, and RSSI Tool
-=======================================
 
 Script to extract and format CSI data into the final form:
 - 1 RSSI value
@@ -171,7 +170,7 @@ def detect_column_types(df: pd.DataFrame) -> Dict[str, List[str]]:
             column_types['other'].append(col)
     
     # Print detected columns
-    print("📊 Detected Column Types:")
+    print(" Detected Column Types:")
     for col_type, cols in column_types.items():
         if cols:
             print(f"   {col_type.upper()}: {cols}")
@@ -181,7 +180,7 @@ def detect_column_types(df: pd.DataFrame) -> Dict[str, List[str]]:
 def extract_features_from_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     """Extract RSSI, amplitude, and phase features from DataFrame"""
     
-    print(f"🔄 Extracting features from {len(df)} samples...")
+    print(f" Extracting features from {len(df)} samples...")
     
     # Detect column types
     column_types = detect_column_types(df)
@@ -248,7 +247,7 @@ def extract_features_from_dataframe(df: pd.DataFrame) -> pd.DataFrame:
     # Create result DataFrame
     result_df = pd.DataFrame(result_data)
     
-    print(f"✅ Extracted features:")
+    print(f" Extracted features:")
     print(f"   - RSSI: 1 feature")
     print(f"   - Amplitude: 52 features")
     print(f"   - Phase: 52 features")
@@ -323,14 +322,14 @@ def save_extracted_features(df: pd.DataFrame, output_path: Path, format_type: st
         elif format_type.lower() == 'parquet':
             df.to_parquet(output_path, index=False)
         else:
-            print(f"❌ Unsupported format: {format_type}")
+            print(f" Unsupported format: {format_type}")
             return False
         
-        print(f"💾 Saved extracted features to: {output_path}")
+        print(f" Saved extracted features to: {output_path}")
         return True
         
     except Exception as e:
-        print(f"❌ Error saving features: {e}")
+        print(f" Error saving features: {e}")
         return False
 
 def create_feature_summary(df: pd.DataFrame, output_dir: Path) -> None:
@@ -400,7 +399,7 @@ def create_feature_summary(df: pd.DataFrame, output_dir: Path) -> None:
     with open(summary_path, 'w') as f:
         f.write(summary_text)
     
-    print(f"📊 Feature summary saved: {summary_path}")
+    print(f" Feature summary saved: {summary_path}")
     
     # Print summary to console
     print("\n" + summary_text)
@@ -408,20 +407,20 @@ def create_feature_summary(df: pd.DataFrame, output_dir: Path) -> None:
 def process_single_file(input_path: Path, output_path: Path, format_type: str = 'csv') -> bool:
     """Process a single CSI data file"""
     
-    print(f"\n📂 Processing: {input_path.name}")
+    print(f"\n Processing: {input_path.name}")
     print("=" * 50)
     
     try:
         # Load data
         df = pd.read_csv(input_path, encoding='utf-8')
-        print(f"📊 Loaded {len(df)} samples from {input_path}")
+        print(f" Loaded {len(df)} samples from {input_path}")
         
         # Extract features
         result_df = extract_features_from_dataframe(df)
         
         # Validate features
         validation = validate_extracted_features(result_df)
-        print(f"\n📈 Validation Results:")
+        print(f"\n Validation Results:")
         print(f"   Total features: {validation['total_features']}")
         print(f"   Missing values: {validation['missing_values']}")
         
@@ -429,7 +428,7 @@ def process_single_file(input_path: Path, output_path: Path, format_type: str = 
         return save_extracted_features(result_df, output_path, format_type)
         
     except Exception as e:
-        print(f"❌ Error processing file: {e}")
+        print(f" Error processing file: {e}")
         return False
 
 def process_multiple_files(input_dir: Path, output_dir: Path, 
@@ -437,16 +436,16 @@ def process_multiple_files(input_dir: Path, output_dir: Path,
                           format_type: str = 'csv') -> int:
     """Process multiple CSI data files"""
     
-    print(f"🔄 Processing multiple files from: {input_dir}")
+    print(f" Processing multiple files from: {input_dir}")
     
     # Find all matching files
     input_files = list(input_dir.glob(file_pattern))
     
     if not input_files:
-        print(f"❌ No files found matching pattern: {file_pattern}")
+        print(f" No files found matching pattern: {file_pattern}")
         return 0
     
-    print(f"📂 Found {len(input_files)} files to process")
+    print(f" Found {len(input_files)} files to process")
     
     processed_count = 0
     all_results = []
@@ -472,7 +471,7 @@ def process_multiple_files(input_dir: Path, output_dir: Path,
         combined_df = pd.concat(all_results, ignore_index=True)
         create_feature_summary(combined_df, output_dir)
     
-    print(f"\n✅ Successfully processed {processed_count}/{len(input_files)} files")
+    print(f"\n Successfully processed {processed_count}/{len(input_files)} files")
     return processed_count
 
 def main():
@@ -492,15 +491,15 @@ def main():
     
     args = parser.parse_args()
     
-    print("🔧 Extract Amplitude, Phase, and RSSI Tool")
+    print(" Extract Amplitude, Phase, and RSSI Tool")
     print("=" * 45)
-    print(f"📊 Target format: 1 RSSI + 52 Amplitude + 52 Phase = 105 features")
+    print(f" Target format: 1 RSSI + 52 Amplitude + 52 Phase = 105 features")
     
     input_path = Path(args.input)
     output_path = Path(args.output)
     
     if not input_path.exists():
-        print(f"❌ Input path does not exist: {input_path}")
+        print(f" Input path does not exist: {input_path}")
         return 1
     
     # Process single file or multiple files
@@ -517,7 +516,7 @@ def main():
                     result_df = pd.read_csv(output_path)
                     create_feature_summary(result_df, output_path.parent)
             except Exception as e:
-                print(f"⚠️ Could not create summary: {e}")
+                print(f" Could not create summary: {e}")
     else:
         # Multiple files processing
         processed_count = process_multiple_files(input_path, output_path, 
@@ -525,7 +524,7 @@ def main():
         if processed_count == 0:
             return 1
     
-    print("✅ Feature extraction complete!")
+    print(" Feature extraction complete!")
     return 0
 
 if __name__ == "__main__":

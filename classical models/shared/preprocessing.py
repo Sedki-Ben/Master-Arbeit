@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 Classical Models - Shared Preprocessing
-=======================================
 
 Shared preprocessing utilities for classical localization models.
 Handles feature scaling, normalization, and data preparation.
@@ -25,7 +24,7 @@ def preprocess_features(X_train, X_test=None, scaler_type='standard', fit_scaler
         tuple: (X_train_scaled, X_test_scaled, scaler) or (X_train_scaled, scaler) if X_test is None
     """
     
-    print(f"⚙️ Preprocessing features with {scaler_type} scaling...")
+    print(f" Preprocessing features with {scaler_type} scaling...")
     
     if fit_scaler:
         # Create new scaler
@@ -49,10 +48,10 @@ def preprocess_features(X_train, X_test=None, scaler_type='standard', fit_scaler
     # Transform test data if provided
     if X_test is not None:
         X_test_scaled = scaler.transform(X_test)
-        print(f"✅ Preprocessed {len(X_train_scaled)} training and {len(X_test_scaled)} test samples")
+        print(f" Preprocessed {len(X_train_scaled)} training and {len(X_test_scaled)} test samples")
         return X_train_scaled, X_test_scaled, scaler
     else:
-        print(f"✅ Preprocessed {len(X_train_scaled)} training samples")
+        print(f" Preprocessed {len(X_train_scaled)} training samples")
         return X_train_scaled, scaler
 
 def extract_amplitude_features(X):
@@ -103,7 +102,7 @@ def add_statistical_features(X):
         np.array: Extended feature matrix with statistical features
     """
     
-    print("📊 Adding statistical features...")
+    print(" Adding statistical features...")
     
     # Extract amplitude features (first 52 columns)
     amplitudes = X[:, :52]
@@ -134,7 +133,7 @@ def add_statistical_features(X):
     # Combine with original features
     extended_features = np.hstack([X, statistical_features])
     
-    print(f"✅ Added {statistical_features.shape[1]} statistical features")
+    print(f" Added {statistical_features.shape[1]} statistical features")
     print(f"   Original features: {X.shape[1]}, Extended features: {extended_features.shape[1]}")
     
     return extended_features
@@ -153,7 +152,7 @@ def remove_outliers(X, y, method='iqr', threshold=1.5):
         tuple: (X_clean, y_clean) without outliers
     """
     
-    print(f"🧹 Removing outliers using {method} method (threshold={threshold})...")
+    print(f" Removing outliers using {method} method (threshold={threshold})...")
     
     if method == 'iqr':
         # Use IQR method for each feature
@@ -180,7 +179,7 @@ def remove_outliers(X, y, method='iqr', threshold=1.5):
     y_clean = y[mask]
     
     outliers_removed = len(X) - len(X_clean)
-    print(f"✅ Removed {outliers_removed} outliers ({outliers_removed/len(X)*100:.1f}%)")
+    print(f" Removed {outliers_removed} outliers ({outliers_removed/len(X)*100:.1f}%)")
     print(f"   Clean dataset: {len(X_clean)} samples")
     
     return X_clean, y_clean
@@ -188,7 +187,7 @@ def remove_outliers(X, y, method='iqr', threshold=1.5):
 def prepare_classical_features(X_train, X_test=None, include_statistical=False, 
                              scaler_type='standard', remove_outliers_flag=False):
     """
-    Complete feature preparation pipeline for classical models
+    feature preparation pipeline for classical models
     
     Args:
         X_train (np.array): Training features
@@ -201,7 +200,7 @@ def prepare_classical_features(X_train, X_test=None, include_statistical=False,
         dict: Dictionary containing processed features and metadata
     """
     
-    print("🔧 Preparing features for classical models...")
+    print(" Preparing features for classical models...")
     
     # Store original shapes
     original_train_shape = X_train.shape
@@ -244,7 +243,7 @@ def prepare_classical_features(X_train, X_test=None, include_statistical=False,
         }
     }
     
-    print(f"✅ Feature preparation complete!")
+    print(f" Feature preparation complete!")
     print(f"   Final training shape: {X_train_scaled.shape}")
     if X_test_scaled is not None:
         print(f"   Final test shape: {X_test_scaled.shape}")

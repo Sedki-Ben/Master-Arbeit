@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-Plot CNN Improved Models CDF
-============================
+Plot CNN Models CDF
 
 Script to plot Cumulative Distribution Function (CDF) of localization errors
 for improved CNN models (BasicCNN, HybridCNN, AttentionCNN, MultiScaleCNN, ResidualCNN).
@@ -15,13 +14,13 @@ import pickle
 from pathlib import Path
 import argparse
 
-def load_cnn_improved_results(models_dir="CNN Improved models"):
+def load_cnn_improved_results(models_dir="CNN models"):
     """Load CNN improved models results from various result files"""
     
     models_path = Path(models_dir)
     
     if not models_path.exists():
-        print(f"❌ Models directory not found: {models_path}")
+        print(f" Models directory not found: {models_path}")
         return None
     
     model_results = {}
@@ -39,7 +38,7 @@ def load_cnn_improved_results(models_dir="CNN Improved models"):
         model_dir = models_path / model_name
         
         if not model_dir.exists():
-            print(f"⚠️ Model directory not found: {model_dir}")
+            print(f" Model directory not found: {model_dir}")
             continue
         
         # Look for different types of result files
@@ -52,7 +51,7 @@ def load_cnn_improved_results(models_dir="CNN Improved models"):
         # Check for pickle files
         pickle_files = list(model_dir.glob("*results*.pkl"))
         
-        print(f"📂 Checking {model_name}:")
+        print(f" Checking {model_name}:")
         print(f"   CSV files: {len(csv_files)}")
         print(f"   JSON files: {len(json_files)}")
         print(f"   Pickle files: {len(pickle_files)}")
@@ -82,7 +81,7 @@ def load_model_results(model_dir, model_name):
                     results[size] = {'source': 'csv', 'data': df}
                     continue
             except Exception as e:
-                print(f"   ⚠️ Error reading CSV {csv_file}: {e}")
+                print(f"    Error reading CSV {csv_file}: {e}")
         
         # Try JSON files
         json_file = model_dir / f"{model_name.lower()}_results_{size}.json"
@@ -93,7 +92,7 @@ def load_model_results(model_dir, model_name):
                 results[size] = {'source': 'json', 'data': data}
                 continue
             except Exception as e:
-                print(f"   ⚠️ Error reading JSON {json_file}: {e}")
+                print(f"    Error reading JSON {json_file}: {e}")
         
         # Try pickle files
         pickle_file = model_dir / f"{model_name.lower()}_results_{size}.pkl"
@@ -104,7 +103,7 @@ def load_model_results(model_dir, model_name):
                 results[size] = {'source': 'pickle', 'data': data}
                 continue
             except Exception as e:
-                print(f"   ⚠️ Error reading pickle {pickle_file}: {e}")
+                print(f"    Error reading pickle {pickle_file}: {e}")
     
     return results if results else None
 
@@ -152,19 +151,19 @@ def extract_errors_from_results(model_results):
                 if errors is not None:
                     key = f"{model_name}_{dataset_size}"
                     model_errors[key] = errors
-                    print(f"   ✅ Loaded {len(errors)} errors for {key}")
+                    print(f"    Loaded {len(errors)} errors for {key}")
                 else:
-                    print(f"   ⚠️ No errors found for {model_name}_{dataset_size}")
+                    print(f"    No errors found for {model_name}_{dataset_size}")
                     
             except Exception as e:
-                print(f"   ❌ Error extracting errors for {model_name}_{dataset_size}: {e}")
+                print(f"    Error extracting errors for {model_name}_{dataset_size}: {e}")
     
     return model_errors
 
 def generate_synthetic_errors_if_needed(model_results):
     """Generate synthetic errors if real data is not available (for demonstration)"""
     
-    print("⚠️ Generating synthetic error data for demonstration...")
+    print(" Generating synthetic error data for demonstration...")
     
     # Realistic error statistics for improved models (better than original)
     model_performance = {
@@ -201,7 +200,7 @@ def generate_synthetic_errors_if_needed(model_results):
 def plot_cnn_improved_cdf(model_errors, output_dir="plots", save_format=['png', 'pdf']):
     """Plot CDF for improved CNN models"""
     
-    print(f"📈 Creating CDF plot for {len(model_errors)} CNN improved models...")
+    print(f" Creating CDF plot for {len(model_errors)} CNN improved models...")
     
     plt.style.use('default')
     fig, ax = plt.subplots(1, 1, figsize=(14, 10))
@@ -259,8 +258,8 @@ def plot_cnn_improved_cdf(model_errors, output_dir="plots", save_format=['png', 
     # Customize the plot
     ax.set_xlabel('Localization Error (meters)', fontsize=14, fontweight='bold')
     ax.set_ylabel('Cumulative Probability', fontsize=14, fontweight='bold')
-    ax.set_title('CDF Comparison: CNN Improved Models\n'
-                'Enhanced BasicCNN, HybridCNN, AttentionCNN, MultiScaleCNN, ResidualCNN', 
+    ax.set_title('CDF Comparison: CNN Models\n'
+                'BasicCNN, HybridCNN, AttentionCNN, MultiScaleCNN, ResidualCNN', 
                 fontsize=16, fontweight='bold', pad=20)
     
     # Set axis limits
@@ -282,14 +281,14 @@ def plot_cnn_improved_cdf(model_errors, output_dir="plots", save_format=['png', 
     for fmt in save_format:
         save_path = output_path / f"cnn_improved_models_cdf_comparison.{fmt}"
         plt.savefig(save_path, dpi=300, bbox_inches='tight', format=fmt)
-        print(f"💾 CDF plot saved: {save_path}")
+        print(f" CDF plot saved: {save_path}")
     
     plt.show()
 
 def plot_original_vs_improved_comparison(original_errors, improved_errors, output_dir="plots", save_format=['png', 'pdf']):
     """Plot side-by-side comparison of original vs improved models"""
     
-    print("📊 Creating original vs improved CNN models comparison...")
+    print(" Creating original vs improved CNN models comparison...")
     
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(20, 8))
     
@@ -328,7 +327,7 @@ def plot_original_vs_improved_comparison(original_errors, improved_errors, outpu
                     label=f"{model_name} - {median_error:.3f}m", alpha=0.8)
     
     # Customize both plots
-    for ax, title in zip([ax1, ax2], ['Original Models', 'Improved Models']):
+    for ax, title in zip([ax1, ax2], ['Original Models', 'Models']):
         ax.set_xlabel('Localization Error (meters)', fontsize=12, fontweight='bold')
         ax.set_ylabel('Cumulative Probability', fontsize=12, fontweight='bold')
         ax.set_title(f'CNN {title} (750 samples)', fontsize=14, fontweight='bold')
@@ -350,14 +349,14 @@ def plot_original_vs_improved_comparison(original_errors, improved_errors, outpu
     for fmt in save_format:
         save_path = output_path / f"cnn_original_vs_improved_comparison.{fmt}"
         plt.savefig(save_path, dpi=300, bbox_inches='tight', format=fmt)
-        print(f"💾 Comparison plot saved: {save_path}")
+        print(f" Comparison plot saved: {save_path}")
     
     plt.show()
 
 def create_cnn_performance_table(model_errors, output_dir="plots"):
     """Create performance summary table for CNN models"""
     
-    print("📊 Creating CNN improved models performance summary...")
+    print(" Creating CNN improved models performance summary...")
     
     model_metrics = []
     
@@ -393,13 +392,13 @@ def create_cnn_performance_table(model_errors, output_dir="plots"):
     
     csv_path = output_path / "cnn_improved_models_performance.csv"
     df_sorted.to_csv(csv_path, index=False)
-    print(f"💾 Performance table saved: {csv_path}")
+    print(f" Performance table saved: {csv_path}")
     
     # Print summary by dataset size
     for size in [250, 500, 750]:
         size_data = df_sorted[df_sorted['Dataset_Size'] == size]
         if not size_data.empty:
-            print(f"\n📊 IMPROVED CNN MODELS PERFORMANCE - {size} SAMPLES")
+            print(f"\n IMPROVED CNN MODELS PERFORMANCE - {size} SAMPLES")
             print("=" * 60)
             print(f"{'Rank':<4} {'Model':<20} {'Median (m)':<10} {'1m Acc (%)':<10} {'2m Acc (%)':<10}")
             print("-" * 60)
@@ -413,8 +412,8 @@ def create_cnn_performance_table(model_errors, output_dir="plots"):
 def main():
     """Main function"""
     
-    parser = argparse.ArgumentParser(description='Plot CNN Improved Models CDF')
-    parser.add_argument('--models-dir', type=str, default='CNN Improved models',
+    parser = argparse.ArgumentParser(description='Plot CNN Models CDF')
+    parser.add_argument('--models-dir', type=str, default='CNN models',
                        help='Directory containing CNN improved models')
     parser.add_argument('--original-dir', type=str, default='CNN Original models',
                        help='Directory containing CNN original models (for comparison)')
@@ -431,7 +430,7 @@ def main():
     
     args = parser.parse_args()
     
-    print("📈 CNN Improved Models CDF Plotter")
+    print(" CNN Models CDF Plotter")
     print("=" * 47)
     
     # Load improved results
@@ -446,9 +445,9 @@ def main():
     # Generate synthetic data if no real data found or if requested
     if not model_errors or args.synthetic:
         model_errors = generate_synthetic_errors_if_needed(model_results)
-        print("⚠️ Using synthetic data for demonstration")
+        print(" Using synthetic data for demonstration")
     else:
-        print(f"✅ Loaded real error data for {len(model_errors)} model configurations")
+        print(f" Loaded real error data for {len(model_errors)} model configurations")
     
     # Plot CDF
     plot_cnn_improved_cdf(model_errors, args.output_dir, args.formats)
@@ -470,11 +469,11 @@ def main():
                 original_errors = extract_original_errors(original_results)
                 plot_original_vs_improved_comparison(original_errors, model_errors, args.output_dir, args.formats)
             else:
-                print("⚠️ Could not load original model results for comparison")
+                print(" Could not load original model results for comparison")
         except Exception as e:
-            print(f"⚠️ Could not create comparison plot: {e}")
+            print(f" Could not create comparison plot: {e}")
     
-    print("✅ CNN improved models CDF plotting complete!")
+    print(" CNN improved models CDF plotting complete!")
     return 0
 
 if __name__ == "__main__":

@@ -1,17 +1,15 @@
 #!/usr/bin/env python3
 """
-HybridCNN_Improved - Main Entry Point
-===========================================
+HybridCNN_- Main 
 
-Main script to run HybridCNN_Improved model training and evaluation.
-HybridCNN with Tom Cruise improvements.
+Main script to run HybridCNN_model training and evaluation.
+HybridCNN with 
 """
 
 import argparse
 import sys
 from pathlib import Path
 
-# Add current directory to path for imports
 current_dir = Path(__file__).parent
 sys.path.append(str(current_dir))
 
@@ -20,7 +18,7 @@ from pipeline import HybridCNN_ImprovedPipeline
 def main():
     """Main function"""
     
-    parser = argparse.ArgumentParser(description='HybridCNN_Improved Indoor Localization Model')
+    parser = argparse.ArgumentParser(description='HybridCNN_Indoor Localization Model')
     parser.add_argument('--dataset-sizes', nargs='+', type=int, default=[250, 500, 750],
                        help='Dataset sizes to process (default: 250 500 750)')
     parser.add_argument('--output-dir', type=str, default='hybridcnn_improved_results',
@@ -30,11 +28,11 @@ def main():
     
     args = parser.parse_args()
     
-    print("🎯 HybridCNN_Improved Indoor Localization Model")
+    print(" HybridCNN_Indoor Localization Model")
     print("=" * 45)
     print(f"Output directory: {args.output_dir}")
     
-    # Initialize pipeline
+    
     pipeline = HybridCNN_ImprovedPipeline(output_dir=args.output_dir)
     
     try:
@@ -44,24 +42,24 @@ def main():
             results = pipeline.run_complete_pipeline([args.single_size])
             
             if args.single_size in results:
-                print("✅ Single experiment completed successfully")
+                print(" Single experiment completed")
             else:
-                print("❌ Single experiment failed")
+                print(" Single experiment failed")
                 return 1
         else:
             # Run complete pipeline
             print(f"Running complete pipeline for dataset sizes: {args.dataset_sizes}")
             results = pipeline.run_complete_pipeline(args.dataset_sizes)
             
-            print("✅ Complete pipeline finished successfully")
+            print(" pipeline finished successfully")
         
         return 0
         
     except KeyboardInterrupt:
-        print("\n⚠️ Pipeline interrupted by user")
+        print("\n Pipeline interrupted")
         return 1
     except Exception as e:
-        print(f"❌ Pipeline failed with error: {e}")
+        print(f" Pipeline failed with error: {e}")
         return 1
 
 if __name__ == "__main__":

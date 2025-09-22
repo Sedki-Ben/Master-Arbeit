@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-IDW Main Entry Point
-====================
+IDW Main 
 
 Main script to run IDW localization evaluation.
 Provides command-line interface for different evaluation modes.
@@ -11,7 +10,6 @@ import argparse
 import sys
 from pathlib import Path
 
-# Add current directory to path for imports
 sys.path.append(str(Path(__file__).resolve().parent))
 
 from pipeline import IDWPipeline
@@ -19,7 +17,7 @@ from pipeline import IDWPipeline
 def run_basic_evaluation():
     """Run basic IDW evaluation with default parameters"""
     
-    print("🎯 Running Basic IDW Evaluation")
+    print(" Running Basic IDW Evaluation")
     print("=" * 40)
     
     pipeline = IDWPipeline(output_dir="idw_basic_results")
@@ -34,7 +32,7 @@ def run_basic_evaluation():
 def run_enhanced_evaluation():
     """Run enhanced IDW evaluation with statistical features"""
     
-    print("🎯 Running Enhanced IDW Evaluation")
+    print(" Running IDW Evaluation")
     print("=" * 40)
     
     pipeline = IDWPipeline(output_dir="idw_enhanced_results")
@@ -49,7 +47,7 @@ def run_enhanced_evaluation():
 def run_power_analysis():
     """Run focused power parameter analysis"""
     
-    print("🎯 Running IDW Power Parameter Analysis")
+    print(" Running IDW Power Parameter Analysis")
     print("=" * 45)
     
     pipeline = IDWPipeline(output_dir="idw_power_analysis")
@@ -65,7 +63,7 @@ def run_power_analysis():
     )
     
     # Analyze power vs performance
-    print(f"\n📊 Power Parameter Analysis:")
+    print(f"\n Power Parameter Analysis:")
     print(f"{'Power':<6} {'Median Error (m)':<15} {'1m Accuracy (%)':<15} {'2m Accuracy (%)':<15}")
     print("-" * 65)
     
@@ -78,7 +76,7 @@ def run_power_analysis():
     
     # Find optimal power
     best_result = min(results, key=lambda x: x['median_error'])
-    print(f"\n🏆 Optimal Power: {best_result['power_value']}")
+    print(f"\n Optimal Power: {best_result['power_value']}")
     print(f"   Median Error: {best_result['median_error']:.3f}m")
     print(f"   1m Accuracy: {best_result['accuracy_1m']:.1f}%")
     
@@ -87,7 +85,7 @@ def run_power_analysis():
 def run_adaptive_comparison():
     """Compare standard vs adaptive IDW models"""
     
-    print("🎯 Running Standard vs Adaptive IDW Comparison")
+    print(" Running Standard vs Adaptive IDW Comparison")
     print("=" * 50)
     
     pipeline = IDWPipeline(output_dir="idw_adaptive_comparison")
@@ -96,21 +94,21 @@ def run_adaptive_comparison():
     X_train, X_test, y_train, y_test = pipeline.load_and_preprocess_data()
     
     # Standard IDW models
-    print("\n📊 Standard IDW Models:")
+    print("\n Standard IDW Models:")
     standard_results = pipeline.run_basic_idw_evaluation(
         X_train, X_test, y_train, y_test, 
         power_values=[1.0, 2.0, 3.0]
     )
     
     # Adaptive IDW models
-    print("\n🧠 Adaptive IDW Models:")
+    print("\n Adaptive IDW Models:")
     adaptive_results = pipeline.run_adaptive_idw_evaluation(X_train, X_test, y_train, y_test)
     
     # Compare best of each type
     best_standard = min(standard_results, key=lambda x: x['median_error'])
     best_adaptive = min(adaptive_results, key=lambda x: x['median_error'])
     
-    print(f"\n📊 COMPARISON SUMMARY")
+    print(f"\n COMPARISON SUMMARY")
     print("=" * 30)
     
     print(f"Best Standard IDW:")
@@ -129,14 +127,14 @@ def run_adaptive_comparison():
     error_improvement = best_standard['median_error'] - best_adaptive['median_error']
     acc_improvement = best_adaptive['accuracy_1m'] - best_standard['accuracy_1m']
     
-    print(f"\n📈 Adaptive IDW Improvement:")
+    print(f"\n Adaptive IDW Improvement:")
     print(f"  Median Error: {error_improvement:+.3f}m")
     print(f"  1m Accuracy: {acc_improvement:+.1f}%")
     
     if error_improvement > 0:
-        print(f"  ✅ Adaptive IDW IMPROVES performance")
+        print(f"   Adaptive IDW IMPROVES performance")
     else:
-        print(f"  ⚠️ Adaptive IDW does not improve performance")
+        print(f"   Adaptive IDW does not improve performance")
     
     return {
         'standard_results': standard_results,
@@ -150,7 +148,7 @@ def run_adaptive_comparison():
 def run_quick_test():
     """Run quick test with limited models for development/testing"""
     
-    print("🎯 Running Quick IDW Test")
+    print(" Running Quick IDW Test")
     print("=" * 30)
     
     pipeline = IDWPipeline(output_dir="idw_quick_test")
@@ -166,7 +164,7 @@ def run_quick_test():
     
     # Show quick summary
     best_result = min(results, key=lambda x: x['median_error'])
-    print(f"\n🏆 Quick Test Best: {best_result['model']}")
+    print(f"\n Quick Test Best: {best_result['model']}")
     print(f"   Median Error: {best_result['median_error']:.3f}m")
     print(f"   1m Accuracy: {best_result['accuracy_1m']:.1f}%")
     
@@ -183,7 +181,7 @@ def main():
     
     args = parser.parse_args()
     
-    print("🎯 IDW Indoor Localization Evaluation")
+    print(" IDW Indoor Localization Evaluation")
     print("Using CSI amplitude and RSSI features")
     print("=" * 50)
     
@@ -203,15 +201,15 @@ def main():
         elif args.mode == 'quick':
             summary = run_quick_test()
             
-        print(f"\n🎉 IDW Evaluation Complete!")
-        print(f"📁 Check results in the output directory")
+        print(f"\n IDW Evaluation Complete!")
+        print(f" Check results in the output directory")
         
     except KeyboardInterrupt:
-        print(f"\n⚠️ Evaluation interrupted by user")
+        print(f"\n Evaluation interrupted")
         return 1
         
     except Exception as e:
-        print(f"❌ Error during evaluation: {e}")
+        print(f" Error during evaluation: {e}")
         return 1
     
     return 0

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-BasicCNN Original - Main Entry Point
-====================================
+BasicCNN Original - Main 
 
 Main script to run BasicCNN Original model training and evaluation.
 """
@@ -10,7 +9,6 @@ import argparse
 import sys
 from pathlib import Path
 
-# Add current directory to path for imports
 current_dir = Path(__file__).parent
 sys.path.append(str(current_dir))
 
@@ -29,11 +27,11 @@ def main():
     
     args = parser.parse_args()
     
-    print("🎯 BasicCNN Original Indoor Localization Model")
+    print(" BasicCNN Original Indoor Localization Model")
     print("=" * 45)
     print(f"Output directory: {args.output_dir}")
     
-    # Initialize pipeline
+    
     pipeline = BasicCNNOriginalPipeline(output_dir=args.output_dir)
     
     try:
@@ -43,24 +41,24 @@ def main():
             results = pipeline.run_complete_pipeline([args.single_size])
             
             if args.single_size in results:
-                print("✅ Single experiment completed successfully")
+                print(" Single experiment completed")
             else:
-                print("❌ Single experiment failed")
+                print(" Single experiment failed")
                 return 1
         else:
             # Run complete pipeline
             print(f"Running complete pipeline for dataset sizes: {args.dataset_sizes}")
             results = pipeline.run_complete_pipeline(args.dataset_sizes)
             
-            print("✅ Complete pipeline finished successfully")
+            print(" pipeline finished successfully")
         
         return 0
         
     except KeyboardInterrupt:
-        print("\n⚠️ Pipeline interrupted by user")
+        print("\n Pipeline interrupted")
         return 1
     except Exception as e:
-        print(f"❌ Pipeline failed with error: {e}")
+        print(f" Pipeline failed with error: {e}")
         return 1
 
 if __name__ == "__main__":

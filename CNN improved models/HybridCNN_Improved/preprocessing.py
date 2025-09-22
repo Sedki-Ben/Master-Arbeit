@@ -1,26 +1,25 @@
 #!/usr/bin/env python3
 """
-HybridCNN_Improved - Preprocessing Module
-===========================================
+HybridCNN_- Preprocessing Module
 
-Data preprocessing functionality for HybridCNN_Improved model.
-HybridCNN with Tom Cruise improvements.
+Data preprocessing functionality for HybridCNN_model.
+HybridCNN with 
 """
 
 import numpy as np
 from sklearn.preprocessing import StandardScaler
 
 class HybridCNNPreprocessor:
-    """Data preprocessor for HybridCNN_Improved model"""
-    
+    """HybridCNNPreprocessor."""
+
     def __init__(self):
         self.scalers = {}
-        print("🔧 HybridCNN_Improved DataPreprocessor initialized")
+        
     
     def preprocess_data(self, train_data, val_data, test_data):
         """Preprocess data using improved approach"""
         
-        print("🔄 Preprocessing data (improved approach)")
+        print(" Preprocessing data (improved approach)")
         
         # Fit scalers only on training data (improved approach)
         self.scalers['amplitude'] = StandardScaler()
@@ -53,10 +52,10 @@ class HybridCNNPreprocessor:
             'coordinates': test_data['coordinates'].astype(np.float32)
         }
         
-        print("✅ Preprocessing complete")
+        print(" Preprocessing complete")
         return processed_train, processed_val, processed_test
 
     def apply_data_augmentation(self, train_data, augmentation_factor=2):
         """Apply data augmentation (disabled for improved variant)"""
-        print("ℹ️ Data augmentation skipped (improved variant)")
+        print("ℹ Data augmentation skipped (improved variant)")
         return train_data

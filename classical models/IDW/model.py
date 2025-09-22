@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 Inverse Distance Weighting (IDW) Model
-======================================
 
 IDW implementation for indoor localization.
 Uses inverse distance weighting to interpolate coordinates
@@ -12,8 +11,8 @@ import numpy as np
 from scipy.spatial.distance import cdist
 
 class IDWLocalizer:
-    """Inverse Distance Weighting localization regressor"""
-    
+    """IDWLocalizer."""
+
     def __init__(self, power=2, epsilon=1e-6, distance_metric='euclidean', max_neighbors=None):
         """
         Initialize IDW localizer
@@ -31,7 +30,7 @@ class IDWLocalizer:
         self.X_train = None
         self.y_train = None
         
-        print(f"🎯 Initializing IDW Localizer (power={power}, metric={distance_metric}, max_neighbors={max_neighbors})")
+        print(f" Initializing IDW Localizer (power={power}, metric={distance_metric}, max_neighbors={max_neighbors})")
         
     def fit(self, X, y):
         """
@@ -41,12 +40,12 @@ class IDWLocalizer:
             X (np.array): Training features (N x D)
             y (np.array): Training coordinates (N x 2)
         """
-        print(f"🔧 Training IDW model with {len(X)} samples...")
+        print(f" Training IDW model with {len(X)} samples...")
         
         self.X_train = X.copy()
         self.y_train = y.copy()
         
-        print(f"✅ IDW model trained successfully")
+        print(f" IDW model trained successfully")
         
     def predict(self, X):
         """
@@ -61,7 +60,7 @@ class IDWLocalizer:
         if self.X_train is None:
             raise ValueError("Model must be fitted before prediction")
             
-        print(f"🔮 Predicting locations for {len(X)} test samples...")
+        print(f" Predicting locations for {len(X)} test samples...")
         
         predictions = []
         
@@ -107,7 +106,7 @@ class IDWLocalizer:
             predictions.append(pred_coord)
             
         predictions = np.array(predictions)
-        print(f"✅ Prediction complete")
+        print(f" Prediction complete")
         
         return predictions
     
@@ -168,8 +167,8 @@ class IDWLocalizer:
         return analysis
 
 class AdaptiveIDWLocalizer:
-    """Adaptive IDW with locally varying power parameter"""
-    
+    """AdaptiveIDWLocalizer."""
+
     def __init__(self, base_power=2, epsilon=1e-6, adaptation_method='density'):
         """
         Initialize Adaptive IDW localizer
@@ -186,7 +185,7 @@ class AdaptiveIDWLocalizer:
         self.y_train = None
         self.local_densities = None
         
-        print(f"🎯 Initializing Adaptive IDW (base_power={base_power}, adaptation={adaptation_method})")
+        print(f" Initializing Adaptive IDW (base_power={base_power}, adaptation={adaptation_method})")
         
     def fit(self, X, y):
         """
@@ -196,7 +195,7 @@ class AdaptiveIDWLocalizer:
             X (np.array): Training features
             y (np.array): Training coordinates
         """
-        print(f"🔧 Training Adaptive IDW model with {len(X)} samples...")
+        print(f" Training Adaptive IDW model with {len(X)} samples...")
         
         self.X_train = X.copy()
         self.y_train = y.copy()
@@ -207,7 +206,7 @@ class AdaptiveIDWLocalizer:
         elif self.adaptation_method == 'variance':
             self._compute_local_variances()
             
-        print(f"✅ Adaptive IDW model trained successfully")
+        print(f" Adaptive IDW model trained successfully")
         
     def _compute_local_densities(self, k=5):
         """Compute local density for each training point"""
@@ -298,7 +297,7 @@ class AdaptiveIDWLocalizer:
         if self.X_train is None:
             raise ValueError("Model must be fitted before prediction")
             
-        print(f"🔮 Predicting with Adaptive IDW for {len(X)} test samples...")
+        print(f" Predicting with Adaptive IDW for {len(X)} test samples...")
         
         predictions = []
         
@@ -321,13 +320,13 @@ class AdaptiveIDWLocalizer:
             predictions.append(pred_coord)
             
         predictions = np.array(predictions)
-        print(f"✅ Adaptive IDW prediction complete")
+        print(f" Adaptive IDW prediction complete")
         
         return predictions
 
 class MultiPowerIDWEnsemble:
-    """Ensemble of IDW models with different power parameters"""
-    
+    """MultiPowerIDWEnsemble."""
+
     def __init__(self, power_values=[0.5, 1.0, 1.5, 2.0, 3.0], ensemble_method='average'):
         """
         Initialize ensemble of IDW models
@@ -344,17 +343,17 @@ class MultiPowerIDWEnsemble:
         for power in power_values:
             self.models[power] = IDWLocalizer(power=power)
             
-        print(f"🎯 Initialized IDW Ensemble with power values: {power_values}")
+        print(f" Initialized IDW Ensemble with power values: {power_values}")
         
     def fit(self, X, y):
         """Fit all models in the ensemble"""
-        print(f"🔧 Training IDW Ensemble...")
+        print(f" Training IDW Ensemble...")
         
         for power, model in self.models.items():
             print(f"   Training IDW with power={power}...")
             model.fit(X, y)
             
-        print(f"✅ IDW Ensemble training complete")
+        print(f" IDW Ensemble training complete")
         
     def predict(self, X):
         """
@@ -366,7 +365,7 @@ class MultiPowerIDWEnsemble:
         Returns:
             np.array: Ensemble predictions
         """
-        print(f"🔮 Ensemble prediction using {len(self.models)} models...")
+        print(f" Ensemble prediction using {len(self.models)} models...")
         
         # Get predictions from all models
         all_predictions = []
@@ -393,6 +392,6 @@ class MultiPowerIDWEnsemble:
         else:
             raise ValueError("ensemble_method must be 'average', 'weighted_average', or 'median'")
             
-        print(f"✅ Ensemble prediction complete using {self.ensemble_method}")
+        print(f" Ensemble prediction complete using {self.ensemble_method}")
         
         return ensemble_pred

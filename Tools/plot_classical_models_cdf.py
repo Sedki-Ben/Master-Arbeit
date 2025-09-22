@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 Plot Classical Models CDF
-=========================
 
 Script to plot Cumulative Distribution Function (CDF) of localization errors
 for classical models (k-NN, IDW, Probabilistic).
@@ -20,7 +19,7 @@ def load_classical_results(results_dir="classical_models_comparison"):
     results_path = Path(results_dir)
     
     if not results_path.exists():
-        print(f"❌ Results directory not found: {results_path}")
+        print(f" Results directory not found: {results_path}")
         return None
     
     # Look for comprehensive results file
@@ -31,7 +30,7 @@ def load_classical_results(results_dir="classical_models_comparison"):
             data = json.load(f)
         return data
     
-    print(f"❌ No comprehensive results found in {results_path}")
+    print(f" No comprehensive results found in {results_path}")
     return None
 
 def extract_model_errors(results_data):
@@ -56,7 +55,7 @@ def extract_model_errors(results_data):
 def plot_classical_models_cdf(model_errors, output_dir="plots", save_format=['png', 'pdf']):
     """Plot CDF for all classical models"""
     
-    print(f"📈 Creating CDF plot for {len(model_errors)} classical models...")
+    print(f" Creating CDF plot for {len(model_errors)} classical models...")
     
     plt.style.use('default')
     fig, ax = plt.subplots(1, 1, figsize=(14, 10))
@@ -153,14 +152,14 @@ def plot_classical_models_cdf(model_errors, output_dir="plots", save_format=['pn
     for fmt in save_format:
         save_path = output_path / f"classical_models_cdf_comparison.{fmt}"
         plt.savefig(save_path, dpi=300, bbox_inches='tight', format=fmt)
-        print(f"💾 CDF plot saved: {save_path}")
+        print(f" CDF plot saved: {save_path}")
     
     plt.show()
 
 def create_performance_table(model_errors, output_dir="plots"):
     """Create a performance summary table"""
     
-    print("📊 Creating performance summary table...")
+    print(" Creating performance summary table...")
     
     # Calculate metrics for each model
     model_metrics = []
@@ -189,10 +188,10 @@ def create_performance_table(model_errors, output_dir="plots"):
     
     csv_path = output_path / "classical_models_performance_summary.csv"
     df_sorted.to_csv(csv_path, index=False)
-    print(f"💾 Performance table saved: {csv_path}")
+    print(f" Performance table saved: {csv_path}")
     
     # Print summary
-    print(f"\n📊 CLASSICAL MODELS PERFORMANCE RANKING")
+    print(f"\n CLASSICAL MODELS PERFORMANCE RANKING")
     print("=" * 70)
     print(f"{'Rank':<4} {'Model':<25} {'Median (m)':<10} {'1m Acc (%)':<10} {'2m Acc (%)':<10}")
     print("-" * 70)
@@ -218,22 +217,22 @@ def main():
     
     args = parser.parse_args()
     
-    print("📈 Classical Models CDF Plotter")
+    print(" Classical Models CDF Plotter")
     print("=" * 40)
     
     # Load results
     results_data = load_classical_results(args.results_dir)
     if results_data is None:
-        print("❌ Failed to load results data")
+        print(" Failed to load results data")
         return 1
     
     # Extract model errors
     model_errors = extract_model_errors(results_data)
     if not model_errors:
-        print("❌ No model errors found in results")
+        print(" No model errors found in results")
         return 1
     
-    print(f"✅ Loaded error data for {len(model_errors)} models")
+    print(f" Loaded error data for {len(model_errors)} models")
     
     # Plot CDF
     plot_classical_models_cdf(model_errors, args.output_dir, args.formats)
@@ -242,7 +241,7 @@ def main():
     if args.table:
         create_performance_table(model_errors, args.output_dir)
     
-    print("✅ Classical models CDF plotting complete!")
+    print(" Classical models CDF plotting complete!")
     return 0
 
 if __name__ == "__main__":

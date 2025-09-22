@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """
-BasicCNN_Improved - Evaluation Module
-==========================================
+BasicCNN_- Evaluation Module
 
-Evaluation functionality for BasicCNN_Improved model.
-BasicCNN with Tom Cruise improvements.
+Evaluation functionality for BasicCNN_model.
+BasicCNN with 
 """
 
 import numpy as np
@@ -15,20 +14,20 @@ import pickle
 from datetime import datetime
 
 class BasicCNNEvaluator:
-    """Model evaluator for BasicCNN_Improved"""
-    
+    """BasicCNNEvaluator."""
+
     def __init__(self, output_dir="basiccnn_improved_results"):
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)
         self.evaluation_results = {}
         
-        print(f"📊 BasicCNN_Improved ModelEvaluator initialized")
-        print(f"📁 Results will be saved to: {self.output_dir}")
+        print(f" BasicCNN_ModelEvaluator initialized")
+        print(f" Results will be saved to: {self.output_dir}")
     
     def evaluate_model(self, model, X_test, y_test, model_name="BasicCNN_Improved", dataset_size=750):
-        """Comprehensive model evaluation"""
+        """model evaluation"""
         
-        print(f"🧪 Evaluating {model_name} on {len(X_test)} test samples...")
+        print(f" Evaluating {model_name} on {len(X_test)} test samples...")
         
         # Make predictions
         y_pred = model.predict(X_test, verbose=0)
@@ -70,7 +69,7 @@ class BasicCNNEvaluator:
         
         self.evaluation_results[f"{model_name}_{dataset_size}"] = evaluation_results
         
-        print(f"✅ Evaluation complete for {model_name}")
+        print(f" Evaluation complete for {model_name}")
         print(f"   Mean error: {metrics['mean_error']:.3f}m")
         print(f"   Median error: {metrics['median_error']:.3f}m")
         print(f"   Accuracy <1m: {accuracy_metrics['accuracy_1m']:.1f}%")
@@ -81,10 +80,10 @@ class BasicCNNEvaluator:
         """Plot training and validation learning curves"""
         
         if training_data is None:
-            print("⚠️ No training data available for learning curves")
+            print(" No training data available for learning curves")
             return
         
-        print(f"📈 Creating learning curves for {model_name}...")
+        print(f" Creating learning curves for {model_name}...")
         
         fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(15, 6))
         epochs = list(range(1, len(training_data['train_loss']) + 1))
@@ -101,7 +100,7 @@ class BasicCNNEvaluator:
         plt.tight_layout()
         plot_path = self.output_dir / f"{model_name}_learning_curves_{dataset_size}.png"
         plt.savefig(plot_path, dpi=300, bbox_inches='tight')
-        print(f"💾 Learning curves saved: {plot_path}")
+        print(f" Learning curves saved: {plot_path}")
         plt.show()
     
     def save_results(self, model_name="BasicCNN_Improved", dataset_size=750, format='all'):
@@ -109,11 +108,11 @@ class BasicCNNEvaluator:
         
         key = f"{model_name}_{dataset_size}"
         if key not in self.evaluation_results:
-            print(f"⚠️ No evaluation results found for {key}")
+            print(f" No evaluation results found for {key}")
             return
         
         results = self.evaluation_results[key]
-        print(f"💾 Saving evaluation results for {model_name}...")
+        print(f" Saving evaluation results for {model_name}...")
         
         # Save summary as CSV
         summary_df = pd.DataFrame([{

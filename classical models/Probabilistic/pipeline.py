@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """
 Probabilistic Pipeline
-======================
 
-Complete pipeline for probabilistic localization including data loading,
+pipeline for probabilistic localization including data loading,
 preprocessing, training, evaluation, and visualization.
 """
 
@@ -22,8 +21,8 @@ from evaluation import calculate_localization_metrics, plot_error_distribution, 
 from .model import ProbabilisticLocalizer, GaussianMixtureLocalizer, BayesianLocalizer
 
 class ProbabilisticPipeline:
-    """Complete pipeline for probabilistic localization"""
-    
+    """ProbabilisticPipeline."""
+
     def __init__(self, output_dir="probabilistic_results"):
         """
         Initialize Probabilistic pipeline
@@ -38,8 +37,8 @@ class ProbabilisticPipeline:
         self.results = {}
         self.preprocessing_info = None
         
-        print("🎯 Probabilistic Pipeline Initialized")
-        print(f"📁 Output directory: {self.output_dir}")
+        print(" Probabilistic Pipeline Initialized")
+        print(f" Output directory: {self.output_dir}")
         
     def load_and_preprocess_data(self, data_source="csi_dataset", include_statistical=False, 
                                 scaler_type='standard', use_test_split=True):
@@ -56,7 +55,7 @@ class ProbabilisticPipeline:
             tuple: (X_train, X_test, y_train, y_test)
         """
         
-        print("📂 Loading and preprocessing data for Probabilistic models...")
+        print(" Loading and preprocessing data for Probabilistic models...")
         
         # Load training data
         X, y, coordinates = load_amplitude_phase_data(data_source=data_source)
@@ -92,7 +91,7 @@ class ProbabilisticPipeline:
             list: Results for different covariance types
         """
         
-        print(f"🔬 Evaluating basic probabilistic models...")
+        print(f" Evaluating basic probabilistic models...")
         
         covariance_configs = [
             {'type': 'empirical', 'smoothing': 1e-6, 'name': 'Probabilistic (empirical)'},
@@ -137,7 +136,7 @@ class ProbabilisticPipeline:
                 distribution_analysis = model.analyze_distributions()
                 results['distribution_analysis'] = distribution_analysis['summary']
             except Exception as e:
-                print(f"   ⚠️ Could not analyze distributions: {e}")
+                print(f"    Could not analyze distributions: {e}")
                 results['distribution_analysis'] = None
             
             # Store model and results
@@ -165,7 +164,7 @@ class ProbabilisticPipeline:
             list: Results for GMM models
         """
         
-        print(f"🔬 Evaluating Gaussian Mixture Model localization...")
+        print(f" Evaluating Gaussian Mixture Model localization...")
         
         gmm_configs = [
             {'n_components': 1, 'cov_type': 'full', 'name': 'GMM-1 (full)'},
@@ -220,7 +219,7 @@ class ProbabilisticPipeline:
                 save_results(results, self.output_dir, model_key)
                 
             except Exception as e:
-                print(f"   ❌ Error with {config['name']}: {e}")
+                print(f"    Error with {config['name']}: {e}")
                 continue
         
         return all_results
@@ -236,7 +235,7 @@ class ProbabilisticPipeline:
             list: Results for Bayesian models
         """
         
-        print(f"🔬 Evaluating Bayesian probabilistic models...")
+        print(f" Evaluating Bayesian probabilistic models...")
         
         bayesian_configs = [
             {'prior_type': 'uniform', 'name': 'Bayesian (uniform prior)'},
@@ -284,7 +283,7 @@ class ProbabilisticPipeline:
                 save_results(results, self.output_dir, model_key)
                 
             except Exception as e:
-                print(f"   ❌ Error with {config['name']}: {e}")
+                print(f"    Error with {config['name']}: {e}")
                 continue
         
         return all_results
@@ -300,7 +299,7 @@ class ProbabilisticPipeline:
             list: Results for different regularization values
         """
         
-        print(f"🔬 Analyzing regularization effects...")
+        print(f" Analyzing regularization effects...")
         
         smoothing_values = [1e-8, 1e-7, 1e-6, 1e-5, 1e-4, 1e-3, 1e-2]
         all_results = []
@@ -336,7 +335,7 @@ class ProbabilisticPipeline:
                 all_results.append(results)
                 
             except Exception as e:
-                print(f"   ❌ Error with smoothing={smoothing}: {e}")
+                print(f"    Error with smoothing={smoothing}: {e}")
                 continue
         
         return all_results
@@ -350,10 +349,10 @@ class ProbabilisticPipeline:
             include_statistical (bool): Whether to include statistical features
             
         Returns:
-            dict: Complete results summary
+            dict: results summary
         """
         
-        print("🚀 Running Complete Probabilistic Evaluation Pipeline")
+        print(" Running Probabilistic Evaluation Pipeline")
         print("=" * 60)
         
         # Load and preprocess data
@@ -373,23 +372,23 @@ class ProbabilisticPipeline:
             'preprocessing_info': self.preprocessing_info
         }
         
-        print(f"📊 Data loaded: {data_info['n_train_samples']} train, {data_info['n_test_samples']} test")
-        print(f"🔧 Features: {data_info['n_features']} (statistical: {include_statistical})")
+        print(f" Data loaded: {data_info['n_train_samples']} train, {data_info['n_test_samples']} test")
+        print(f" Features: {data_info['n_features']} (statistical: {include_statistical})")
         
         # 1. Basic probabilistic models
-        print(f"\n1️⃣ Basic Probabilistic Models")
+        print(f"\n1⃣ Basic Probabilistic Models")
         basic_results = self.run_basic_probabilistic_evaluation(X_train, X_test, y_train, y_test)
         
         # 2. Gaussian Mixture Models
-        print(f"\n2️⃣ Gaussian Mixture Models")
+        print(f"\n2⃣ Gaussian Mixture Models")
         gmm_results = self.run_gmm_evaluation(X_train, X_test, y_train, y_test)
         
         # 3. Bayesian models
-        print(f"\n3️⃣ Bayesian Models")
+        print(f"\n3⃣ Bayesian Models")
         bayesian_results = self.run_bayesian_evaluation(X_train, X_test, y_train, y_test)
         
         # 4. Regularization analysis
-        print(f"\n4️⃣ Regularization Analysis")
+        print(f"\n4⃣ Regularization Analysis")
         regularization_results = self.run_regularization_analysis(X_train, X_test, y_train, y_test)
         
         # Combine all results
@@ -423,10 +422,10 @@ class ProbabilisticPipeline:
         with open(summary_path, 'w') as f:
             json.dump(summary, f, indent=4)
         
-        print(f"\n🎉 Probabilistic Evaluation Complete!")
-        print(f"✅ Evaluated {summary['models_trained']} models")
-        print(f"🏆 Best model: {summary['best_model']['model']} (median: {summary['best_model']['median_error']:.3f}m)")
-        print(f"📁 Results saved to: {self.output_dir}")
+        print(f"\n Probabilistic Evaluation Complete!")
+        print(f" Evaluated {summary['models_trained']} models")
+        print(f" Best model: {summary['best_model']['model']} (median: {summary['best_model']['median_error']:.3f}m)")
+        print(f" Results saved to: {self.output_dir}")
         
         return summary
     

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 AttentionCNN_Original - Preprocessing Module
-==============================================
 
 Data preprocessing functionality for AttentionCNN_Original model.
 AttentionCNN with self-attention mechanism.
@@ -11,16 +10,16 @@ import numpy as np
 from sklearn.preprocessing import StandardScaler
 
 class AttentionCNNPreprocessor:
-    """Data preprocessor for AttentionCNN_Original model"""
-    
+    """AttentionCNNPreprocessor."""
+
     def __init__(self):
         self.scalers = {}
-        print("🔧 AttentionCNN_Original DataPreprocessor initialized")
+        
     
     def preprocess_data(self, train_data, val_data, test_data):
         """Preprocess data using original approach"""
         
-        print("🔄 Preprocessing data (original approach)")
+        print(" Preprocessing data (original approach)")
         
         # Combine all data for scaling (original approach)
         all_amps = np.vstack([train_data['amplitudes'], val_data['amplitudes'], test_data['amplitudes']])
@@ -58,13 +57,13 @@ class AttentionCNNPreprocessor:
             'coordinates': test_data['coordinates'].astype(np.float32)
         }
         
-        print("✅ Preprocessing complete")
+        print(" Preprocessing complete")
         return processed_train, processed_val, processed_test
 
     def apply_data_augmentation(self, train_data, augmentation_factor=2):
         """Apply data augmentation to training data"""
         
-        print(f"🔄 Applying data augmentation (factor: {augmentation_factor})")
+        print(f" Applying data augmentation (factor: {augmentation_factor})")
         
         amplitudes = train_data['amplitudes']
         phases = train_data['phases']
@@ -97,5 +96,5 @@ class AttentionCNNPreprocessor:
             'coordinates': np.vstack(augmented_coords).astype(np.float32)
         }
         
-        print(f"✅ Data augmentation complete: {len(amplitudes)} -> {len(final_data['amplitudes'])} samples")
+        print(f" Data augmentation complete: {len(amplitudes)} -> {len(final_data['amplitudes'])} samples")
         return final_data

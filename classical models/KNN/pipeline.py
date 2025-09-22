@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """
 k-NN Pipeline
-=============
 
-Complete pipeline for k-NN localization including data loading,
+pipeline for k-NN localization including data loading,
 preprocessing, training, evaluation, and visualization.
 """
 
@@ -22,8 +21,8 @@ from evaluation import calculate_localization_metrics, plot_error_distribution, 
 from .model import KNNLocalizer, MultiKNNEnsemble
 
 class KNNPipeline:
-    """Complete pipeline for k-NN localization"""
-    
+    """KNNPipeline."""
+
     def __init__(self, output_dir="knn_results"):
         """
         Initialize k-NN pipeline
@@ -38,8 +37,8 @@ class KNNPipeline:
         self.results = {}
         self.preprocessing_info = None
         
-        print("🎯 k-NN Pipeline Initialized")
-        print(f"📁 Output directory: {self.output_dir}")
+        print(" k-NN Pipeline Initialized")
+        print(f" Output directory: {self.output_dir}")
         
     def load_and_preprocess_data(self, data_source="csi_dataset", include_statistical=False, 
                                 scaler_type='standard', use_test_split=True):
@@ -56,7 +55,7 @@ class KNNPipeline:
             tuple: (X_train, X_test, y_train, y_test)
         """
         
-        print("📂 Loading and preprocessing data for k-NN...")
+        print(" Loading and preprocessing data for k-NN...")
         
         # Load training data
         X, y, coordinates = load_amplitude_phase_data(data_source=data_source)
@@ -93,7 +92,7 @@ class KNNPipeline:
             list: Results for all k values
         """
         
-        print(f"🔬 Evaluating individual k-NN models...")
+        print(f" Evaluating individual k-NN models...")
         print(f"   k values: {k_values}")
         
         all_results = []
@@ -146,7 +145,7 @@ class KNNPipeline:
             list: Results for weighted k-NN models
         """
         
-        print(f"🔬 Evaluating distance-weighted k-NN models...")
+        print(f" Evaluating distance-weighted k-NN models...")
         print(f"   k values: {k_values}")
         
         all_results = []
@@ -199,7 +198,7 @@ class KNNPipeline:
             list: Results for ensemble models
         """
         
-        print(f"🔬 Evaluating k-NN ensemble models...")
+        print(f" Evaluating k-NN ensemble models...")
         
         ensemble_configs = [
             {'k_values': [1, 3, 5], 'method': 'average', 'name': 'Ensemble k135 (avg)'},
@@ -262,10 +261,10 @@ class KNNPipeline:
             include_statistical (bool): Whether to include statistical features
             
         Returns:
-            dict: Complete results summary
+            dict: results summary
         """
         
-        print("🚀 Running Complete k-NN Evaluation Pipeline")
+        print(" Running k-NN Evaluation Pipeline")
         print("=" * 50)
         
         # Load and preprocess data
@@ -285,19 +284,19 @@ class KNNPipeline:
             'preprocessing_info': self.preprocessing_info
         }
         
-        print(f"📊 Data loaded: {data_info['n_train_samples']} train, {data_info['n_test_samples']} test")
-        print(f"🔧 Features: {data_info['n_features']} (statistical: {include_statistical})")
+        print(f" Data loaded: {data_info['n_train_samples']} train, {data_info['n_test_samples']} test")
+        print(f" Features: {data_info['n_features']} (statistical: {include_statistical})")
         
         # 1. Individual k-NN models
-        print(f"\n1️⃣ Individual k-NN Models")
+        print(f"\n1⃣ Individual k-NN Models")
         individual_results = self.run_single_knn_evaluation(X_train, X_test, y_train, y_test)
         
         # 2. Distance-weighted k-NN models
-        print(f"\n2️⃣ Distance-Weighted k-NN Models")
+        print(f"\n2⃣ Distance-Weighted k-NN Models")
         weighted_results = self.run_distance_weighted_knn(X_train, X_test, y_train, y_test)
         
         # 3. Ensemble k-NN models
-        print(f"\n3️⃣ Ensemble k-NN Models")
+        print(f"\n3⃣ Ensemble k-NN Models")
         ensemble_results = self.run_ensemble_evaluation(X_train, X_test, y_train, y_test)
         
         # Combine all results
@@ -334,10 +333,10 @@ class KNNPipeline:
         with open(summary_path, 'w') as f:
             json.dump(json_summary, f, indent=4)
         
-        print(f"\n🎉 k-NN Evaluation Complete!")
-        print(f"✅ Evaluated {summary['models_trained']} models")
-        print(f"🏆 Best model: {summary['best_model']['model']} (median: {summary['best_model']['median_error']:.3f}m)")
-        print(f"📁 Results saved to: {self.output_dir}")
+        print(f"\n k-NN Evaluation Complete!")
+        print(f" Evaluated {summary['models_trained']} models")
+        print(f" Best model: {summary['best_model']['model']} (median: {summary['best_model']['median_error']:.3f}m)")
+        print(f" Results saved to: {self.output_dir}")
         
         return summary
 

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 Plot CNN Original Models CDF
-============================
 
 Script to plot Cumulative Distribution Function (CDF) of localization errors
 for original CNN models (BasicCNN, HybridCNN, AttentionCNN, MultiScaleCNN, ResidualCNN).
@@ -21,7 +20,7 @@ def load_cnn_original_results(models_dir="CNN Original models"):
     models_path = Path(models_dir)
     
     if not models_path.exists():
-        print(f"❌ Models directory not found: {models_path}")
+        print(f" Models directory not found: {models_path}")
         return None
     
     model_results = {}
@@ -39,7 +38,7 @@ def load_cnn_original_results(models_dir="CNN Original models"):
         model_dir = models_path / model_name
         
         if not model_dir.exists():
-            print(f"⚠️ Model directory not found: {model_dir}")
+            print(f" Model directory not found: {model_dir}")
             continue
         
         # Look for different types of result files
@@ -52,7 +51,7 @@ def load_cnn_original_results(models_dir="CNN Original models"):
         # Check for pickle files
         pickle_files = list(model_dir.glob("*results*.pkl"))
         
-        print(f"📂 Checking {model_name}:")
+        print(f" Checking {model_name}:")
         print(f"   CSV files: {len(csv_files)}")
         print(f"   JSON files: {len(json_files)}")
         print(f"   Pickle files: {len(pickle_files)}")
@@ -82,7 +81,7 @@ def load_model_results(model_dir, model_name):
                     results[size] = {'source': 'csv', 'data': df}
                     continue
             except Exception as e:
-                print(f"   ⚠️ Error reading CSV {csv_file}: {e}")
+                print(f"    Error reading CSV {csv_file}: {e}")
         
         # Try JSON files
         json_file = model_dir / f"{model_name.lower()}_results_{size}.json"
@@ -93,7 +92,7 @@ def load_model_results(model_dir, model_name):
                 results[size] = {'source': 'json', 'data': data}
                 continue
             except Exception as e:
-                print(f"   ⚠️ Error reading JSON {json_file}: {e}")
+                print(f"    Error reading JSON {json_file}: {e}")
         
         # Try pickle files
         pickle_file = model_dir / f"{model_name.lower()}_results_{size}.pkl"
@@ -104,7 +103,7 @@ def load_model_results(model_dir, model_name):
                 results[size] = {'source': 'pickle', 'data': data}
                 continue
             except Exception as e:
-                print(f"   ⚠️ Error reading pickle {pickle_file}: {e}")
+                print(f"    Error reading pickle {pickle_file}: {e}")
     
     return results if results else None
 
@@ -152,19 +151,19 @@ def extract_errors_from_results(model_results):
                 if errors is not None:
                     key = f"{model_name}_{dataset_size}"
                     model_errors[key] = errors
-                    print(f"   ✅ Loaded {len(errors)} errors for {key}")
+                    print(f"    Loaded {len(errors)} errors for {key}")
                 else:
-                    print(f"   ⚠️ No errors found for {model_name}_{dataset_size}")
+                    print(f"    No errors found for {model_name}_{dataset_size}")
                     
             except Exception as e:
-                print(f"   ❌ Error extracting errors for {model_name}_{dataset_size}: {e}")
+                print(f"    Error extracting errors for {model_name}_{dataset_size}: {e}")
     
     return model_errors
 
 def generate_synthetic_errors_if_needed(model_results):
     """Generate synthetic errors if real data is not available (for demonstration)"""
     
-    print("⚠️ Generating synthetic error data for demonstration...")
+    print(" Generating synthetic error data for demonstration...")
     
     # Realistic error statistics based on typical CNN performance
     model_performance = {
@@ -201,7 +200,7 @@ def generate_synthetic_errors_if_needed(model_results):
 def plot_cnn_original_cdf(model_errors, output_dir="plots", save_format=['png', 'pdf']):
     """Plot CDF for original CNN models"""
     
-    print(f"📈 Creating CDF plot for {len(model_errors)} CNN original models...")
+    print(f" Creating CDF plot for {len(model_errors)} CNN original models...")
     
     plt.style.use('default')
     fig, ax = plt.subplots(1, 1, figsize=(14, 10))
@@ -282,14 +281,14 @@ def plot_cnn_original_cdf(model_errors, output_dir="plots", save_format=['png', 
     for fmt in save_format:
         save_path = output_path / f"cnn_original_models_cdf_comparison.{fmt}"
         plt.savefig(save_path, dpi=300, bbox_inches='tight', format=fmt)
-        print(f"💾 CDF plot saved: {save_path}")
+        print(f" CDF plot saved: {save_path}")
     
     plt.show()
 
 def create_cnn_performance_table(model_errors, output_dir="plots"):
     """Create performance summary table for CNN models"""
     
-    print("📊 Creating CNN original models performance summary...")
+    print(" Creating CNN original models performance summary...")
     
     model_metrics = []
     
@@ -325,13 +324,13 @@ def create_cnn_performance_table(model_errors, output_dir="plots"):
     
     csv_path = output_path / "cnn_original_models_performance.csv"
     df_sorted.to_csv(csv_path, index=False)
-    print(f"💾 Performance table saved: {csv_path}")
+    print(f" Performance table saved: {csv_path}")
     
     # Print summary by dataset size
     for size in [250, 500, 750]:
         size_data = df_sorted[df_sorted['Dataset_Size'] == size]
         if not size_data.empty:
-            print(f"\n📊 ORIGINAL CNN MODELS PERFORMANCE - {size} SAMPLES")
+            print(f"\n ORIGINAL CNN MODELS PERFORMANCE - {size} SAMPLES")
             print("=" * 60)
             print(f"{'Rank':<4} {'Model':<20} {'Median (m)':<10} {'1m Acc (%)':<10} {'2m Acc (%)':<10}")
             print("-" * 60)
@@ -359,7 +358,7 @@ def main():
     
     args = parser.parse_args()
     
-    print("📈 CNN Original Models CDF Plotter")
+    print(" CNN Original Models CDF Plotter")
     print("=" * 45)
     
     # Load results
@@ -374,9 +373,9 @@ def main():
     # Generate synthetic data if no real data found or if requested
     if not model_errors or args.synthetic:
         model_errors = generate_synthetic_errors_if_needed(model_results)
-        print("⚠️ Using synthetic data for demonstration")
+        print(" Using synthetic data for demonstration")
     else:
-        print(f"✅ Loaded real error data for {len(model_errors)} model configurations")
+        print(f" Loaded real error data for {len(model_errors)} model configurations")
     
     # Plot CDF
     plot_cnn_original_cdf(model_errors, args.output_dir, args.formats)
@@ -385,7 +384,7 @@ def main():
     if args.table:
         create_cnn_performance_table(model_errors, args.output_dir)
     
-    print("✅ CNN original models CDF plotting complete!")
+    print(" CNN original models CDF plotting complete!")
     return 0
 
 if __name__ == "__main__":

@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-k-NN Main Entry Point
-=====================
+k-NN Main 
 
 Main script to run k-NN localization evaluation.
 Provides command-line interface for different evaluation modes.
@@ -11,7 +10,6 @@ import argparse
 import sys
 from pathlib import Path
 
-# Add current directory to path for imports
 sys.path.append(str(Path(__file__).resolve().parent))
 
 from pipeline import KNNPipeline
@@ -19,7 +17,7 @@ from pipeline import KNNPipeline
 def run_basic_evaluation():
     """Run basic k-NN evaluation with default parameters"""
     
-    print("🎯 Running Basic k-NN Evaluation")
+    print(" Running Basic k-NN Evaluation")
     print("=" * 40)
     
     pipeline = KNNPipeline(output_dir="knn_basic_results")
@@ -34,7 +32,7 @@ def run_basic_evaluation():
 def run_enhanced_evaluation():
     """Run enhanced k-NN evaluation with statistical features"""
     
-    print("🎯 Running Enhanced k-NN Evaluation")
+    print(" Running k-NN Evaluation")
     print("=" * 40)
     
     pipeline = KNNPipeline(output_dir="knn_enhanced_results")
@@ -49,17 +47,17 @@ def run_enhanced_evaluation():
 def run_comparison_evaluation():
     """Run both basic and enhanced evaluations for comparison"""
     
-    print("🎯 Running k-NN Comparison Evaluation")
+    print(" Running k-NN Comparison Evaluation")
     print("=" * 45)
     
-    print("\n1️⃣ Basic k-NN (Amplitude + RSSI only)")
+    print("\n1⃣ Basic k-NN (Amplitude + RSSI only)")
     basic_summary = run_basic_evaluation()
     
-    print("\n2️⃣ Enhanced k-NN (+ Statistical Features)")
+    print("\n2⃣ k-NN (+ Statistical Features)")
     enhanced_summary = run_enhanced_evaluation()
     
     # Compare results
-    print("\n📊 COMPARISON SUMMARY")
+    print("\n COMPARISON SUMMARY")
     print("=" * 30)
     
     basic_best = basic_summary['best_model']
@@ -71,7 +69,7 @@ def run_comparison_evaluation():
     print(f"  1m Accuracy: {basic_best['accuracy_1m']:.1f}%")
     print(f"  2m Accuracy: {basic_best['accuracy_2m']:.1f}%")
     
-    print(f"\nEnhanced k-NN Best:")
+    print(f"\nk-NN Best:")
     print(f"  Model: {enhanced_best['model']}")
     print(f"  Median Error: {enhanced_best['median_error']:.3f}m")
     print(f"  1m Accuracy: {enhanced_best['accuracy_1m']:.1f}%")
@@ -82,15 +80,15 @@ def run_comparison_evaluation():
     acc_1m_improvement = enhanced_best['accuracy_1m'] - basic_best['accuracy_1m']
     acc_2m_improvement = enhanced_best['accuracy_2m'] - basic_best['accuracy_2m']
     
-    print(f"\n📈 Improvement with Statistical Features:")
+    print(f"\n Improvement with Statistical Features:")
     print(f"  Median Error: {error_improvement:+.3f}m")
     print(f"  1m Accuracy: {acc_1m_improvement:+.1f}%")
     print(f"  2m Accuracy: {acc_2m_improvement:+.1f}%")
     
     if error_improvement > 0:
-        print(f"  ✅ Statistical features IMPROVE performance")
+        print(f"   Statistical features IMPROVE performance")
     else:
-        print(f"  ⚠️ Statistical features do not improve performance")
+        print(f"   Statistical features do not improve performance")
     
     return {
         'basic_summary': basic_summary,
@@ -105,7 +103,7 @@ def run_comparison_evaluation():
 def run_quick_test():
     """Run quick test with limited models for development/testing"""
     
-    print("🎯 Running Quick k-NN Test")
+    print(" Running Quick k-NN Test")
     print("=" * 30)
     
     pipeline = KNNPipeline(output_dir="knn_quick_test")
@@ -121,7 +119,7 @@ def run_quick_test():
     
     # Show quick summary
     best_result = min(results, key=lambda x: x['median_error'])
-    print(f"\n🏆 Quick Test Best: {best_result['model']}")
+    print(f"\n Quick Test Best: {best_result['model']}")
     print(f"   Median Error: {best_result['median_error']:.3f}m")
     print(f"   1m Accuracy: {best_result['accuracy_1m']:.1f}%")
     
@@ -138,7 +136,7 @@ def main():
     
     args = parser.parse_args()
     
-    print("🎯 k-NN Indoor Localization Evaluation")
+    print(" k-NN Indoor Localization Evaluation")
     print("Using CSI amplitude and RSSI features")
     print("=" * 50)
     
@@ -155,15 +153,15 @@ def main():
         elif args.mode == 'quick':
             summary = run_quick_test()
             
-        print(f"\n🎉 k-NN Evaluation Complete!")
-        print(f"📁 Check results in the output directory")
+        print(f"\n k-NN Evaluation Complete!")
+        print(f" Check results in the output directory")
         
     except KeyboardInterrupt:
-        print(f"\n⚠️ Evaluation interrupted by user")
+        print(f"\n Evaluation interrupted")
         return 1
         
     except Exception as e:
-        print(f"❌ Error during evaluation: {e}")
+        print(f" Error during evaluation: {e}")
         return 1
     
     return 0

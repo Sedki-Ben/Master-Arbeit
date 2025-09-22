@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """
-AttentionCNN_Improved - Training Module
-==============================================
+AttentionCNN_- Training Module
 
-Training functionality for AttentionCNN_Improved model.
-AttentionCNN with Tom Cruise improvements.
+Training functionality for AttentionCNN_model.
+AttentionCNN with 
 """
 
 import numpy as np
@@ -14,16 +13,16 @@ from pathlib import Path
 import time
 
 class AttentionCNNTrainer:
-    """Model trainer for AttentionCNN_Improved"""
-    
+    """AttentionCNNTrainer."""
+
     def __init__(self, output_dir="attentioncnn_improved_results"):
         self.output_dir = Path(output_dir)
         self.output_dir.mkdir(exist_ok=True)
         self.history = None
         self.training_time = 0
         
-        print(f"🏋️ AttentionCNN_Improved ModelTrainer initialized")
-        print(f"📁 Model checkpoints will be saved to: {self.output_dir}")
+        print(f" AttentionCNN_ModelTrainer initialized")
+        print(f" Model checkpoints will be saved to: {self.output_dir}")
     
     def euclidean_distance_loss(self, y_true, y_pred):
         """Custom Euclidean distance loss function"""
@@ -32,10 +31,10 @@ class AttentionCNNTrainer:
     def compile_and_train_model(self, model, X_train, y_train, X_val, y_val, dataset_size, model_name="AttentionCNN_Improved"):
         """Compile and train model with improved configuration"""
         
-        print(f"🚀 Training {model_name} (improved configuration)")
-        print(f"📊 Dataset size: {dataset_size}")
+        print(f" Training {model_name} (improved configuration)")
+        print(f" Dataset size: {dataset_size}")
         
-        # Improved "Tom Cruise" configuration
+        # "Tom Cruise" configuration
         learning_rate = 0.0002
         loss_function = 'mse'
         batch_size = 16
@@ -47,7 +46,7 @@ class AttentionCNNTrainer:
         # Compile model
         model.compile(optimizer=optimizer, loss=loss_function, metrics=['mae'])
         
-        print(f"⚙️ Training configuration:")
+        print(f" Training configuration:")
         print(f"   Learning rate: {learning_rate}")
         print(f"   Loss function: {loss_function}")
         print(f"   Batch size: {batch_size}")
@@ -65,7 +64,7 @@ class AttentionCNNTrainer:
         ]
         
         # Train model
-        print(f"\n🎯 Starting training...")
+        print(f"\n Starting training...")
         start_time = time.time()
         
         history = model.fit(
@@ -81,7 +80,7 @@ class AttentionCNNTrainer:
         self.training_time = training_time
         self.history = history
         
-        print(f"✅ Training completed in {training_time:.1f} seconds")
+        print(f" Training completed in {training_time:.1f} seconds")
         
         # Training summary
         best_epoch = np.argmin(history.history['val_loss'])

@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
 """
-ResidualCNN_Improved - Data Loader Module
-=============================================
+ResidualCNN_- Data Loader Module
 
-Data loading functionality for ResidualCNN_Improved model.
-ResidualCNN with Tom Cruise improvements.
+Data loading functionality for ResidualCNN_model.
+ResidualCNN with 
 """
 
 import numpy as np
@@ -19,14 +18,14 @@ sys.path.append('../../..')
 from coordinates_config import get_training_points, get_validation_points, get_testing_points
 
 class ResidualCNNDataLoader:
-    """Data loader for ResidualCNN_Improved model"""
-    
+    """ResidualCNNDataLoader."""
+
     def __init__(self):
         self.training_points = get_training_points()
         self.validation_points = get_validation_points()
         self.testing_points = get_testing_points()
         
-        print("📊 ResidualCNN_Improved DataLoader initialized")
+        
         print(f"   Training points: {len(self.training_points)}")
         print(f"   Validation points: {len(self.validation_points)}")
         print(f"   Testing points: {len(self.testing_points)}")
@@ -46,7 +45,7 @@ class ResidualCNNDataLoader:
         else:
             raise ValueError("point_type must be 'training', 'validation', or 'testing'")
         
-        print(f"📂 Loading {point_type} data from {len(points)} points...")
+        print(f" Loading {point_type} data from {len(points)} points...")
         
         amplitudes, phases, rssi_values, coordinates = [], [], [], []
         
@@ -76,7 +75,7 @@ class ResidualCNNDataLoader:
         rssi_values = np.array(rssi_values, dtype=np.float32)
         coordinates = np.array(coordinates, dtype=np.float32)
         
-        print(f"✅ Loaded {len(amplitudes)} samples")
+        print(f" Loaded {len(amplitudes)} samples")
         
         return amplitudes, phases, rssi_values, coordinates
     

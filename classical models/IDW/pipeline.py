@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 """
 IDW Pipeline
-============
 
-Complete pipeline for IDW localization including data loading,
+pipeline for IDW localization including data loading,
 preprocessing, training, evaluation, and visualization.
 """
 
@@ -22,8 +21,8 @@ from evaluation import calculate_localization_metrics, plot_error_distribution, 
 from .model import IDWLocalizer, AdaptiveIDWLocalizer, MultiPowerIDWEnsemble
 
 class IDWPipeline:
-    """Complete pipeline for IDW localization"""
-    
+    """IDWPipeline."""
+
     def __init__(self, output_dir="idw_results"):
         """
         Initialize IDW pipeline
@@ -38,8 +37,8 @@ class IDWPipeline:
         self.results = {}
         self.preprocessing_info = None
         
-        print("🎯 IDW Pipeline Initialized")
-        print(f"📁 Output directory: {self.output_dir}")
+        print(" IDW Pipeline Initialized")
+        print(f" Output directory: {self.output_dir}")
         
     def load_and_preprocess_data(self, data_source="csi_dataset", include_statistical=False, 
                                 scaler_type='standard', use_test_split=True):
@@ -56,7 +55,7 @@ class IDWPipeline:
             tuple: (X_train, X_test, y_train, y_test)
         """
         
-        print("📂 Loading and preprocessing data for IDW...")
+        print(" Loading and preprocessing data for IDW...")
         
         # Load training data
         X, y, coordinates = load_amplitude_phase_data(data_source=data_source)
@@ -94,7 +93,7 @@ class IDWPipeline:
             list: Results for all power values
         """
         
-        print(f"🔬 Evaluating basic IDW models...")
+        print(f" Evaluating basic IDW models...")
         print(f"   Power values: {power_values}")
         
         all_results = []
@@ -149,7 +148,7 @@ class IDWPipeline:
             list: Results for different distance metrics
         """
         
-        print(f"🔬 Evaluating IDW with different distance metrics...")
+        print(f" Evaluating IDW with different distance metrics...")
         print(f"   Metrics: {metrics}, Power: {power}")
         
         all_results = []
@@ -203,7 +202,7 @@ class IDWPipeline:
             list: Results for adaptive IDW models
         """
         
-        print(f"🔬 Evaluating adaptive IDW models...")
+        print(f" Evaluating adaptive IDW models...")
         
         adaptation_methods = ['density', 'variance', 'distance']
         all_results = []
@@ -257,7 +256,7 @@ class IDWPipeline:
             list: Results for ensemble models
         """
         
-        print(f"🔬 Evaluating IDW ensemble models...")
+        print(f" Evaluating IDW ensemble models...")
         
         ensemble_configs = [
             {'powers': [1.0, 2.0, 3.0], 'method': 'average', 'name': 'Ensemble p123 (avg)'},
@@ -325,7 +324,7 @@ class IDWPipeline:
             list: Results for different neighbor limits
         """
         
-        print(f"🔬 Evaluating IDW with neighbor limits...")
+        print(f" Evaluating IDW with neighbor limits...")
         print(f"   Neighbor limits: {max_neighbors_list}, Power: {power}")
         
         all_results = []
@@ -377,10 +376,10 @@ class IDWPipeline:
             include_statistical (bool): Whether to include statistical features
             
         Returns:
-            dict: Complete results summary
+            dict: results summary
         """
         
-        print("🚀 Running Complete IDW Evaluation Pipeline")
+        print(" Running IDW Evaluation Pipeline")
         print("=" * 50)
         
         # Load and preprocess data
@@ -400,27 +399,27 @@ class IDWPipeline:
             'preprocessing_info': self.preprocessing_info
         }
         
-        print(f"📊 Data loaded: {data_info['n_train_samples']} train, {data_info['n_test_samples']} test")
-        print(f"🔧 Features: {data_info['n_features']} (statistical: {include_statistical})")
+        print(f" Data loaded: {data_info['n_train_samples']} train, {data_info['n_test_samples']} test")
+        print(f" Features: {data_info['n_features']} (statistical: {include_statistical})")
         
         # 1. Basic IDW models with different powers
-        print(f"\n1️⃣ Basic IDW Models")
+        print(f"\n1⃣ Basic IDW Models")
         basic_results = self.run_basic_idw_evaluation(X_train, X_test, y_train, y_test)
         
         # 2. Different distance metrics
-        print(f"\n2️⃣ Distance Metric Comparison")
+        print(f"\n2⃣ Distance Metric Comparison")
         metric_results = self.run_distance_metric_evaluation(X_train, X_test, y_train, y_test)
         
         # 3. Adaptive IDW models
-        print(f"\n3️⃣ Adaptive IDW Models")
+        print(f"\n3⃣ Adaptive IDW Models")
         adaptive_results = self.run_adaptive_idw_evaluation(X_train, X_test, y_train, y_test)
         
         # 4. Ensemble IDW models
-        print(f"\n4️⃣ Ensemble IDW Models")
+        print(f"\n4⃣ Ensemble IDW Models")
         ensemble_results = self.run_ensemble_evaluation(X_train, X_test, y_train, y_test)
         
         # 5. Neighbor-limited IDW models
-        print(f"\n5️⃣ Neighbor-Limited IDW Models")
+        print(f"\n5⃣ Neighbor-Limited IDW Models")
         neighbor_results = self.run_neighbor_limit_evaluation(X_train, X_test, y_train, y_test)
         
         # Combine all results
@@ -451,10 +450,10 @@ class IDWPipeline:
         with open(summary_path, 'w') as f:
             json.dump(summary, f, indent=4)
         
-        print(f"\n🎉 IDW Evaluation Complete!")
-        print(f"✅ Evaluated {summary['models_trained']} models")
-        print(f"🏆 Best model: {summary['best_model']['model']} (median: {summary['best_model']['median_error']:.3f}m)")
-        print(f"📁 Results saved to: {self.output_dir}")
+        print(f"\n IDW Evaluation Complete!")
+        print(f" Evaluated {summary['models_trained']} models")
+        print(f" Best model: {summary['best_model']['model']} (median: {summary['best_model']['median_error']:.3f}m)")
+        print(f" Results saved to: {self.output_dir}")
         
         return summary
 

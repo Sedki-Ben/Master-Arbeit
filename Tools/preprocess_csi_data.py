@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 CSI Data Preprocessing Tool
-===========================
 
 Script to preprocess CSI data by:
 1. Removing unnecessary columns from raw CSI datasets
@@ -27,10 +26,10 @@ def load_raw_csi_file(file_path: Path) -> pd.DataFrame:
     try:
         # Try to read CSV file
         df = pd.read_csv(file_path, encoding='utf-8')
-        print(f"✅ Loaded {len(df)} rows from {file_path.name}")
+        print(f" Loaded {len(df)} rows from {file_path.name}")
         return df
     except Exception as e:
-        print(f"❌ Error loading {file_path}: {e}")
+        print(f" Error loading {file_path}: {e}")
         return pd.DataFrame()
 
 def identify_necessary_columns(df: pd.DataFrame) -> Dict[str, List[str]]:
@@ -67,7 +66,7 @@ def identify_necessary_columns(df: pd.DataFrame) -> Dict[str, List[str]]:
     
     unnecessary_columns = [col for col in df.columns if col not in all_found]
     
-    print(f"📊 Column Analysis:")
+    print(f" Column Analysis:")
     print(f"   Essential columns found: {len(all_found)}")
     print(f"   Unnecessary columns: {len(unnecessary_columns)}")
     
@@ -149,8 +148,8 @@ def parse_amplitude_phase_columns(df: pd.DataFrame) -> Tuple[np.ndarray, np.ndar
             phase_col = col
             break
     
-    print(f"📊 Found amplitude column: {amp_col}")
-    print(f"📊 Found phase column: {phase_col}")
+    print(f" Found amplitude column: {amp_col}")
+    print(f" Found phase column: {phase_col}")
     
     for idx, row in df.iterrows():
         amp_data = None
@@ -196,7 +195,7 @@ def parse_amplitude_phase_columns(df: pd.DataFrame) -> Tuple[np.ndarray, np.ndar
 def reduce_csi_to_104_values(df: pd.DataFrame) -> pd.DataFrame:
     """Reduce CSI data to exactly 104 values (52 amplitude + 52 phase)"""
     
-    print("🔄 Reducing CSI data to 104 values...")
+    print(" Reducing CSI data to 104 values...")
     
     processed_data = []
     
@@ -205,7 +204,7 @@ def reduce_csi_to_104_values(df: pd.DataFrame) -> pd.DataFrame:
                    any('phase' in col.lower() for col in df.columns)
     
     if has_amp_phase:
-        print("📊 Using existing amplitude and phase columns")
+        print(" Using existing amplitude and phase columns")
         amplitudes, phases = parse_amplitude_phase_columns(df)
     else:
         # Look for raw CSI data column
@@ -216,7 +215,7 @@ def reduce_csi_to_104_values(df: pd.DataFrame) -> pd.DataFrame:
                 break
         
         if csi_col:
-            print(f"📊 Processing raw CSI data from column: {csi_col}")
+            print(f" Processing raw CSI data from column: {csi_col}")
             amplitudes = []
             phases = []
             
@@ -237,7 +236,7 @@ def reduce_csi_to_104_values(df: pd.DataFrame) -> pd.DataFrame:
             amplitudes = np.array(amplitudes)
             phases = np.array(phases)
         else:
-            print("❌ No CSI data columns found!")
+            print(" No CSI data columns found!")
             return pd.DataFrame()
     
     # Create new DataFrame with processed data
@@ -258,7 +257,7 @@ def reduce_csi_to_104_values(df: pd.DataFrame) -> pd.DataFrame:
         if matching_cols:
             result_df[matching_cols[0]] = df[matching_cols[0]]
     
-    print(f"✅ Processed {len(result_df)} samples with {result_df.shape[1]} features")
+    print(f" Processed {len(result_df)} samples with {result_df.shape[1]} features")
     print(f"   - Amplitude features: 52")
     print(f"   - Phase features: 52")
     print(f"   - Additional features: {result_df.shape[1] - 104}")
@@ -281,8 +280,8 @@ def remove_unnecessary_columns(df: pd.DataFrame, keep_columns: List[str] = None)
     filtered_df = df[available_cols].copy()
     
     removed_count = len(df.columns) - len(available_cols)
-    print(f"🗑️ Removed {removed_count} unnecessary columns")
-    print(f"✅ Kept {len(available_cols)} essential columns")
+    print(f" Removed {removed_count} unnecessary columns")
+    print(f" Kept {len(available_cols)} essential columns")
     
     return filtered_df
 
@@ -331,7 +330,7 @@ def process_csi_dataset(input_path: Path, output_path: Path,
                        reduce_csi: bool = True) -> bool:
     """Process a single CSI dataset file"""
     
-    print(f"\n📂 Processing: {input_path.name}")
+    print(f"\n Processing: {input_path.name}")
     print("=" * 50)
     
     # Load the data
@@ -339,21 +338,21 @@ def process_csi_dataset(input_path: Path, output_path: Path,
     if df.empty:
         return False
     
-    print(f"📊 Initial data shape: {df.shape}")
+    print(f" Initial data shape: {df.shape}")
     
     # Remove unnecessary columns if requested
     if remove_cols:
         df = remove_unnecessary_columns(df)
-        print(f"📊 After column removal: {df.shape}")
+        print(f" After column removal: {df.shape}")
     
     # Reduce CSI to 104 values if requested
     if reduce_csi:
         df = reduce_csi_to_104_values(df)
-        print(f"📊 After CSI reduction: {df.shape}")
+        print(f" After CSI reduction: {df.shape}")
     
     # Validate processed data
     validation = validate_processed_data(df)
-    print(f"\n📈 Data Validation:")
+    print(f"\n Data Validation:")
     print(f"   Total samples: {validation['total_samples']}")
     print(f"   Total features: {validation['total_features']}")
     print(f"   Amplitude features: {validation['amplitude_features']}")
@@ -372,10 +371,10 @@ def process_csi_dataset(input_path: Path, output_path: Path,
     try:
         output_path.parent.mkdir(parents=True, exist_ok=True)
         df.to_csv(output_path, index=False)
-        print(f"💾 Saved processed data to: {output_path}")
+        print(f" Saved processed data to: {output_path}")
         return True
     except Exception as e:
-        print(f"❌ Error saving data: {e}")
+        print(f" Error saving data: {e}")
         return False
 
 def process_multiple_files(input_dir: Path, output_dir: Path, 
@@ -384,18 +383,18 @@ def process_multiple_files(input_dir: Path, output_dir: Path,
                           reduce_csi: bool = True) -> int:
     """Process multiple CSI dataset files"""
     
-    print(f"🔄 Processing multiple files from: {input_dir}")
-    print(f"📁 Output directory: {output_dir}")
-    print(f"🔍 File pattern: {file_pattern}")
+    print(f" Processing multiple files from: {input_dir}")
+    print(f" Output directory: {output_dir}")
+    print(f" File pattern: {file_pattern}")
     
     # Find all matching files
     input_files = list(input_dir.glob(file_pattern))
     
     if not input_files:
-        print(f"❌ No files found matching pattern: {file_pattern}")
+        print(f" No files found matching pattern: {file_pattern}")
         return 0
     
-    print(f"📂 Found {len(input_files)} files to process")
+    print(f" Found {len(input_files)} files to process")
     
     processed_count = 0
     
@@ -407,13 +406,13 @@ def process_multiple_files(input_dir: Path, output_dir: Path,
         if process_csi_dataset(input_file, output_file, remove_cols, reduce_csi):
             processed_count += 1
     
-    print(f"\n✅ Successfully processed {processed_count}/{len(input_files)} files")
+    print(f"\n Successfully processed {processed_count}/{len(input_files)} files")
     return processed_count
 
 def create_processing_summary(input_dir: Path, output_dir: Path) -> pd.DataFrame:
     """Create a summary of all processed files"""
     
-    print("📊 Creating processing summary...")
+    print(" Creating processing summary...")
     
     summary_data = []
     
@@ -437,16 +436,16 @@ def create_processing_summary(input_dir: Path, output_dir: Path) -> pd.DataFrame
                 'file_size_mb': file_path.stat().st_size / (1024 * 1024)
             })
         except Exception as e:
-            print(f"⚠️ Error analyzing {file_path}: {e}")
+            print(f" Error analyzing {file_path}: {e}")
     
     if summary_data:
         summary_df = pd.DataFrame(summary_data)
         summary_path = output_dir / "processing_summary.csv"
         summary_df.to_csv(summary_path, index=False)
-        print(f"💾 Processing summary saved: {summary_path}")
+        print(f" Processing summary saved: {summary_path}")
         
         # Print summary statistics
-        print(f"\n📈 PROCESSING SUMMARY")
+        print(f"\n PROCESSING SUMMARY")
         print("=" * 50)
         print(f"Total files processed: {len(summary_data)}")
         print(f"Total samples: {summary_df['samples'].sum()}")
@@ -477,14 +476,14 @@ def main():
     
     args = parser.parse_args()
     
-    print("🔧 CSI Data Preprocessing Tool")
+    print(" CSI Data Preprocessing Tool")
     print("=" * 35)
     
     input_path = Path(args.input)
     output_path = Path(args.output)
     
     if not input_path.exists():
-        print(f"❌ Input path does not exist: {input_path}")
+        print(f" Input path does not exist: {input_path}")
         return 1
     
     # Process single file or multiple files
@@ -506,7 +505,7 @@ def main():
     if args.summary and output_path.is_dir():
         create_processing_summary(input_path, output_path)
     
-    print("✅ CSI data preprocessing complete!")
+    print(" CSI data preprocessing complete!")
     return 0
 
 if __name__ == "__main__":

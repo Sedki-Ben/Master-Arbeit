@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
-Plot CNN Improved Models Learning Curves
-========================================
+Plot CNN Models Learning Curves
 
 Script to plot training and validation learning curves for improved CNN models
 (BasicCNN, HybridCNN, AttentionCNN, MultiScaleCNN, ResidualCNN).
@@ -15,13 +14,13 @@ import pickle
 from pathlib import Path
 import argparse
 
-def load_cnn_improved_training_history(models_dir="CNN Improved models"):
+def load_cnn_improved_training_history(models_dir="CNN models"):
     """Load CNN improved models training history from various files"""
     
     models_path = Path(models_dir)
     
     if not models_path.exists():
-        print(f"❌ Models directory not found: {models_path}")
+        print(f" Models directory not found: {models_path}")
         return None
     
     model_histories = {}
@@ -39,7 +38,7 @@ def load_cnn_improved_training_history(models_dir="CNN Improved models"):
         model_dir = models_path / model_name
         
         if not model_dir.exists():
-            print(f"⚠️ Model directory not found: {model_dir}")
+            print(f" Model directory not found: {model_dir}")
             continue
         
         # Look for training history files
@@ -52,7 +51,7 @@ def load_cnn_improved_training_history(models_dir="CNN Improved models"):
         history_files.extend(list(model_dir.glob("*training*.pkl")))
         history_files.extend(list(model_dir.glob("*history*.csv")))
         
-        print(f"📂 Checking {model_name}:")
+        print(f" Checking {model_name}:")
         print(f"   History files found: {len(history_files)}")
         
         # Try to load training history
@@ -93,21 +92,21 @@ def load_model_training_history(model_dir, model_name):
                         with open(file_path, 'r') as f:
                             data = json.load(f)
                         histories[size] = {'source': 'json', 'data': data}
-                        print(f"   ✅ Loaded history from {file_path}")
+                        print(f"    Loaded history from {file_path}")
                         break
                     elif file_path.suffix == '.pkl':
                         with open(file_path, 'rb') as f:
                             data = pickle.load(f)
                         histories[size] = {'source': 'pickle', 'data': data}
-                        print(f"   ✅ Loaded history from {file_path}")
+                        print(f"    Loaded history from {file_path}")
                         break
                     elif file_path.suffix == '.csv':
                         df = pd.read_csv(file_path)
                         histories[size] = {'source': 'csv', 'data': df}
-                        print(f"   ✅ Loaded history from {file_path}")
+                        print(f"    Loaded history from {file_path}")
                         break
                 except Exception as e:
-                    print(f"   ⚠️ Error reading {file_path}: {e}")
+                    print(f"    Error reading {file_path}: {e}")
                     continue
     
     return histories if histories else None
@@ -147,20 +146,20 @@ def extract_training_metrics(model_histories):
                 if metrics:
                     key = f"{model_name}_{dataset_size}"
                     model_metrics[key] = metrics
-                    print(f"   ✅ Extracted metrics for {key}")
+                    print(f"    Extracted metrics for {key}")
                     print(f"       Available metrics: {list(metrics.keys())}")
                 else:
-                    print(f"   ⚠️ No metrics found for {model_name}_{dataset_size}")
+                    print(f"    No metrics found for {model_name}_{dataset_size}")
                     
             except Exception as e:
-                print(f"   ❌ Error extracting metrics for {model_name}_{dataset_size}: {e}")
+                print(f"    Error extracting metrics for {model_name}_{dataset_size}: {e}")
     
     return model_metrics
 
 def generate_synthetic_training_history(model_histories):
     """Generate synthetic training history if real data is not available"""
     
-    print("⚠️ Generating synthetic training history for demonstration...")
+    print(" Generating synthetic training history for demonstration...")
     
     # Realistic training parameters for improved models (better convergence, less overfitting)
     model_configs = {
@@ -229,7 +228,7 @@ def generate_synthetic_training_history(model_histories):
 def plot_individual_learning_curves(model_metrics, output_dir="plots", save_format=['png', 'pdf']):
     """Plot individual learning curves for each model"""
     
-    print(f"📈 Creating individual learning curves for {len(model_metrics)} model configurations...")
+    print(f" Creating individual learning curves for {len(model_metrics)} model configurations...")
     
     # Group by model name
     models = {}
@@ -264,7 +263,7 @@ def plot_individual_learning_curves(model_metrics, output_dir="plots", save_form
             # Customize subplot
             ax.set_xlabel('Epoch', fontsize=12, fontweight='bold')
             ax.set_ylabel('Loss', fontsize=12, fontweight='bold')
-            ax.set_title(f'{model_name.replace("_Improved", "")} Improved ({dataset_size} samples)', 
+            ax.set_title(f'{model_name.replace("_Improved", "")} ({dataset_size} samples)', 
                         fontsize=14, fontweight='bold')
             ax.grid(True, alpha=0.3)
             ax.legend(fontsize=10)
@@ -283,14 +282,14 @@ def plot_individual_learning_curves(model_metrics, output_dir="plots", save_form
         for fmt in save_format:
             save_path = output_path / f"{clean_name}_improved_learning_curves.{fmt}"
             plt.savefig(save_path, dpi=300, bbox_inches='tight', format=fmt)
-            print(f"💾 Learning curves saved: {save_path}")
+            print(f" Learning curves saved: {save_path}")
         
         plt.show()
 
 def plot_combined_learning_curves(model_metrics, output_dir="plots", save_format=['png', 'pdf']):
     """Plot combined learning curves for all models (750 samples only)"""
     
-    print("📊 Creating combined learning curves comparison...")
+    print(" Creating combined learning curves comparison...")
     
     plt.style.use('default')
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(16, 6))
@@ -325,14 +324,14 @@ def plot_combined_learning_curves(model_metrics, output_dir="plots", save_format
     # Customize training loss plot
     ax1.set_xlabel('Epoch', fontsize=12, fontweight='bold')
     ax1.set_ylabel('Training Loss', fontsize=12, fontweight='bold')
-    ax1.set_title('Training Loss Comparison - Improved Models\n(750 samples)', fontsize=14, fontweight='bold')
+    ax1.set_title('Training Loss Comparison - Models\n(750 samples)', fontsize=14, fontweight='bold')
     ax1.grid(True, alpha=0.3)
     ax1.legend(fontsize=10, framealpha=0.9)
     
     # Customize validation loss plot
     ax2.set_xlabel('Epoch', fontsize=12, fontweight='bold')
     ax2.set_ylabel('Validation Loss', fontsize=12, fontweight='bold')
-    ax2.set_title('Validation Loss Comparison - Improved Models\n(750 samples)', fontsize=14, fontweight='bold')
+    ax2.set_title('Validation Loss Comparison - Models\n(750 samples)', fontsize=14, fontweight='bold')
     ax2.grid(True, alpha=0.3)
     ax2.legend(fontsize=10, framealpha=0.9)
     
@@ -345,14 +344,14 @@ def plot_combined_learning_curves(model_metrics, output_dir="plots", save_format
     for fmt in save_format:
         save_path = output_path / f"cnn_improved_combined_learning_curves.{fmt}"
         plt.savefig(save_path, dpi=300, bbox_inches='tight', format=fmt)
-        print(f"💾 Combined learning curves saved: {save_path}")
+        print(f" Combined learning curves saved: {save_path}")
     
     plt.show()
 
 def plot_original_vs_improved_comparison(original_metrics, improved_metrics, output_dir="plots", save_format=['png', 'pdf']):
     """Plot side-by-side comparison of original vs improved learning curves"""
     
-    print("📊 Creating original vs improved learning curves comparison...")
+    print(" Creating original vs improved learning curves comparison...")
     
     fig, axes = plt.subplots(2, 2, figsize=(16, 12))
     
@@ -375,7 +374,7 @@ def plot_original_vs_improved_comparison(original_metrics, improved_metrics, out
             axes[0, 0].plot(epochs, metrics['loss'], color=color, linewidth=2, 
                            label=model_name, alpha=0.8)
     
-    # Improved models (top right)
+    # models (top right)
     for key, metrics in improved_metrics.items():
         if '_750' in key:
             model_name = key.replace('_Improved_750', '')
@@ -394,7 +393,7 @@ def plot_original_vs_improved_comparison(original_metrics, improved_metrics, out
             axes[1, 0].plot(epochs, metrics['val_loss'], color=color, linewidth=2, 
                            label=model_name, alpha=0.8)
     
-    # Improved models (bottom right)
+    # models (bottom right)
     for key, metrics in improved_metrics.items():
         if '_750' in key:
             model_name = key.replace('_Improved_750', '')
@@ -406,9 +405,9 @@ def plot_original_vs_improved_comparison(original_metrics, improved_metrics, out
     # Customize subplots
     titles = [
         'Training Loss - Original Models',
-        'Training Loss - Improved Models',
+        'Training Loss - Models',
         'Validation Loss - Original Models',
-        'Validation Loss - Improved Models'
+        'Validation Loss - Models'
     ]
     
     for i, (ax, title) in enumerate(zip(axes.flat, titles)):
@@ -429,14 +428,14 @@ def plot_original_vs_improved_comparison(original_metrics, improved_metrics, out
     for fmt in save_format:
         save_path = output_path / f"cnn_original_vs_improved_learning_comparison.{fmt}"
         plt.savefig(save_path, dpi=300, bbox_inches='tight', format=fmt)
-        print(f"💾 Learning curves comparison saved: {save_path}")
+        print(f" Learning curves comparison saved: {save_path}")
     
     plt.show()
 
 def create_training_summary_table(model_metrics, output_dir="plots"):
     """Create training summary table"""
     
-    print("📊 Creating training summary table...")
+    print(" Creating training summary table...")
     
     summary_data = []
     
@@ -483,13 +482,13 @@ def create_training_summary_table(model_metrics, output_dir="plots"):
     
     csv_path = output_path / "cnn_improved_training_summary.csv"
     df_sorted.to_csv(csv_path, index=False)
-    print(f"💾 Training summary saved: {csv_path}")
+    print(f" Training summary saved: {csv_path}")
     
     # Print summary by dataset size
     for size in [250, 500, 750]:
         size_data = df_sorted[df_sorted['Dataset_Size'] == size]
         if not size_data.empty:
-            print(f"\n📊 CNN IMPROVED TRAINING SUMMARY - {size} SAMPLES")
+            print(f"\n CNN IMPROVED TRAINING SUMMARY - {size} SAMPLES")
             print("=" * 70)
             print(f"{'Model':<20} {'Final Train':<12} {'Final Val':<12} {'Min Val':<12} {'Best Epoch':<12}")
             print("-" * 70)
@@ -503,8 +502,8 @@ def create_training_summary_table(model_metrics, output_dir="plots"):
 def main():
     """Main function"""
     
-    parser = argparse.ArgumentParser(description='Plot CNN Improved Models Learning Curves')
-    parser.add_argument('--models-dir', type=str, default='CNN Improved models',
+    parser = argparse.ArgumentParser(description='Plot CNN Models Learning Curves')
+    parser.add_argument('--models-dir', type=str, default='CNN models',
                        help='Directory containing CNN improved models')
     parser.add_argument('--original-dir', type=str, default='CNN Original models',
                        help='Directory containing CNN original models (for comparison)')
@@ -525,7 +524,7 @@ def main():
     
     args = parser.parse_args()
     
-    print("📈 CNN Improved Models Learning Curves Plotter")
+    print(" CNN Models Learning Curves Plotter")
     print("=" * 54)
     
     # Load training histories
@@ -540,9 +539,9 @@ def main():
     # Generate synthetic data if no real data found or if requested
     if not model_metrics or args.synthetic:
         model_metrics = generate_synthetic_training_history(model_histories)
-        print("⚠️ Using synthetic training history for demonstration")
+        print(" Using synthetic training history for demonstration")
     else:
-        print(f"✅ Loaded real training history for {len(model_metrics)} model configurations")
+        print(f" Loaded real training history for {len(model_metrics)} model configurations")
     
     # Create plots
     if args.individual:
@@ -572,13 +571,13 @@ def main():
             plot_original_vs_improved_comparison(original_metrics, model_metrics, 
                                                args.output_dir, args.formats)
         except Exception as e:
-            print(f"⚠️ Could not create comparison plot: {e}")
+            print(f" Could not create comparison plot: {e}")
     
     # Create training summary table if requested
     if args.table:
         create_training_summary_table(model_metrics, args.output_dir)
     
-    print("✅ CNN improved models learning curves plotting complete!")
+    print(" CNN improved models learning curves plotting complete!")
     return 0
 
 if __name__ == "__main__":
