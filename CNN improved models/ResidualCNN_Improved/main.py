@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ResidualCNN_- Main 
+ResidualCNN- Main 
 
 Main script to run ResidualCNN_model training and evaluation.
 ResidualCNN with 
