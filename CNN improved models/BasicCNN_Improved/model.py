@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Basic CNN model for CSI-based indoor localization."""
+"""Basic CNN model for CSI-based indoor localization"""
 
 import tensorflow as tf
 from tensorflow.keras import layers, Model, regularizers
