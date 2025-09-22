@@ -98,9 +98,9 @@ Our Models returned these results (median localization error) before improvement
 ## 🔧 Model Specifications
 
 ### Input Format
-- **Shape**: (52, 2) - 52 CSI subcarriers × 2 features (amplitude + phase)
-- **Additional**: RSSI value for HybridCNN (shape: (1,))
-- **Output**: 2D coordinates (X, Y) for indoor positioning
+- **Shape**: (52, 2) - 52 CSI subcarriers × 2 features (amplitude + phase) scaled and calibrated 
+- **Additional**: RSSI value for HybridCNN (shape: (1,)) when needed, with proper scaling
+- **Output**: 2D coordinates (X, Y) for continuous indoor positioning
 
 ### Training Configuration
 - **Loss Function**: Euclidean distance (custom implementation)
