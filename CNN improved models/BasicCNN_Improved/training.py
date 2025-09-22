@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-BasicCNN_- Training Module
+BasicCNN- Training Module
 
 Training functionality for BasicCNN_model.
 BasicCNN with 
