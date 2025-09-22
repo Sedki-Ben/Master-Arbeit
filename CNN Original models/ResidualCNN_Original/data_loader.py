@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ResidualCNN_Original - Data Loader Module
+ResidualCNN_Original- Data Loader Module
 
 Data loading functionality for ResidualCNN_Original model.
 ResidualCNN with skip connections.
