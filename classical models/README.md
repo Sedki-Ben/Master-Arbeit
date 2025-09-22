@@ -48,7 +48,7 @@ classical models/
 - **Bayesian Models**: With different prior types
 - **Regularization Analysis**: Different smoothing parameters
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Run All Models (Comprehensive Comparison)
 ```bash
@@ -96,7 +96,7 @@ python main.py --mode bayesian     # Bayesian comparison
 python main.py --mode quick        # Quick test
 ```
 
-## 📊 Features
+## Features
 
 ### Data Loading (`shared/data_loader.py`)
 - **Multiple data sources**: Amplitude Phase Data Single, CSI Dataset folders
@@ -116,7 +116,7 @@ python main.py --mode quick        # Quick test
 - **Model comparison**: Multi-model CDF comparison
 - **Results export**: CSV and JSON formats
 
-## 🔧 Model Configurations
+## Model Configurations
 
 ### k-NN Models
 - **k values**: 1, 3, 5, 7, 9
@@ -137,7 +137,7 @@ python main.py --mode quick        # Quick test
 - **GMM covariance types**: Full, diagonal, tied, spherical
 - **Bayesian priors**: Uniform, distance-based, density-based
 
-## 📈 Performance Metrics
+## Performance Metrics
 
 All models are evaluated using:
 - **Localization error**: Euclidean distance between true and predicted positions
@@ -145,7 +145,7 @@ All models are evaluated using:
 - **Statistical measures**: Mean, median, standard deviation, percentiles
 - **Coordinate-wise analysis**: Separate X and Y coordinate errors
 
-## 🎨 Visualizations
+## Visualizations
 
 Each model generates:
 - **CDF plots**: Cumulative distribution of localization errors
@@ -153,7 +153,7 @@ Each model generates:
 - **Comparison plots**: Multi-model performance comparison
 - **Learning analysis**: Model-specific performance insights
 
-## 📋 Output Structure
+## Output Structure
 
 Results are saved in organized directories:
 ```
@@ -166,7 +166,7 @@ Results are saved in organized directories:
 └── {model_type}_complete_summary.json   # Complete evaluation summary
 ```
 
-## 🔬 Advanced Features
+## Advanced Features
 
 ### Ensemble Methods
 - **k-NN Ensemble**: Multiple k values with different combination strategies
@@ -182,7 +182,7 @@ Results are saved in organized directories:
 - **Spectral features**: Based on subcarrier variations
 - **Energy features**: RMS, total energy across subcarriers
 
-## 🧪 Testing and Development
+## Testing and Development
 
 ### Quick Testing
 Use `--mode quick` for fast testing during development:
@@ -198,7 +198,7 @@ cd IDW && python main.py --mode quick
 cd Probabilistic && python main.py --mode quick
 ```
 
-## 📊 Expected Performance Hierarchy
+## Expected Performance Hierarchy
 
 Based on typical indoor localization results:
 1. **Probabilistic models** (especially with proper covariance estimation)
@@ -211,7 +211,7 @@ However, performance depends on:
 - Environmental characteristics
 - Feature preprocessing quality
 
-## 🔧 Customization
+## Customization
 
 ### Adding New Models
 1. Create model class in appropriate `model.py`
@@ -223,12 +223,7 @@ However, performance depends on:
 - Update `shared/data_loader.py` for new data sources
 - Modify `shared/evaluation.py` for new metrics
 
-### Custom Evaluation
-- Use individual pipeline classes for custom evaluation workflows
-- Combine models using the shared evaluation utilities
-- Create custom comparison scripts using the modular components
-
-## 📚 Dependencies
+## Dependencies
 
 - **NumPy**: Numerical computations
 - **Pandas**: Data handling
@@ -236,11 +231,3 @@ However, performance depends on:
 - **SciPy**: Statistical functions, spatial distance calculations
 - **Matplotlib**: Visualization and plotting
 
-## 🎯 Integration with CNN Models
-
-This classical models implementation is designed to complement the CNN models in the `cradle to the grave` directory:
-
-- **Consistent data loading**: Uses same coordinate system and data format
-- **Comparable evaluation**: Same metrics and visualization style
-- **Baseline comparison**: Provides classical baselines for CNN performance evaluation
-- **Modular structure**: Similar organization for easy maintenance and extension
