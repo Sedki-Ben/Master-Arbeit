@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-BasicCNN_- Preprocessing Module
+BasicCNN- Preprocessing Module
 
 Data preprocessing functionality for BasicCNN_model.
 BasicCNN with 
