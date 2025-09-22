@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HybridCNN_Original - Evaluation Module
+HybridCNN_Original -Evaluation Module
 
 Evaluation functionality for HybridCNN_Original model.
 HybridCNN combining CSI and RSSI.
