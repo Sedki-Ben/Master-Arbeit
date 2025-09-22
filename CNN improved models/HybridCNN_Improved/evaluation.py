@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HybridCNN_- Evaluation Module
+HybridCNN- Evaluation Module
 
 Evaluation functionality for HybridCNN_model.
 HybridCNN with 
