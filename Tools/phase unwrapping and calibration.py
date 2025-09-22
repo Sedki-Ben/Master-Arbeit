@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Simple Phase Calibration for CSI Indoor Localization
+Simple Phase Calibration for CSI Indoor Localization.
 
 Simplified implementation of S-Phaser style phase calibration
 adapted for our 52-subcarrier CSI data without heavy dependencies.
