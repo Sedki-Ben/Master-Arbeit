@@ -1,6 +1,6 @@
 # CNN Original Models
 
-This directory contains the original implementations of five different CNN architectures for indoor localization using WiFi CSI data. These models serve as baseline implementations for comparison with their improved counterparts.
+This directory contains the original implementations of five different CNN architectures for indoor localization using WiFi CSI data and in certain cases auxiliary RSSI vales. These models serve as baseline implementations for comparison with their improved counterparts.
 
 ## 🏗️ Model Architectures
 
