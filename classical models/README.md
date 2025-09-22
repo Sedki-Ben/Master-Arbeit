@@ -2,7 +2,7 @@
 
 This directory contains a modular implementation of classical localization algorithms for indoor positioning using CSI (Channel State Information) data.
 
-## 📁 Directory Structure
+## Directory Structure
 
 ```
 classical models/
@@ -26,7 +26,7 @@ classical models/
 └── README.md             # This file
 ```
 
-## 🎯 Models Implemented
+## Models Implemented
 
 ### 1. k-Nearest Neighbors (k-NN)
 - **Basic k-NN**: Standard k-NN with different k values
