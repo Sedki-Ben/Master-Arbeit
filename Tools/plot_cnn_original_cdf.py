@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Plot CNN Original Models CDF
+Plot CNN Original Models CDF.
 
 Script to plot Cumulative Distribution Function (CDF) of localization errors
 for original CNN models (BasicCNN, HybridCNN, AttentionCNN, MultiScaleCNN, ResidualCNN).
