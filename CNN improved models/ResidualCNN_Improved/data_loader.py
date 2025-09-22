@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ResidualCNN_- Data Loader Module
+ResidualCNN- Data Loader Module
 
 Data loading functionality for ResidualCNN_model.
 ResidualCNN with 
