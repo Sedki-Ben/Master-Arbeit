@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Probabilistic Pipeline
+Probabilistic Pipeline.
 
 pipeline for probabilistic localization including data loading,
 preprocessing, training, evaluation, and visualization.
