@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ResidualCNN_- Preprocessing Module
+ResidualCNN- Preprocessing Module
 
 Data preprocessing functionality for ResidualCNN_model.
 ResidualCNN with 
