@@ -95,7 +95,7 @@ Our Models returned these results (median localization error) before improvement
 | MultiScaleCNN | ~2.6m | ~2.6m | ~2.5m |
 | ResidualCNN | ~2.34m | ~2.29m | ~2.21m |
 
-## 🔧 Model Specifications
+## Model Specifications
 
 ### Input Format
 - **Shape**: (52, 2) - 52 CSI subcarriers × 2 features (amplitude + phase) scaled and calibrated 
