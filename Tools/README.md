@@ -2,9 +2,9 @@
 
 This directory contains essential tools for data processing, analysis, and visualization in the indoor localization project. These utilities support the entire research pipeline from raw data processing to final result visualization.
 
-## 🛠️ Available Tools
+## Available Tools
 
-### 📊 Data Processing Tools
+### Data Processing Tools
 
 #### `extract_amplitude_phase_rssi.py`
 **Comprehensive CSI feature extraction tool**
@@ -43,7 +43,7 @@ python preprocess_csi_data.py --dataset-sizes 250 500 750
 - **Features**: Temporal phase unwrapping, calibration algorithms
 - **Use case**: Enhanced phase feature quality for better localization
 
-### 📈 Visualization Tools
+### Visualization Tools
 
 #### `plot_cnn_original_cdf.py`
 **Original CNN models performance visualization**
@@ -102,7 +102,7 @@ python plot_classical_models_cdf.py --comprehensive
 - **Features**: Enhanced training analysis, regularization effects
 - **Output**: Comparative learning curve analysis
 
-## 🚀 Quick Start Guide
+## Quick Start Guide
 
 ### 1. Data Processing Pipeline
 ```bash
@@ -140,7 +140,7 @@ for script in plot_*.py; do
 done
 ```
 
-## 📊 Tool Specifications
+## Tool Specifications
 
 ### Data Processing Capabilities
 - **Input Formats**: CSV, JSON, TXT, pickle
@@ -160,7 +160,7 @@ done
 - **Statistical Measures**: Mean, median, standard deviation, percentiles
 - **Comparative Analysis**: Model-to-model performance comparison
 
-## 🔧 Configuration Options
+## Configuration Options
 
 ### Common Arguments
 ```bash
@@ -182,7 +182,7 @@ done
 --compare-with-original # Compare improved vs original models
 ```
 
-## 📈 Output Examples
+## Output Examples
 
 ### CDF Plots
 - **Original Models**: Baseline performance comparison
@@ -205,7 +205,7 @@ Rank  Model              Median Error  1m Accuracy  2m Accuracy
 - **Validation Performance**: Overfitting detection
 - **Comparison**: Original vs improved training dynamics
 
-## 🎯 Use Case Examples
+## Use Case Examples
 
 ### Research Workflow
 1. **Data Preparation**: Use extraction and preprocessing tools
@@ -220,7 +220,7 @@ Rank  Model              Median Error  1m Accuracy  2m Accuracy
 3. **Debugging**: Use learning curves to identify training issues
 4. **Validation**: Compare results across different dataset sizes
 
-## 📋 Dependencies
+## Dependencies
 
 ```python
 # Core dependencies
@@ -235,7 +235,7 @@ plotly>=5.0.0        # Interactive plots
 scikit-learn>=1.1.0  # Statistical utilities
 ```
 
-## 🔍 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 - **File not found**: Check input paths and file extensions
@@ -249,7 +249,3 @@ scikit-learn>=1.1.0  # Statistical utilities
 - **Synthetic Data**: Use for testing tools without running full experiments
 - **Parallel Processing**: Process multiple dataset sizes simultaneously
 
----
-
-**Comprehensive Research Tools for Indoor Localization Analysis**  
-*Supporting the complete research pipeline from data to publication*
