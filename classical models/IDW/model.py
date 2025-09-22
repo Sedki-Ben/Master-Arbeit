@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Inverse Distance Weighting (IDW) Model
+Inverse Distance Weighting (IDW) Model.
 
 IDW implementation for indoor localization.
 Uses inverse distance weighting to interpolate coordinates
