@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AttentionCNN_Original - Data Loader Module
+AttentionCNN_Original- Data Loader Module
 
 Data loading functionality for AttentionCNN_Original model.
 AttentionCNN with self-attention mechanism.
