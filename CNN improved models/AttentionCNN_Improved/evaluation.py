@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AttentionCNN_- Evaluation Module
+AttentionCNN- Evaluation Module
 
 Evaluation functionality for AttentionCNN_model.
 AttentionCNN with 
