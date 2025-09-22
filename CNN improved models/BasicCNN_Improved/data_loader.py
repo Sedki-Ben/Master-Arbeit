@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-BasicCNN_- Data Loader Module
+BasicCNN- Data Loader Module
 
 Data loading functionality for BasicCNN_model.
 BasicCNN with 
