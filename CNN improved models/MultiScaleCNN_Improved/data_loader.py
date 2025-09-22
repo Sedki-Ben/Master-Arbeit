@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MultiScaleCNN_- Data Loader Module
+MultiScaleCNN- Data Loader Module
 
 Data loading functionality for MultiScaleCNN_model.
 MultiScaleCNN with 
