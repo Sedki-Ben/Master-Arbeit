@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-k-NN Main 
+k-NN Main.
 
 Main script to run k-NN localization evaluation.
 Provides command-line interface for different evaluation modes.
