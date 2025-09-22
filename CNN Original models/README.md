@@ -144,29 +144,6 @@ GlobalAvgPool → Dense layers
 ResidualBlock: Conv1D → BN → Conv1D → BN → Add → ReLU
 ```
 
-## 📈 Performance Analysis
-
-### Strengths by Model
-- **BasicCNN**: Simple, fast, good baseline
-- **HybridCNN**: Multi-modal fusion, RSSI integration
-- **AttentionCNN**: Feature interpretability, selective focus
-- **MultiScaleCNN**: Rich representation, scale invariance
-- **ResidualCNN**: Deep training stability, best overall performance
-
-### Typical Use Cases
-- **Quick prototyping**: BasicCNN_Original
-- **Multi-modal data**: HybridCNN_Original
-- **Feature analysis**: AttentionCNN_Original
-- **Complex patterns**: MultiScaleCNN_Original
-- **Best performance**: ResidualCNN_Original
-
-## 🔄 Comparison with Improved Models
-
-The original models serve as baselines for the improved versions:
-- **Original**: Basic architectures without regularization
-- **Improved**: Enhanced with L2 regularization, additional dropout, better training
-- **Performance gap**: Improved models typically 15-25% better accuracy
-
 ## 📋 Requirements
 
 ```
