@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AttentionCNN_Original - Pipeline Orchestrator
+AttentionCNN_Original- Pipeline Orchestrator
 
 Orchestrates the complete AttentionCNN_Original training and evaluation pipeline.
 AttentionCNN with self-attention mechanism.
