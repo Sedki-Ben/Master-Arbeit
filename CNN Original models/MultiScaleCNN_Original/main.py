@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MultiScaleCNN_Original - Main 
+MultiScaleCNN_Original- Main 
 
 Main script to run MultiScaleCNN_Original model training and evaluation.
 MultiScaleCNN with parallel multi-scale processing.
