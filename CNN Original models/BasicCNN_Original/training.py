@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-BasicCNN Original - Training Module
+BasicCNN Original- Training Module
 
 Training functionality for BasicCNN Original model.
 Uses original "last samurai" training configuration.
