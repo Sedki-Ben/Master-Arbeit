@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HybridCNN_- Main 
+HybridCNN- Main 
 
 Main script to run HybridCNN_model training and evaluation.
 HybridCNN with 
