@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ResidualCNN_Original - Training Module
+ResidualCNN_Original- Training Module
 
 Training functionality for ResidualCNN_Original model.
 ResidualCNN with skip connections.
