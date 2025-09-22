@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HybridCNN_Original - Training Module
+HybridCNN_Original -Training Module
 
 Training functionality for HybridCNN_Original model.
 HybridCNN combining CSI and RSSI.
