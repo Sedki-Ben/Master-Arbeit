@@ -11,11 +11,13 @@ This directory contains enhanced versions of the original CNN architectures with
 
 ### Training Enhancements
 - **Better Convergence**: Improved training stability
-- **Reduced Overfitting**: More robust to unseen data
-- **Faster Training**: Optimized hyperparameters
+- **Reduced Overfitting**: Solved data leakage, more robust to unseen data
+- **Faster Training**: Optimized hyperparameters during training
 - **Performance Boost**: accuracy improvement over original models in some cases while no noticeable improvement in others.
 
 ##  Enhanced Model Architectures
+
+All the following architectures were trained after changing the training parameters, such as batch size, learning rate to match the model and the training data size at each iteration.
 
 ### 1. BasicCNN_Improved
 **Enhanced baseline with comprehensive regularization**
@@ -101,13 +103,13 @@ reminder of the rsults from the original models (median localization error):
 
 ### Accuracy at Different Thresholds (750 samples)
 
-| Model | 1m Accuracy | 2m Accuracy | 3m Accuracy |
+| Model | 250 Samples | 500 Samples | 750 Samples |
 |-------|-------------|-------------|-------------|
-| BasicCNN_Improved | ~65% | ~85% | ~95% |
-| HybridCNN_Improved | ~70% | ~88% | ~96% |
-| AttentionCNN_Improved | ~75% | ~92% | ~98% |
-| MultiScaleCNN_Improved | ~72% | ~90% | ~97% |
-| ResidualCNN_Improved | **~78%** | **~94%** | **~99%** |
+| BasicCNN | ~1.68m | ~1.85m | ~1.82m |
+| HybridCNN | ~1.14m | ~1.34m | ~1.6m |
+| AttentionCNN | ~2.1m | ~1.92m | ~1.77m |
+| MultiScaleCNN | ~2.34m | ~2.4m | ~2.42m |
+| ResidualCNN | ~2.41m | ~2.7m | ~2.72m |
 
 ## Technical Enhancements
 
