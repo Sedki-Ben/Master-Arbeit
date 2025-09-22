@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ResidualCNN_- Evaluation Module
+ResidualCNN- Evaluation Module
 
 Evaluation functionality for ResidualCNN_model.
 ResidualCNN with 
