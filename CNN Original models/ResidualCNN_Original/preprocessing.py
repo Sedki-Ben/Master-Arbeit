@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ResidualCNN_Original - Preprocessing Module
+ResidualCNN_Original -Preprocessing Module
 
 Data preprocessing functionality for ResidualCNN_Original model.
 ResidualCNN with skip connections.
