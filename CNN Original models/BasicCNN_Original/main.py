@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-BasicCNN Original - Main 
+BasicCNN Original- Main 
 
 Main script to run BasicCNN Original model training and evaluation.
 """
