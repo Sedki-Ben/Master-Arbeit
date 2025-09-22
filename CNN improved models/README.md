@@ -13,7 +13,7 @@ This directory contains enhanced versions of the original CNN architectures with
 - **Better Convergence**: Improved training stability
 - **Reduced Overfitting**: More robust to unseen data
 - **Faster Training**: Optimized hyperparameters
-- **Performance Boost**: 15-25% accuracy improvement over original models
+- **Performance Boost**: accuracy improvement over original models in some cases while no noticeable improvement in others.
 
 ##  Enhanced Model Architectures
 
@@ -22,35 +22,31 @@ This directory contains enhanced versions of the original CNN architectures with
 - **Improvements**: L2 regularization on all layers + additional dropout layers
 - **Architecture**: 3 Conv1D layers with regularization + enhanced dense layers
 - **Performance**: ~20% better than original BasicCNN
-- **Best for**: Stable baseline with improved generalization
 
 ### 2. HybridCNN_Improved
 **Advanced dual-input model with enhanced fusion**
 - **Improvements**: Regularized CSI and RSSI branches + improved fusion strategy
 - **Architecture**: Enhanced feature extraction + optimized combination
-- **Performance**: Superior CSI+RSSI integration
-- **Best for**: Multi-modal data with maximum information utilization
+- **Performance**: Significant accuracy improvement yielding the best results in this work
 
 ### 3. AttentionCNN_Improved
 **Advanced attention mechanism with regularization**
 - **Improvements**: Regularized attention weights + enhanced feature selection
 - **Architecture**: Improved attention layers + regularized convolutions
-- **Performance**: Better feature interpretability and accuracy
-- **Best for**: Understanding and leveraging important CSI features
+- **Performance**: no noticeable improvement
 
 ### 4. MultiScaleCNN_Improved
 **Enhanced multi-scale processing with regularization**
 - **Improvements**: Regularized multi-scale branches + improved feature fusion
 - **Architecture**: Enhanced parallel convolutions + optimized concatenation
-- **Performance**: Better scale-invariant feature extraction
-- **Best for**: Complex CSI pattern recognition across multiple scales
+- **Performance**: no significant improvement
 
 ### 5. ResidualCNN_Improved
 **Advanced residual connections with comprehensive regularization**
 - **Improvements**: Regularized residual blocks + enhanced skip connections
 - **Architecture**: Improved gradient flow + optimized depth
-- **Performance**: Best overall performance with enhanced stability
-- **Best for**: Maximum accuracy with stable deep training
+- **Performance**: deterioration of already low accuracy, shallow networks are more suitable to our problem setting
+
 
 ## Directory Structure
 
@@ -93,7 +89,7 @@ python main.py --single-size 750  # Best performance with largest dataset
 
 ## Performance Improvements
 
-Comparison with original models (median localization error):
+reminder of the rsults from the original models (median localization error):
 
 | Model | Original (750) | Improved (750) | Improvement |
 |-------|----------------|----------------|-------------|
