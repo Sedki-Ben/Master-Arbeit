@@ -2,7 +2,7 @@
 
 This directory contains comprehensive WiFi CSI (Channel State Information) datasets collected for indoor localization research. The data supports both CNN-based and classical localization methods with varying dataset sizes for different experimental needs.
 
-## 📊 Dataset Overview
+## Dataset Overview
 
 ### Data Collection Environment
 - **Setting**: Laboratory/indoor environment
@@ -16,7 +16,7 @@ This directory contains comprehensive WiFi CSI (Channel State Information) datas
 - **Total Features**: 105 per sample
 - **Spatial Information**: X,Y coordinates for localization ground truth
 
-## 📁 Directory Structure
+## Directory Structure
 
 ```
 Data/
@@ -36,7 +36,7 @@ Data/
     └── Testing Points Dataset 750/     # Test points for 750-sample dataset
 ```
 
-## 🎯 Dataset Variants
+## Dataset Variants
 
 ### 1. CSI Dataset 250 Samples
 - **Purpose**: Quick experimentation and prototyping
@@ -59,7 +59,7 @@ Data/
 - **Use Case**: Final model evaluation, publication results
 - **Processing Time**: Higher computational requirements
 
-## 📍 Spatial Coverage
+## Spatial Coverage
 
 ### Measurement Grid
 - **Coordinate System**: 2D indoor positioning (X,Y)
@@ -75,7 +75,7 @@ The filenames indicate spatial coordinates:
 
 Total coverage: **34 unique spatial locations**
 
-## 🧪 Test Points
+## Test Points
 
 ### Independent Evaluation
 - **Purpose**: Unbiased model evaluation
@@ -88,7 +88,7 @@ Total coverage: **34 unique spatial locations**
 - **Testing**: Intermediate positions for realistic evaluation
 - **Validation**: Cross-location generalization assessment
 
-## 📋 Data Format
+## Data Format
 
 ### CSV File Structure
 ```csv
@@ -104,7 +104,7 @@ rssi,amplitude_0,amplitude_1,...,amplitude_51,phase_0,phase_1,...,phase_51
 - **Phase**: CSI phase values (typically -π to π radians)
 - **Coordinates**: Extracted from filename for ground truth
 
-## 🔄 Data Processing Pipeline
+## Data Processing Pipeline
 
 ### Raw Data → Processed Data
 1. **Collection**: Raw WiFi measurements in laboratory
@@ -119,7 +119,7 @@ rssi,amplitude_0,amplitude_1,...,amplitude_51,phase_0,phase_1,...,phase_51
 - **Spatial Consistency**: Coordinate validation and mapping
 - **Statistical Verification**: Distribution analysis and outlier detection
 
-## 📈 Usage Guidelines
+## Usage Guidelines
 
 ### For Quick Experiments
 ```bash
@@ -145,7 +145,7 @@ python model.py --dataset-path "Data/CSI Dataset 750 Samples/"
 python evaluate.py --test-path "Data/Tesing points/Testing Points Dataset 500/"
 ```
 
-## ⚡ Performance Considerations
+## Performance Considerations
 
 ### Dataset Size vs. Performance
 - **250 samples**: 70-80% of optimal performance, 3x faster training
@@ -162,7 +162,7 @@ python evaluate.py --test-path "Data/Tesing points/Testing Points Dataset 500/"
 - **Validation Phase**: Use 500 samples
 - **Final Evaluation**: Deploy with 750 samples
 
-## 🛠️ Data Loading
+## Data Loading
 
 ### Python Example
 ```python
@@ -203,7 +203,7 @@ for file in files:
     coordinates.extend([(x, y)] * len(data))
 ```
 
-## 📊 Dataset Statistics
+## Dataset Statistics
 
 ### Sample Distribution
 - **Total Files**: 34 spatial locations
@@ -217,7 +217,3 @@ for file in files:
 - **Noise Level**: Laboratory-controlled environment
 - **Consistency**: High temporal and spatial consistency
 
----
-
-**Comprehensive WiFi CSI Dataset for Indoor Localization Research**  
-*Multi-scale datasets supporting both classical and deep learning approaches*
