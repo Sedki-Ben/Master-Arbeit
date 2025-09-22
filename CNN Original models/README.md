@@ -85,17 +85,15 @@ Each model generates:
 
 ## 📊 Expected Performance
 
-Based on typical results (median localization error):
+Our Models returned these results (median localization error) before improvement:
 
 | Model | 250 Samples | 500 Samples | 750 Samples |
 |-------|-------------|-------------|-------------|
-| BasicCNN | ~2.1m | ~1.8m | ~1.6m |
-| HybridCNN | ~1.9m | ~1.6m | ~1.4m |
-| AttentionCNN | ~1.7m | ~1.4m | ~1.2m |
-| MultiScaleCNN | ~1.8m | ~1.5m | ~1.3m |
-| ResidualCNN | ~1.6m | ~1.3m | ~1.1m |
-
-*Note: Actual performance depends on data quality and training conditions*
+| BasicCNN | ~2.5m | ~2.46m | ~2.23m |
+| HybridCNN | ~1.61m | ~1.8m | ~1.91m |
+| AttentionCNN | ~2.24m | ~2.08m | ~1.82m |
+| MultiScaleCNN | ~2.6m | ~2.6m | ~2.5m |
+| ResidualCNN | ~2.34m | ~2.29m | ~2.21m |
 
 ## 🔧 Model Specifications
 
