@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-k-NN Pipeline
+k-NN Pipeline.
 
 pipeline for k-NN localization including data loading,
 preprocessing, training, evaluation, and visualization.
