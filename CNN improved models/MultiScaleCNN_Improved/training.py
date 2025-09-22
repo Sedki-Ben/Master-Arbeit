@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MultiScaleCNN_- Training Module
+MultiScaleCNN- Training Module
 
 Training functionality for MultiScaleCNN_model.
 MultiScaleCNN with 
