@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MultiScaleCNN_- Preprocessing Module
+MultiScaleCNN- Preprocessing Module
 
 Data preprocessing functionality for MultiScaleCNN_model.
 MultiScaleCNN with 
