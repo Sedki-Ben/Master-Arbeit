@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HybridCNN_- Preprocessing Module
+HybridCNN- Preprocessing Module
 
 Data preprocessing functionality for HybridCNN_model.
 HybridCNN with 
