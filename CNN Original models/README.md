@@ -1,8 +1,8 @@
 # CNN Original Models
 
-This directory contains the original implementations of five different CNN architectures for indoor localization using WiFi CSI data. These models serve as baseline implementations for comparison with their improved counterparts.
+This directory contains the original implementations of five different CNN architectures for indoor localization using WiFi CSI data and in certain cases auxiliary RSSI vales. These models serve as baseline implementations for comparison with their improved counterparts.
 
-## 🏗️ Model Architectures
+## Model Architectures
 
 ### 1. BasicCNN_Original
 **Simple 1D CNN baseline model**
@@ -39,7 +39,7 @@ This directory contains the original implementations of five different CNN archi
 - **Use case**: Deep network training with gradient flow
 - **Strengths**: Stable training, better gradient flow, deeper networks
 
-## 📁 Directory Structure
+## Directory Structure
 
 Each model follows the same modular structure:
 
@@ -54,7 +54,7 @@ ModelName_Original/
 └── evaluation.py     # Performance metrics and visualization
 ```
 
-## 🚀 Usage
+## Usage
 
 ### Run Individual Models
 ```bash
@@ -83,26 +83,24 @@ Each model generates:
 - Performance metrics (JSON/CSV)
 - Predicted vs. true position scatter plots
 
-## 📊 Expected Performance
+## Expected Performance
 
-Based on typical results (median localization error):
+Our Models returned these results (median localization error) before improvement:
 
 | Model | 250 Samples | 500 Samples | 750 Samples |
 |-------|-------------|-------------|-------------|
-| BasicCNN | ~2.1m | ~1.8m | ~1.6m |
-| HybridCNN | ~1.9m | ~1.6m | ~1.4m |
-| AttentionCNN | ~1.7m | ~1.4m | ~1.2m |
-| MultiScaleCNN | ~1.8m | ~1.5m | ~1.3m |
-| ResidualCNN | ~1.6m | ~1.3m | ~1.1m |
-
-*Note: Actual performance depends on data quality and training conditions*
+| BasicCNN | ~2.5m | ~2.46m | ~2.23m |
+| HybridCNN | ~1.61m | ~1.8m | ~1.91m |
+| AttentionCNN | ~2.24m | ~2.08m | ~1.82m |
+| MultiScaleCNN | ~2.6m | ~2.6m | ~2.5m |
+| ResidualCNN | ~2.34m | ~2.29m | ~2.21m |
 
 ## 🔧 Model Specifications
 
 ### Input Format
-- **Shape**: (52, 2) - 52 CSI subcarriers × 2 features (amplitude + phase)
-- **Additional**: RSSI value for HybridCNN (shape: (1,))
-- **Output**: 2D coordinates (X, Y) for indoor positioning
+- **Shape**: (52, 2) - 52 CSI subcarriers × 2 features (amplitude + phase) scaled and calibrated 
+- **Additional**: RSSI value for HybridCNN (shape: (1,)) when needed, with proper scaling
+- **Output**: 2D coordinates (X, Y) for continuous indoor positioning
 
 ### Training Configuration
 - **Loss Function**: Euclidean distance (custom implementation)
@@ -146,30 +144,7 @@ GlobalAvgPool → Dense layers
 ResidualBlock: Conv1D → BN → Conv1D → BN → Add → ReLU
 ```
 
-## 📈 Performance Analysis
-
-### Strengths by Model
-- **BasicCNN**: Simple, fast, good baseline
-- **HybridCNN**: Multi-modal fusion, RSSI integration
-- **AttentionCNN**: Feature interpretability, selective focus
-- **MultiScaleCNN**: Rich representation, scale invariance
-- **ResidualCNN**: Deep training stability, best overall performance
-
-### Typical Use Cases
-- **Quick prototyping**: BasicCNN_Original
-- **Multi-modal data**: HybridCNN_Original
-- **Feature analysis**: AttentionCNN_Original
-- **Complex patterns**: MultiScaleCNN_Original
-- **Best performance**: ResidualCNN_Original
-
-## 🔄 Comparison with Improved Models
-
-The original models serve as baselines for the improved versions:
-- **Original**: Basic architectures without regularization
-- **Improved**: Enhanced with L2 regularization, additional dropout, better training
-- **Performance gap**: Improved models typically 15-25% better accuracy
-
-## 📋 Requirements
+## Requirements
 
 ```
 tensorflow>=2.8.0
@@ -178,16 +153,3 @@ pandas>=1.3.0
 matplotlib>=3.5.0
 scikit-learn>=1.1.0
 ```
-
-## 🎯 Next Steps
-
-After running original models:
-1. Compare with improved models in `../CNN improved models/`
-2. Analyze performance differences
-3. Use visualization tools in `../Tools/` for CDF plots
-4. Compare with classical methods in `../classical models/`
-
----
-
-**Original CNN Models for Indoor Localization**  
-*Baseline implementations for WiFi CSI-based positioning*
