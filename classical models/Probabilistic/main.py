@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Probabilistic Main 
+Probabilistic Main.
 
 Main script to run probabilistic localization evaluation.
 Provides command-line interface for different evaluation modes.
