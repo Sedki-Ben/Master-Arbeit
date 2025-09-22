@@ -2,7 +2,7 @@
 
 This directory contains enhanced versions of the original CNN architectures with advanced regularization techniques, improved training strategies, and optimized hyperparameters. These models demonstrate significant performance improvements over their original counterparts.
 
-## 🎯 Key Improvements
+## Key Improvements
 
 ### Enhanced Regularization
 - **L2 Regularization**: Applied to all convolutional and dense layers (1e-4)
@@ -15,7 +15,7 @@ This directory contains enhanced versions of the original CNN architectures with
 - **Faster Training**: Optimized hyperparameters
 - **Performance Boost**: 15-25% accuracy improvement over original models
 
-## 🏗️ Enhanced Model Architectures
+##  Enhanced Model Architectures
 
 ### 1. BasicCNN_Improved
 **Enhanced baseline with comprehensive regularization**
