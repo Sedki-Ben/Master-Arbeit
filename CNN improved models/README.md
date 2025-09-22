@@ -91,13 +91,13 @@ python main.py --single-size 750  # Best performance with largest dataset
 
 reminder of the rsults from the original models (median localization error):
 
-| Model | Original (750) | Improved (750) | Improvement |
-|-------|----------------|----------------|-------------|
-| BasicCNN | ~1.6m | ~1.2m | **25%** |
-| HybridCNN | ~1.4m | ~1.1m | **21%** |
-| AttentionCNN | ~1.2m | ~0.9m | **25%** |
-| MultiScaleCNN | ~1.3m | ~1.0m | **23%** |
-| ResidualCNN | ~1.1m | ~0.8m | **27%** |
+| Model | 250 Samples | 500 Samples | 750 Samples |
+|-------|-------------|-------------|-------------|
+| BasicCNN | ~2.5m | ~2.46m | ~2.23m |
+| HybridCNN | ~1.61m | ~1.8m | ~1.91m |
+| AttentionCNN | ~2.24m | ~2.08m | ~1.82m |
+| MultiScaleCNN | ~2.6m | ~2.6m | ~2.5m |
+| ResidualCNN | ~2.34m | ~2.29m | ~2.21m |
 
 ### Accuracy at Different Thresholds (750 samples)
 
