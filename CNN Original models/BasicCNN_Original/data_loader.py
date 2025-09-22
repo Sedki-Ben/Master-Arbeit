@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-BasicCNN Original - Data Loader Module
+BasicCNN Original- Data Loader Module
 
 Data loading functionality for BasicCNN Original model.
 Supports loading CSI amplitude and phase data.
