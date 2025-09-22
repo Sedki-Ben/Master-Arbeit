@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HybridCNN_Original - Main 
+HybridCNN_Original -Main 
 
 Main script to run HybridCNN_Original model training and evaluation.
 HybridCNN combining CSI and RSSI.
