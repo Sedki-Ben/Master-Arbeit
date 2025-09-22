@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ResidualCNN_- Training Module
+ResidualCNN- Training Module
 
 Training functionality for ResidualCNN_model.
 ResidualCNN with 
