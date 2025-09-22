@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-AttentionCNN_- Preprocessing Module
+AttentionCNN- Preprocessing Module
 
 Data preprocessing functionality for AttentionCNN_model.
 AttentionCNN with 
