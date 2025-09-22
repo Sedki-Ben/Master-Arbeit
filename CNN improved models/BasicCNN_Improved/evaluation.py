@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-BasicCNN_- Evaluation Module
+BasicCNN- Evaluation Module
 
 Evaluation functionality for BasicCNN_model.
 BasicCNN with 
