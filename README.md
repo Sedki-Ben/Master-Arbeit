@@ -1,10 +1,10 @@
 # CNN-Based Indoor Localization with WiFi CSI Data
 
-## 🎯 Project Overview
+## Project Overview
 
-This Master's thesis project focuses on **deep learning solutions for indoor localization** using WiFi Channel State Information (CSI) data. The project implements and compares various **CNN architectures** for accurate indoor positioning, evaluating their performance across different dataset sizes and comparing them with classical localization methods.
+This Master's thesis project focuses on **deep learning solutions for indoor localization in a singel acssess point scenario** using WiFi Channel State Information (CSI) data and RSSI measurements. The project implements and compares various **CNN architectures** for accurate indoor positioning, evaluating their performance across different dataset sizes and comparing them with classical localization methods.
 
-## 🏗️ Project Structure
+## Project Structure
 
 ```
 MasterArbeit/
@@ -33,7 +33,7 @@ MasterArbeit/
 └── Tools/                        # Data processing and visualization tools
 ```
 
-## 🧠 CNN Models Implemented
+## CNN Models Implemented
 
 ### Original Models
 - **BasicCNN**: Simple 1D CNN with 3 convolutional layers and dense layers
@@ -49,7 +49,7 @@ Enhanced versions of all original models featuring:
 - **Improved training strategies** and hyperparameter tuning
 - **Better convergence** and reduced overfitting
 
-## 📊 Dataset Information
+## Dataset Information
 
 ### CSI Data Features
 - **Input Shape**: (52, 2) - 52 subcarriers × 2 features (amplitude + phase)
@@ -63,11 +63,11 @@ Enhanced versions of all original models featuring:
 - **750 Samples**: Full dataset for optimal performance
 
 ### Spatial Coverage
-- **Grid Points**: Multiple measurement locations in indoor environment
+- **Grid Points**: Multiple measurement locations in indoor environment include training and validation points
 - **Test Points**: Independent evaluation points for realistic assessment
 - **Coordinate Range**: Covers typical indoor room dimensions
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Run CNN Models
 
@@ -115,45 +115,14 @@ python plot_cnn_improved_cdf.py
 python plot_classical_models_cdf.py
 ```
 
-## 📈 Performance Metrics
+## Performance Metrics
 
 All models are evaluated using:
-- **Localization Error**: Euclidean distance between predicted and true positions
-- **Accuracy Thresholds**: Percentage of predictions within 0.5m, 1m, 2m, 3m, 5m
-- **Statistical Measures**: Mean, median, standard deviation, percentiles
+- **Localization Error**: Euclidean distance between predicted and true positions: median, mean.
+- **Accuracy Thresholds**: Percentage of predictions within 0.5m, 1m, 2m, 3m,
 - **Cumulative Distribution Function (CDF)**: Complete error distribution analysis
 
-## 🔬 Research Contributions
-
-### 1. Comprehensive CNN Architecture Comparison
-- Systematic evaluation of 5 different CNN architectures
-- Original vs. improved model variants
-- Performance analysis across different dataset sizes
-
-### 2. Classical vs. Deep Learning Comparison
-- Baseline comparison with traditional methods (k-NN, IDW, Probabilistic)
-- Quantitative analysis of deep learning advantages
-- Computational efficiency trade-offs
-
-### 3. Dataset Size Impact Analysis
-- Performance scaling with different training data sizes
-- Optimization strategies for limited data scenarios
-- Practical deployment considerations
-
-### 4. Feature Engineering and Processing
-- CSI amplitude and phase feature extraction
-- RSSI integration for hybrid models
-- Data preprocessing and normalization strategies
-
-## 🛠️ Technical Stack
-
-- **Deep Learning**: TensorFlow/Keras
-- **Classical ML**: scikit-learn
-- **Data Processing**: NumPy, Pandas
-- **Visualization**: Matplotlib
-- **Spatial Analysis**: SciPy
-
-## 📋 Requirements
+## Requirements
 
 ```
 tensorflow>=2.8.0
@@ -163,56 +132,3 @@ matplotlib>=3.5.0
 scikit-learn>=1.1.0
 scipy>=1.7.0
 ```
-
-## 🎯 Key Results
-
-### CNN Model Performance Hierarchy
-1. **ResidualCNN** - Best overall performance with skip connections
-2. **AttentionCNN** - Excellent feature selection capabilities
-3. **MultiScaleCNN** - Strong multi-scale feature extraction
-4. **HybridCNN** - Good CSI+RSSI fusion performance
-5. **BasicCNN** - Solid baseline performance
-
-### Dataset Size Impact
-- **750 samples**: Optimal performance across all models
-- **500 samples**: Good balance of performance vs. training time
-- **250 samples**: Suitable for quick prototyping and testing
-
-### Deep Learning vs. Classical Methods
-- **CNN models** consistently outperform classical methods
-- **Improved models** show 15-25% better accuracy than original versions
-- **Attention mechanisms** provide best feature interpretability
-
-## 📚 Publication and Citation
-
-If you use this work in your research, please cite:
-
-```bibtex
-@mastersthesis{sedki2024cnn_indoor_localization,
-  title={CNN-Based Indoor Localization with WiFi CSI Data},
-  author={Sedki Ben [Your Name]},
-  year={2024},
-  school={[Your University]},
-  type={Master's Thesis}
-}
-```
-
-## 🤝 Contributing
-
-This project is part of a Master's thesis research. For questions or collaborations:
-- Create an issue for bug reports or feature requests
-- Fork the repository for improvements
-- Contact the author for research collaborations
-
-## 📄 License
-
-This project is available for academic and research purposes. Please cite appropriately when using this work.
-
-## 🔗 Repository
-
-GitHub: [https://github.com/Sedki-Ben/Master-Arbeit](https://github.com/Sedki-Ben/Master-Arbeit)
-
----
-
-**Master's Thesis Project - CNN-Based Indoor Localization**  
-*Deep Learning Solutions for WiFi CSI-Based Indoor Positioning*
