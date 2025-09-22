@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-HybridCNN_- Training Module
+HybridCNN- Training Module
 
 Training functionality for HybridCNN_model.
 HybridCNN with 
