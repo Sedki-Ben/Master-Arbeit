@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-MultiScaleCNN_Original - Pipeline Orchestrator
+MultiScaleCNN_Original -Pipeline Orchestrator
 
 Orchestrates the complete MultiScaleCNN_Original training and evaluation pipeline.
 MultiScaleCNN with parallel multi-scale processing.
