@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Plot CNN Models Learning Curves
+Plot CNN Models Learning Curves.
 
 Script to plot training and validation learning curves for improved CNN models
 (BasicCNN, HybridCNN, AttentionCNN, MultiScaleCNN, ResidualCNN).
