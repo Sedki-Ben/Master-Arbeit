@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Probabilistic Fingerprinting Model
+Probabilistic Fingerprinting Model.
 
 Probabilistic localization using Gaussian distributions.
 Models CSI signatures at each reference point with multivariate Gaussians
