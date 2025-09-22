@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-IDW Main 
+IDW main 
 
 Main script to run IDW localization evaluation.
 Provides command-line interface for different evaluation modes.
